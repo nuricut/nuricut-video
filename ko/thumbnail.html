@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동영상 썸네일 추출 - 원하는 장면을 고화질 이미지로 | nuricut.video</title>
+    <meta
+      name="description"
+      content="동영상에서 원하는 장면을 원본 화질 JPG·PNG 이미지로 저장하세요. 유튜브 썸네일 크기(1280×720) 지원, 자동으로 여러 장면 뽑기. 업로드 없이 브라우저에서 처리."
+    />
+    <link rel="alternate" hreflang="en" href="https://nuricut.video/thumbnail.html" />
+    <link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/thumbnail.html" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/thumbnail.html" />
+    <link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/thumbnail.html" />
+    <link rel="alternate" hreflang="x-default" href="https://nuricut.video/thumbnail.html" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="/ko/"><img src="/logo.svg" alt="" width="30" height="30" /><span>nuricut<span class="logo-tld">.video</span></span></a>
+        <nav class="nav">
+          <a href="/ko/">압축</a>
+          <a href="/ko/shorts.html">쇼츠</a>
+          <a href="/ko/gif.html">GIF</a>
+          <a href="/ko/thumbnail.html" class="active">썸네일</a>
+          <a href="/ko/guide.html">사용방법</a>
+        </nav>
+        <details class="lang-menu"><summary aria-label="언어 선택: 한국어"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5" fill="#0047A0"/><path d="M10 10a5 5 0 0 1 10 0a2.5 2.5 0 0 1-5 0a2.5 2.5 0 0 0-5 0z" fill="#CD2E3A"/><g stroke="#000" stroke-width="1"><path d="M4.9 5.2l2.2-3.1M6.1 6l2.2-3.1M7.3 6.9l2.2-3.1" transform="rotate(0)"/><path d="M20.7 3.8l2.2 3.1M21.9 2.9l2.2 3.1M23.1 2.1l2.2 3.1"/><path d="M4.9 14.8l2.2 3.1M6.1 14l2.2 3.1M7.3 13.1l2.2 3.1"/><path d="M20.7 16.2l2.2-3.1M21.9 17.1l2.2-3.1M23.1 17.9l2.2-3.1"/></g></svg><span class="lang-current">한국어</span><svg class="caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></summary><div class="lang-switch"><a href="/thumbnail.html" data-lang="en" hreflang="en" lang="en"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect y="0" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="3.076923076923077" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="6.153846153846154" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="9.23076923076923" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="12.307692307692308" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="15.384615384615385" width="30" height="1.5384615384615385" fill="#B22234"/><rect y="18.46153846153846" width="30" height="1.5384615384615385" fill="#B22234"/><rect width="13" height="10.77" fill="#3C3B6E"/><circle cx="2.2" cy="2" r=".75" fill="#fff"/><circle cx="5.4" cy="2" r=".75" fill="#fff"/><circle cx="8.6" cy="2" r=".75" fill="#fff"/><circle cx="3.8" cy="4.4" r=".75" fill="#fff"/><circle cx="7" cy="4.4" r=".75" fill="#fff"/><circle cx="2.2" cy="6.8" r=".75" fill="#fff"/><circle cx="5.4" cy="6.8" r=".75" fill="#fff"/><circle cx="8.6" cy="6.8" r=".75" fill="#fff"/><circle cx="10.6" cy="4.4" r=".75" fill="#fff"/></svg><span>English</span></a><a href="/ko/thumbnail.html" data-lang="ko" hreflang="ko" class="active" aria-current="true"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5" fill="#0047A0"/><path d="M10 10a5 5 0 0 1 10 0a2.5 2.5 0 0 1-5 0a2.5 2.5 0 0 0-5 0z" fill="#CD2E3A"/><g stroke="#000" stroke-width="1"><path d="M4.9 5.2l2.2-3.1M6.1 6l2.2-3.1M7.3 6.9l2.2-3.1" transform="rotate(0)"/><path d="M20.7 3.8l2.2 3.1M21.9 2.9l2.2 3.1M23.1 2.1l2.2 3.1"/><path d="M4.9 14.8l2.2 3.1M6.1 14l2.2 3.1M7.3 13.1l2.2 3.1"/><path d="M20.7 16.2l2.2-3.1M21.9 17.1l2.2-3.1M23.1 17.9l2.2-3.1"/></g></svg><span>한국어</span></a><a href="/zh/thumbnail.html" data-lang="zh" hreflang="zh-Hans" lang="zh-Hans"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true"><rect width="30" height="20" fill="#EE1C25"/><polygon points="5.00,2.00 5.71,4.03 7.85,4.07 6.14,5.37 6.76,7.43 5.00,6.20 3.24,7.43 3.86,5.37 2.15,4.07 4.29,4.03" fill="#FFDE00"/><polygon points="10.34,1.06 10.33,1.78 11.00,2.03 10.32,2.25 10.28,2.96 9.86,2.38 9.17,2.56 9.60,1.99 9.21,1.38 9.89,1.62" fill="#FFDE00"/><polygon points="12.71,3.29 12.40,3.94 12.89,4.45 12.18,4.36 11.84,4.99 11.72,4.28 11.01,4.16 11.64,3.82 11.55,3.11 12.06,3.60" fill="#FFDE00"/><polygon points="12.00,6.00 12.24,6.68 12.95,6.69 12.38,7.12 12.59,7.81 12.00,7.40 11.41,7.81 11.62,7.12 11.05,6.69 11.76,6.68" fill="#FFDE00"/><polygon points="10.34,8.06 10.33,8.78 11.00,9.03 10.32,9.25 10.28,9.96 9.86,9.38 9.17,9.56 9.60,8.99 9.21,8.38 9.89,8.62" fill="#FFDE00"/></svg><span>中文</span></a><a href="/ja/thumbnail.html" data-lang="ja" hreflang="ja" lang="ja"><svg class="flag" viewBox="0 0 30 20" width="21" height="14" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/></svg><span>日本語</span></a></div></details>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <h1>동영상에서 썸네일 이미지 뽑기</h1>
+        <p class="sub">원하는 장면 캡처 · 자동으로 여러 장 · 원본 화질 · 업로드 없음</p>
+      </section>
+
+      <section class="card">
+        <label id="dropzone" class="dropzone">
+          <input id="file-input" type="file" accept="video/*" hidden />
+          <div class="dz-icon">🖼️</div>
+          <div class="dz-title">여기에 동영상을 끌어다 놓거나 클릭해서 선택</div>
+          <div class="dz-hint">MP4 · MOV · WebM</div>
+        </label>
+
+        <div id="file-info" class="file-info" hidden>
+          <div>
+            <div id="file-name" class="file-name"></div>
+            <div id="file-meta" class="file-meta"></div>
+          </div>
+          <button id="change-file" class="btn-link" type="button">다른 파일</button>
+        </div>
+
+        <div id="options" class="options" hidden>
+          <div class="preview-box">
+            <video id="preview-video" controls playsinline preload="auto"></video>
+            <div class="notice">영상을 원하는 장면에 멈추고 '이 장면 캡처'를 누르세요.</div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="label" for="out-size">이미지 크기</label>
+              <select id="out-size">
+                <option value="original" selected>원본 크기</option>
+                <option value="1280x720">1280×720 (유튜브 썸네일)</option>
+                <option value="1080x1920">1080×1920 (쇼츠·스토리)</option>
+                <option value="1080x1080">1080×1080 (인스타 정사각형)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label" for="format">파일 형식</label>
+              <select id="format">
+                <option value="jpeg" selected>JPG (가벼움)</option>
+                <option value="png">PNG (무손실)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="thumb-actions">
+            <button id="capture" class="btn-primary" type="button">📸 이 장면 캡처</button>
+            <button id="auto" class="btn-secondary" type="button">✨ 추천 썸네일 8장</button>
+          </div>
+
+          <div id="thumbs" class="thumbs"></div>
+          <a class="btn-support" data-support hidden target="_blank" rel="noopener">☕ 도움이 되셨나요? 커피 한 잔 후원하기</a>
+        </div>
+
+        <div id="error" class="error" hidden></div>
+        <div class="card-foot"><span class="card-safe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><span class="nb">영상은 이 기기를 떠나지 않아요</span> · <span class="nb">서버 업로드·저장 없음</span></span></span><span class="card-free"><span class="nb"><b>무료</b></span> · <span class="nb">워터마크 없음</span> · <span class="nb">횟수 제한 없음</span></span></div>
+      </section>
+
+      <section class="faq">
+        <h2>자주 묻는 질문</h2>
+        <details>
+          <summary>정말 완전 무료인가요?</summary>
+          <p>네. 회원가입, 결제, 사용 횟수 제한이 없고 결과물에 워터마크도 넣지 않습니다. 파일을 서버에서 처리하지 않아 운영 비용이 거의 들지 않기 때문에 무료로 제공할 수 있어요.</p>
+        </details>
+        <details>
+          <summary>추천 썸네일은 어떻게 고르나요?</summary>
+          <p>영상 곳곳의 장면을 분석해서 흔들리거나 흐릿한 장면, 너무 어둡거나 밝은 장면, 단색 화면을 걸러내고 선명하고 색감이 좋은 장면을 골라요. 다시 누르면 앞에서 보여준 장면과 겹치지 않는 다음 추천 장면이 나와요.</p>
+        </details>
+        <details>
+          <summary>유튜브 썸네일 크기는 얼마인가요?</summary>
+          <p>유튜브는 1280×720(16:9)을 권장해요. '1280×720' 크기를 고르면 비율이 다른 영상도 가운데를 기준으로 맞춰 잘라 줍니다.</p>
+        </details>
+        <details>
+          <summary>영상이 재생되지 않아요.</summary>
+          <p>AVI, 일부 MKV 같은 형식은 브라우저가 직접 재생하지 못해요. <a href="/ko/">동영상 압축</a>에서 MP4로 바꾼 뒤 다시 시도해 주세요.</p>
+        </details>
+        <details>
+          <summary>제 영상이 서버에 업로드되나요?</summary>
+          <p>아니요. 캡처는 브라우저 안에서만 처리되며 파일은 기기 밖으로 나가지 않습니다.</p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-links">
+          <a href="/ko/">동영상 압축</a>
+          <a href="/ko/shorts.html">쇼츠 변환</a>
+          <a href="/ko/gif.html">GIF 만들기</a>
+          <a href="/ko/thumbnail.html">썸네일 추출</a>
+          <a href="/ko/guide.html">사용방법</a>
+        </div>
+        <div class="footer-links footer-legal">
+          <a href="/ko/privacy.html"><b>개인정보처리방침</b></a>
+          <a href="/ko/terms.html">이용약관</a>
+          <a href="/ko/licenses.html">오픈소스 라이선스</a>
+          <a class="contact-link" href="mailto:xptmffk002@gmail.com" data-email="xptmffk002@gmail.com" aria-label="문의: xptmffk002@gmail.com">문의</a>
+          <a class="support-link" data-support hidden target="_blank" rel="noopener">☕ 후원하기</a>
+        </div>
+        <p class="footer-note">🔒 nuricut.video는 사용자의 동영상 파일을 서버로 전송하거나 저장하지 않습니다.<br />모든 처리는 사용자 기기의 브라우저 안에서 이루어집니다.</p>
+        <div>© 2026 nuricut.video</div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/pages/thumbnail.js"></script>
+  </body>
+</html>

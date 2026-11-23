@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="nuricut 레인보우 토끼">
+  <defs>
+    <!-- 핑크 중심의 따뜻한 파스텔 레인보우 -->
+    <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6fae"/>
+      <stop offset="0.2" stop-color="#ff8fa3"/>
+      <stop offset="0.38" stop-color="#ffb38a"/>
+      <stop offset="0.52" stop-color="#ffd27a"/>
+      <stop offset="0.68" stop-color="#ff9ed2"/>
+      <stop offset="0.84" stop-color="#e59bff"/>
+      <stop offset="1" stop-color="#ff7ec8"/>
+    </linearGradient>
+  </defs>
+  <!-- 귀 -->
+  <ellipse cx="22" cy="17" rx="7" ry="15.5" transform="rotate(-14 22 17)" fill="url(#rainbow)"/>
+  <ellipse cx="42" cy="17" rx="7" ry="15.5" transform="rotate(14 42 17)" fill="url(#rainbow)"/>
+  <ellipse cx="22.3" cy="18" rx="3" ry="10.5" transform="rotate(-14 22.3 18)" fill="#fff" opacity="0.5"/>
+  <ellipse cx="41.7" cy="18" rx="3" ry="10.5" transform="rotate(14 41.7 18)" fill="#fff" opacity="0.5"/>
+  <!-- 얼굴 -->
+  <ellipse cx="32" cy="41" rx="20.5" ry="18" fill="url(#rainbow)"/>
+  <!-- 볼 -->
+  <circle cx="20.5" cy="46" r="3.6" fill="#ff3d8b" opacity="0.55"/>
+  <circle cx="43.5" cy="46" r="3.6" fill="#ff3d8b" opacity="0.55"/>
+  <!-- 눈 -->
+  <circle cx="25" cy="38.5" r="3.4" fill="#2a1420"/>
+  <circle cx="39" cy="38.5" r="3.4" fill="#2a1420"/>
+  <circle cx="26.2" cy="37.3" r="1.1" fill="#fff"/>
+  <circle cx="40.2" cy="37.3" r="1.1" fill="#fff"/>
+  <!-- 코 · 입 -->
+  <path d="M29.6 44.2 h4.8 a0.8 0.8 0 0 1 0.6 1.3 l-2.4 2.4 a0.8 0.8 0 0 1 -1.2 0 l-2.4 -2.4 a0.8 0.8 0 0 1 0.6 -1.3 z" fill="#e8336f"/>
+  <path d="M32 48 v2 M32 50 q-2.2 2.2 -4.4 0.6 M32 50 q2.2 2.2 4.4 0.6" stroke="#2a1420" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+</svg>
