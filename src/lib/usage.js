@@ -1,9 +1,9 @@
 // 방문자·사용횟수 집계 (Google Analytics 4)
-// - 측정 ID는 프로젝트 폴더의 .env 파일에 VITE_GA_ID=G-XXXXXXXXXX 형태로 넣으면 자동으로 켜집니다.
-// - ID가 없거나 내 PC(localhost)에서 실행 중이면 아무것도 보내지 않습니다.
+// - 측정 ID는 아래 기본값(nuricut 웹 스트림)을 쓰며, .env의 VITE_GA_ID로 바꿀 수 있습니다.
+// - 내 PC(localhost)에서 실행 중이면 아무것도 보내지 않습니다.
 // - 영상 파일·파일 이름·화면 내용은 절대 보내지 않고, '어떤 기능을 몇 번 썼는지' 같은 숫자만 보냅니다.
 
-const GA_ID = import.meta.env.VITE_GA_ID;
+const GA_ID = import.meta.env.VITE_GA_ID || 'G-W5RVK6Z0DL';
 const enabled = Boolean(GA_ID) && !['localhost', '127.0.0.1'].includes(location.hostname);
 
 export function initAnalytics() {
