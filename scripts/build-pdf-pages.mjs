@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { brandHtml } from './site-parts.mjs';
+import { brandHtml, brandText } from './site-parts.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://nuricut.video';
@@ -67,13 +67,55 @@ const T = {
     organize: { all: '전체 선택', rotL: '왼쪽 회전', rotR: '오른쪽 회전', del: '삭제', blank: '빈 쪽 넣기', hint: '쪽을 눌러 고른 뒤 위 버튼을 누르세요. ⠿ 손잡이를 끌면 순서가 바뀌어요.', start: 'PDF 저장' },
     img2pdf: { size: '용지 크기', a4: ['A4', '문서용'], fit: ['사진 크기', '여백 없이 그대로'], letter: ['레터', '미국 용지'], orient: '방향', auto: '자동', portrait: '세로', landscape: '가로', margin: '여백', m0: '없음', m1: '좁게', m2: '보통', start: 'PDF 만들기' },
     pdf2img: { format: '저장 형식', jpg: ['JPG', '가벼움'], png: ['PNG', '선명함'], quality: '화질', q1: ['가볍게', '96dpi'], q2: ['보통', '150dpi'], q3: ['고화질', '300dpi'], pickHint: '저장할 쪽을 눌러서 고르세요. 아무것도 안 고르면 전체를 저장해요.', start: '이미지로 저장' },
+    guide: {
+      title: 'PDF 도구 사용방법 - 합치기·나누기·정리·변환 | nuricut.video',
+      desc: 'nuricut.video PDF 도구로 PDF 합치기, 나누기, 페이지 정리, 이미지를 PDF로, PDF를 이미지로 바꾸는 방법을 단계별로 안내합니다.',
+      h1: '{BRAND} 사용방법',
+      intro: '모든 PDF 도구는 같은 순서로 사용해요. 위쪽 탭으로 도구를 옮겨 다니며 이어서 작업할 수도 있어요.',
+      quick: ['파일 넣기', '옵션 고르기', '시작 누르기', '결과 다운로드'],
+      go: '바로가기 →',
+      tipLabel: '💡 팁',
+      tocTip: '↓ {name} 사용방법으로 이동',
+      sections: {
+        merge: {
+          steps: ['PDF 여러 개를 상자에 끌어다 놓거나, 상자를 눌러 한꺼번에 고릅니다.', '왼쪽 <b>⠿ 손잡이</b>를 끌어서 합칠 순서를 정합니다. 빼고 싶은 파일은 <b>✕</b>를 누르세요.', '빠뜨린 파일은 <b>＋ 추가</b>로 더 넣을 수 있어요.', '<b>PDF 합치기</b>를 누르고 <b>다운로드</b>합니다.'],
+          tip: '계약서 본문 뒤에 사업자등록증·통장 사본을 붙여 한 파일로 보낼 때 편해요.',
+        },
+        split: {
+          steps: ['나눌 PDF를 하나 고릅니다. 모든 쪽이 미리보기로 펼쳐져요.', '나누는 방법을 고릅니다: <b>범위로</b>(예: 1-3, 4-6), <b>한 쪽씩</b>(쪽마다 파일), <b>골라 뽑기</b>(원하는 쪽만).', '범위로 나누면 같은 파일로 묶이는 쪽이 같은 색 테두리로 표시돼요.', '<b>나누기</b>를 누르고 다운로드합니다. 파일이 여러 개면 ZIP 하나로 받아요.'],
+          tip: '"7-"처럼 끝 번호를 비우면 7쪽부터 마지막 쪽까지예요.',
+        },
+        organize: {
+          steps: ['정리할 PDF를 고릅니다.', '쪽을 눌러 고른 뒤 <b>왼쪽·오른쪽 회전</b>이나 <b>삭제</b>를 누릅니다. <b>전체 선택</b>도 있어요.', '쪽 왼쪽 위 <b>⠿ 손잡이</b>를 끌어서 순서를 바꿉니다.', '<b>빈 쪽 넣기</b>를 누르면 고른 쪽 뒤(없으면 맨 끝)에 빈 쪽이 들어가요.', '<b>PDF 저장</b>을 누르고 다운로드합니다.'],
+          tip: '스캔하다 거꾸로 들어간 쪽은 오른쪽 회전을 두 번 누르면 바로잡혀요.',
+        },
+        img2pdf: {
+          steps: ['사진(JPG·PNG·WebP·GIF)을 여러 장 고릅니다.', '<b>⠿ 손잡이</b>로 쪽 순서를 정합니다.', '용지 크기(<b>A4</b>·<b>사진 크기</b>·<b>레터</b>), 방향, 여백을 고릅니다. 방향을 <b>자동</b>으로 두면 가로 사진은 가로 용지에 들어가요.', '<b>PDF 만들기</b>를 누르고 다운로드합니다.'],
+          tip: '휴대폰으로 찍은 서류 사진을 제출용 PDF로 만들 때 A4 + 여백 좁게를 추천해요.',
+        },
+        pdf2img: {
+          steps: ['이미지로 바꿀 PDF를 고릅니다.', '저장 형식(<b>JPG</b>는 가볍게, <b>PNG</b>는 선명하게)과 화질(96·150·300dpi)을 고릅니다.', '원하는 쪽만 저장하려면 쪽을 눌러 고르세요. 안 고르면 전체를 저장해요.', '<b>이미지로 저장</b>을 누르고 다운로드합니다. 여러 장이면 ZIP으로 받아요.'],
+          tip: '인쇄용이면 300dpi, 메신저로 보낼 거면 150dpi가 적당해요.',
+        },
+      },
+      trouble: '문제가 생겼을 때',
+      troubles: [
+        ['PDF가 열리지 않아요.', '암호가 걸린 PDF는 아직 열 수 없어요. 손상된 파일일 수도 있으니 다른 프로그램에서 열리는지 확인해 주세요.'],
+        ['쪽이 많으면 느려요.', '사용자 기기가 직접 처리하기 때문에 수백 쪽짜리는 미리보기를 그리는 데 시간이 걸려요. 탭을 닫지 말고 기다려 주세요.'],
+        ['다른 도구로 넘어가면 파일이 그대로 있어요.', '도구를 옮겨 다니며 이어서 작업할 수 있도록 이 브라우저 안에만 잠시 기억해 둔 거예요. 서버로는 가지 않고, "비우기"나 "다른 파일"을 누르면 지워져요.'],
+        ['휴대폰에서도 되나요?', '네, 됩니다. 쪽 순서는 손잡이(⠿)를 길게 누른 채 끌어서 바꿀 수 있어요.'],
+      ],
+      formats: '지원 형식',
+      formatList: ['PDF: 암호가 없는 일반 PDF', '이미지: JPG, PNG, WebP, GIF', '브라우저: 최신 크롬, 엣지, 파이어폭스, 사파리'],
+    },
     faq: [
       ['정말 무료인가요?', '네. 회원가입, 결제, 횟수 제한이 없고 결과물에 워터마크도 넣지 않습니다.'],
       ['제 파일이 서버에 올라가나요?', '아니요. 모든 처리는 이 기기의 브라우저 안에서 이루어지고, 파일은 서버로 전송되거나 저장되지 않아요. 도구를 옮겨 다니는 동안 파일을 기억해 두는 것도 이 브라우저 안에만 저장되며, "비우기"를 누르면 지워져요.'],
       ['암호가 걸린 PDF도 되나요?', '지금은 암호가 걸린 PDF는 열 수 없어요. 암호 풀기 기능은 나중에 추가할 예정이에요.'],
       ['도구를 이어서 쓸 수 있나요?', '네. 결과 화면에서 "이 결과로 다른 도구 이어서 쓰기"를 누른 뒤 위쪽 탭에서 다른 도구를 고르면, 방금 만든 PDF로 바로 이어서 작업할 수 있어요.'],
     ],
-    footerNote: '🔒 nuricut.video는 사용자의 파일을 서버로 전송하거나 저장하지 않습니다.<br />모든 처리는 사용자 기기의 브라우저 안에서 이루어집니다.',
+    footerNote: '🔒 {BRAND}는 사용자의 파일을 서버로 전송하거나 저장하지 않습니다.<br />모든 처리는 사용자 기기의 브라우저 안에서 이루어집니다.',
+    videoTools: '동영상 도구',
     footerPdf: ['PDF 합치기', 'PDF 나누기', '페이지 정리', '이미지 → PDF', 'PDF → 이미지'],
   },
 };
@@ -105,7 +147,7 @@ function build(lang) {
           <a href="${toolUrl('merge')}"${activeNav === 'merge' ? ' class="active"' : ''}>${t.tool.merge[2]}</a>
           <a href="${toolUrl('split')}"${activeNav === 'split' ? ' class="active"' : ''}>${t.tool.split[2]}</a>
           <a href="${toolUrl('organize')}"${activeNav === 'organize' ? ' class="active"' : ''}>${t.tool.organize[2]}</a>
-          <a href="/${lang}/guide.html">${t.nav.guide}</a>
+          <a href="${url('guide.html')}"${activeNav === 'guide' ? ' class="active"' : ''}>${t.nav.guide}</a>
         </nav>
         ${langMenu}
       </div>
@@ -118,9 +160,10 @@ function build(lang) {
   const footer = footerRef
     .replace(/<div class="footer-links">[\s\S]*?<\/div>/, `<div class="footer-links">
           ${TOOLS.filter((x) => x[4]).map(([k, f], i) => `<a href="${url(f)}">${t.footerPdf[i]}</a>`).join('\n          ')}
-          <a href="/${lang}/">동영상 도구</a>
+          <a href="${url('guide.html')}">${t.nav.guide}</a>
+          <a href="/${lang}/">${t.videoTools}</a>
         </div>`)
-    .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote}</p>`);
+    .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote.replace('{BRAND}', brandText('pdf'))}</p>`);
 
   const cardFoot = `<div class="card-foot"><span class="card-safe">${lockSvg}<span><span class="nb">${t.safe[0]}</span> · <span class="nb">${t.safe[1]}</span></span></span><span class="card-free"><span class="nb"><b>${t.free[0]}</b></span> · <span class="nb">${t.free[1]}</span> · <span class="nb">${t.free[2]}</span></span></div>`;
 
@@ -146,7 +189,7 @@ function build(lang) {
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body data-tool="${tool}">
-    ${header(tool === 'hub' ? 'hub' : tool)}
+    ${header(tool)}
 
     <main class="wrap">
 ${body}
@@ -289,7 +332,30 @@ ${work}
             <button id="start" class="btn-primary" type="button">${pi.start}</button>
           </div>` });
 
-  console.log(lang, 'PDF 페이지 6개 생성 →', path.relative(root, outDir));
+  /* ----- 사용방법 ----- */
+  const g = t.guide;
+  const ready = TOOLS.filter((x) => x[4]);
+  page({ file: 'guide.html', title: g.title, desc: g.desc, tool: 'guide', script: 'pdf-hub.js', body: `      <div class="doc guide">
+      <h1>${g.h1.replace('{BRAND}', brandText('pdf'))}</h1>
+      <p>${g.intro}</p>
+      <ol class="guide-quick">${g.quick.map((q, i) => `<li><span class="guide-num">${i + 1}</span>${q}</li>`).join('')}</ol>
+      <nav class="guide-toc">${ready.map(([k, , ic]) => `<a class="guide-toc-item" href="#${k}" data-tip="${g.tocTip.replace('{name}', t.tool[k][0])}"><span class="ico" data-icon="${ic}"></span>${t.tool[k][0]}</a>`).join('')}</nav>
+${ready.map(([k, f, ic]) => `
+      <section class="guide-section" id="${k}">
+        <div class="guide-head"><h2><span class="ico" data-icon="${ic}"></span>${t.tool[k][0]}</h2><a class="btn-small" href="${url(f)}">${g.go}</a></div>
+        <ol class="guide-steps">${g.sections[k].steps.map((x) => `<li>${x}</li>`).join('')}</ol>
+        <p class="guide-tip"><b>${g.tipLabel}</b> ${g.sections[k].tip}</p>
+      </section>`).join('')}
+      <section class="faq">
+        <h2>${g.trouble}</h2>
+        ${g.troubles.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}
+      </section>
+
+      <h2>${g.formats}</h2>
+      <ul>${g.formatList.map((x) => `<li>${x}</li>`).join('')}</ul>
+      </div>` });
+
+  console.log(lang, 'PDF 페이지 7개 생성 →', path.relative(root, outDir));
 }
 
 for (const lang of Object.keys(T)) build(lang);

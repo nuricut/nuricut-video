@@ -23,6 +23,11 @@ a.brand-seg:hover, a.brand-seg:focus-visible { color: #d6d6de; }
 .brand-seg:hover .brand-tip, .brand-seg:focus-visible .brand-tip, .brand-seg.is-on:focus .brand-tip { opacity: 1; transform: translate(-50%, 0); }
 @media (hover: none) { a.brand-seg .brand-tip { display: none; } } /* 휴대폰: 누르면 바로 이동 */
 
+/* 문장 속 이름 "nuricut.video PDF": 지금 보는 쪽만 토끼색 */
+.brand-text { white-space: nowrap; font-weight: 700; }
+.brand-text .is-on { background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; }
+h1 .brand-text { font-weight: inherit; }
+
 /* ───────── 아이콘 ───────── */
 .ico { width: 44px; height: 44px; flex: none; border-radius: 13px; display: inline-flex; align-items: center; justify-content: center;
   background: linear-gradient(160deg, #1b1724, #121016); border: 1px solid #2c2636; color: #ece9f5; }
@@ -105,3 +110,13 @@ a.tool-card:hover { border-color: #4a3f8f; transform: translateY(-1px); }
 .result .btn-primary, .result .btn-secondary { display: block; text-align: center; text-decoration: none; }
 .result-note { text-align: center; color: var(--muted); font-size: .82rem; margin: 0; }
 @media (max-width: 480px) { .pages { grid-template-columns: repeat(3, 1fr); gap: 14px 8px; } .tool-grid { grid-template-columns: 1fr; } }
+
+/* PDF 사용방법 페이지 */
+body[data-tool="guide"] main.wrap { padding-bottom: 8px; }
+.guide-toc-item .ico { width: 26px; height: 26px; border: 0; background: transparent; }
+.guide-toc-item .ico svg { width: 20px; height: 20px; stroke-width: 1.8; }
+.guide-toc-item:hover .ico { color: #fff; }
+.guide-head h2 { display: flex; align-items: center; gap: 10px; }
+.guide-head h2 .ico { width: 36px; height: 36px; border-radius: 11px; }
+.guide-head h2 .ico svg { width: 22px; height: 22px; }
+@media (min-width: 641px) { body[data-tool="guide"] .guide-toc { grid-template-columns: repeat(5, 1fr); } }

@@ -16,6 +16,11 @@ const TIP = {
         pdfHere: 'いま<b>PDFツール</b>を使っています', pdfGo: 'PDFツールに移動しますか？', pdfSub: '結合 · 分割 · 変換 · 編集', home: 'ホーム' },
 };
 
+/** 문장 속 이름 "nuricut.video PDF": 지금 보는 쪽만 토끼색 (링크·툴팁 없음) */
+export function brandText(mode) {
+  return `<span class="brand-text">nuricut<span class="bt-video${mode === 'video' ? ' is-on' : ''}">.video</span> <span class="bt-pdf${mode === 'pdf' ? ' is-on' : ''}">PDF</span></span>`;
+}
+
 /** 로고: mode = 'video' | 'pdf'. 지금 보는 쪽은 토끼색, 다른 쪽은 회색 + 이동 툴팁 */
 export function brandHtml(lang, mode) {
   const t = TIP[lang];
