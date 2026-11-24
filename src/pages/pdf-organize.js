@@ -16,7 +16,8 @@ log.innerHTML = `<span class="sum"></span><span class="hist">
   <button id="reset" type="button" title="처음 불러온 상태로"><span class="ico bare">${iconSvg('reset')}</span>처음 상태로</button></span>`;
 grid.before(log);
 
-const sel = createSelection(grid, { onChange: () => refresh() });
+// 'N쪽 선택됨'은 변경 사항 줄 가운데(되돌리기 버튼 왼쪽)에 표시
+const sel = createSelection(grid, { onChange: () => refresh(), mount: (chip) => log.querySelector('.hist').before(chip) });
 
 /* ---------- 되돌리기 기록 ----------
    칸 요소는 지워도 버리지 않고 보관해 두었다가 되돌릴 때 다시 붙임 (썸네일 다시 그릴 필요 없음) */

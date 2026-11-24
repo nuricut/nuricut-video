@@ -444,12 +444,12 @@ export async function toBlob(doc) {
 
 /* ---------- 쪽 여러 개 고르기 ----------
    2개 이상 고르면 고른 순서대로 번호를 달고, 위쪽에 "N쪽 선택됨" 표시. 1개일 때는 체크만 */
-export function createSelection(grid, { onChange, unit = '쪽' } = {}) {
+export function createSelection(grid, { onChange, unit = '쪽', mount } = {}) {
   let order = [];
   const chip = document.createElement('div');
   chip.className = 'sel-chip';
   chip.hidden = true;
-  grid.before(chip);
+  if (mount) { chip.classList.add('inline'); mount(chip); } else grid.before(chip);
   chip.addEventListener('click', (e) => { if (e.target.closest('button')) api.clear(); });
   function render() {
     order = order.filter((el) => el.isConnected);

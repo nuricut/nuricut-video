@@ -320,4 +320,25 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/licenses.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/licenses.html"/>
   </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/merge.html</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/split.html</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/organize.html</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/images-to-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/pdf-to-images.html</loc>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ko/pdf/guide.html</loc>
+  </url>
 </urlset>
