@@ -16,7 +16,14 @@ export const ICONS = {
   crop: '<path d="M7 2.5V17h14.5"/><path class="a" d="M2.5 7H17v14.5"/>',
   compress: DOC + '<path class="a" d="M12 8.5v3.2M10 10l2 1.8 2-1.8M12 18.8v-3.2M10 17.2l2-1.8 2 1.8"/>',
   clean: DOC + '<path class="a" d="M14.5 12.2l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/><path class="a" d="M9.3 10.5l.4 1 1 .4-1 .4-.4 1-.4-1-1-.4 1-.4z"/>',
+  // 동영상 도구 (흰 영상 화면 + 토끼색 포인트)
+  v_compress: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M6.3 12h3.4M8.2 10.1 10 12l-1.8 1.9M17.7 12h-3.4M15.8 10.1 14 12l1.8 1.9"/>',
+  v_shorts: '<rect x="7.3" y="2.5" width="9.4" height="19" rx="2.3"/><path d="M10.6 19h2.8"/><path class="a" d="M10.9 9.2v4.6l3.7-2.3z"/>',
+  v_gif: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M12 12c-1.2-1.5-2-2.1-2.9-2.1a2.1 2.1 0 0 0 0 4.2c.9 0 1.7-.6 2.9-2.1s2-2.1 2.9-2.1a2.1 2.1 0 0 1 0 4.2c-.9 0-1.7-.6-2.9-2.1z"/>',
+  v_thumb: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M6.4 9.6V8.2h1.4M16.2 8.2h1.4v1.4M17.6 14.4v1.4h-1.4M7.8 15.8H6.4v-1.4"/><path d="M11 10.4v3.2l2.6-1.6z"/>',
+  v_trim: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M8.5 8.5v7M15.5 8.5v7"/><path d="M8.5 12h7" stroke-dasharray="1.6 2"/>',
   // 화면 조작용 작은 아이콘
+  top: '<path class="a" d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/>',
   rotateL: '<path class="a" d="M5 12a7 7 0 1 0 2.1-5"/><path class="a" d="M5 4.5V8h3.5"/>',
   rotateR: '<path class="a" d="M19 12a7 7 0 1 1-2.1-5"/><path class="a" d="M19 4.5V8h-3.5"/>',
   trash: '<path d="M4.5 7h15M9.5 7V4.5h5V7M7 7l.8 13h8.4L17 7"/><path class="a" d="M10.5 11v5.5M13.5 11v5.5"/>',

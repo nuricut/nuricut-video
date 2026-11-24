@@ -1,11 +1,35 @@
 // 모든 페이지 공통: 화면 도우미, 파일 선택, 미리보기, 구간 자르기
 // (디자인·글꼴은 각 HTML의 <link>로 불러와서, 스크립트가 막혀도 화면은 정상으로 보입니다)
 import { initAnalytics, track, sizeBucket } from './usage.js';
-import { t, initLanguage, initSupport } from './i18n.js';
+import { t, lang, initLanguage, initSupport } from './i18n.js';
+import { renderIcons, iconSvg } from './pdf-icons.js';
 
 initLanguage();
 initAnalytics();
 initSupport();
+renderIcons();
+initBackToTop();
+
+/* 맨 위로 버튼: 화면 한 장 넘게 내려가면 오른쪽 아래에 나타남 */
+function initBackToTop() {
+  const label = { ko: '맨 위로', en: 'Back to top', zh: '回到顶部', ja: 'トップへ戻る' }[lang] || 'Back to top';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'to-top';
+  btn.title = label;
+  btn.setAttribute('aria-label', label);
+  btn.innerHTML = `<span class="ico bare">${iconSvg('top')}</span>`;
+  document.body.append(btn);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    btn.classList.toggle('show', window.scrollY > Math.min(600, window.innerHeight * 0.8));
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+}
 
 // 우클릭 메뉴 막기 (입력칸에서는 붙여넣기 등을 위해 허용)
 document.addEventListener('contextmenu', (e) => {

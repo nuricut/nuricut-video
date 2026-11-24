@@ -62,7 +62,7 @@
       <section class="card">
         <label id="dropzone" class="dropzone">
           <input id="file-input" type="file" accept="video/*" hidden />
-          <div class="dz-icon">⬆️</div>
+          <span class="ico lg dz-ico" data-icon="v_compress"></span>
           <div class="dz-title">動画をここにドロップ、またはクリックして選択</div>
           <div class="dz-hint">MP4 · MOV · WebM · AVI · MKV</div>
         </label>
@@ -79,7 +79,7 @@
           <div class="preview-box">
             <video id="preview-video" controls playsinline preload="metadata"></video>
             <div id="trim" class="trim" hidden>
-              <div class="trim-title">✂️ トリミング <small>（必要な部分だけ残すと、小さく速くなります）</small></div>
+              <div class="trim-title"><span class="ico bare" data-icon="v_trim"></span>トリミング <small>（必要な部分だけ残すと、小さく速くなります）</small></div>
               <div class="trim-row">
                 <label>開始 <input id="trim-start" type="number" min="0" step="0.1" value="0" /> 秒</label>
                 <button id="set-start" class="btn-small" type="button">現在の位置にする</button>
