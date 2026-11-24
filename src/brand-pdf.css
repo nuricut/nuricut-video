@@ -205,3 +205,15 @@ body[data-tool="guide"] main.wrap { padding-bottom: 8px; }
 .sel-chip .btn-link:hover { background: rgba(139, 124, 255, .18); }
 body[data-tool="organize"] .pg { cursor: grab; }
 .sorting .pg, .sorting { cursor: grabbing; }
+.drag-ghost .ghost-count { position: absolute; top: -10px; right: -10px; z-index: 5; min-width: 26px; height: 26px; padding: 0 7px; border-radius: 99px;
+  display: flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; font-weight: 800; font-size: .85rem; box-shadow: 0 4px 12px rgba(0, 0, 0, .5); }
+.pg .marks { flex-wrap: nowrap; }
+.mk { letter-spacing: -0.02em; }
+/* 변경 사항 줄: 왼쪽 요약, 오른쪽 되돌리기·처음 상태로 */
+.change-log { justify-content: flex-start; min-height: 32px; }
+.change-log .empty { color: var(--muted); }
+.change-log .hist { margin-left: auto; display: flex; gap: 6px; }
+.change-log .hist button { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; }
+.change-log .hist button:hover:not(:disabled) { border-color: var(--primary); }
+.change-log .hist button:disabled { opacity: .35; cursor: default; }
+.change-log .hist .ico.bare { width: 15px; height: 15px; } .change-log .hist .ico.bare svg { width: 15px; height: 15px; }

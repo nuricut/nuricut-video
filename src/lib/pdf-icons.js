@@ -29,6 +29,8 @@ export const ICONS = {
   s_done: '<path d="M4 15.5V19a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 20 19v-3.5"/><path class="a" d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/>',
   // 화면 조작용 작은 아이콘
   top: '<path class="a" d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/>',
+  undo: '<path class="a" d="M9 5.5 4.5 10 9 14.5"/><path class="a" d="M4.5 10H14a4.75 4.75 0 0 1 0 9.5h-3"/>',
+  reset: '<path class="a" d="M4 12a8 8 0 1 0 2.4-5.7"/><path class="a" d="M4 4v4.5h4.5"/>',
   rotateL: '<path class="a" d="M5 12a7 7 0 1 0 2.1-5"/><path class="a" d="M5 4.5V8h3.5"/>',
   rotateR: '<path class="a" d="M19 12a7 7 0 1 1-2.1-5"/><path class="a" d="M19 4.5V8h-3.5"/>',
   trash: '<path d="M4.5 7h15M9.5 7V4.5h5V7M7 7l.8 13h8.4L17 7"/><path class="a" d="M10.5 11v5.5M13.5 11v5.5"/>',

@@ -193,15 +193,24 @@ function makeGhost(el) {
   return { g, r };
 }
 
-export function makeSortable(container, { item, handle, onEnd, markMoved = false, anywhere = false }) {
+export function makeSortable(container, { item, handle, onEnd, onStart, group, markMoved = false, anywhere = false }) {
   let drag = null;
   let pending = null; // anywhere 모드: 클릭인지 끌기인지 아직 모르는 상태
   let skipClick = false;
   const items = () => [...container.querySelectorAll(item)];
+  const keys = () => items().map((n) => n.dataset.key).join('|');
 
   function start(el, e, captureEl) {
+    onStart?.();
+    // 여러 개를 골라 둔 상태면 함께 옮김: 나머지는 잠시 빼 두고 놓을 때 이어 붙임
+    const members = (group?.(el) || [el]).filter((n) => n.isConnected);
+    if (!members.includes(el)) members.unshift(el);
+    const before = keys();
     const { g, r } = makeGhost(el);
-    drag = { el, id: e.pointerId, g, dx: e.clientX - r.left, dy: e.clientY - r.top, start: items().indexOf(el) };
+    if (members.length > 1) g.insertAdjacentHTML('beforeend', `<span class="ghost-count">${members.length}</span>`);
+    drag = { el, id: e.pointerId, g, dx: e.clientX - r.left, dy: e.clientY - r.top, before, members };
+    const others = members.filter((n) => n !== el);
+    if (others.length) slide(items(), () => others.forEach((n) => n.remove()));
     el.classList.add('placeholder');
     container.classList.add('sorting');
     try { captureEl.setPointerCapture(e.pointerId); } catch {}
@@ -237,8 +246,11 @@ export function makeSortable(container, { item, handle, onEnd, markMoved = false
     if (pending && e.pointerId === pending.e.pointerId) {
       const dist = Math.hypot(e.clientX - pending.x, e.clientY - pending.y);
       if (pending.touch) { if (dist > 8) { clearTimeout(pending.timer); pending = null; } return; }
-      if (dist > 6) { const p = pending; pending = null; start(p.el, e, p.el); drag.dx = p.x - p.el.getBoundingClientRect().left; drag.dy = p.y - p.el.getBoundingClientRect().top; }
-      else return;
+      if (dist <= 6) return;
+      const p = pending; pending = null;
+      const r0 = p.el.getBoundingClientRect();
+      start(p.el, e, p.el);
+      drag.dx = p.x - r0.left; drag.dy = p.y - r0.top;
     }
     if (!drag || e.pointerId !== drag.id) return;
     moveGhost(e);
@@ -253,12 +265,17 @@ export function makeSortable(container, { item, handle, onEnd, markMoved = false
   const end = (e) => {
     if (pending && e.pointerId === pending.e.pointerId) { clearTimeout(pending.timer); pending = null; return; } // 그냥 클릭
     if (!drag || e.pointerId !== drag.id) return;
-    const { el, g, start } = drag;
+    const { el, g, before, members } = drag;
     drag = null;
     skipClick = true; // 끌기 끝에 생기는 클릭으로 선택이 바뀌지 않게
     setTimeout(() => (skipClick = false), 350);
     container.classList.remove('sorting');
-    const moved = items().indexOf(el) !== start;
+    // 빼 두었던 나머지를 원래 순서대로 끈 칸 앞뒤에 이어 붙임
+    if (members.length > 1) {
+      const i = members.indexOf(el);
+      slide(items(), () => { el.before(...members.slice(0, i)); el.after(...members.slice(i + 1)); });
+    }
+    const moved = keys() !== before;
     // 복사본을 새 자리로 내려앉힌 뒤 지우기
     const r = el.getBoundingClientRect();
     g.style.transition = reduceMotion() ? 'none' : 'transform .2s ease, opacity .2s ease';
@@ -268,12 +285,14 @@ export function makeSortable(container, { item, handle, onEnd, markMoved = false
       g.remove();
       el.classList.remove('placeholder');
       if (moved && markMoved) {
-        el.classList.add('moved');
-        el.classList.remove('moved-pop');
-        void el.offsetWidth;
-        el.classList.add('moved-pop');
+        for (const n of members) {
+          n.classList.add('moved');
+          n.classList.remove('moved-pop');
+          void n.offsetWidth;
+          n.classList.add('moved-pop');
+        }
       }
-      onEnd?.(items().map((n) => n.dataset.key), { moved, el });
+      onEnd?.(items().map((n) => n.dataset.key), { moved, el, members });
     }, reduceMotion() ? 0 : 200);
   };
   container.addEventListener('pointerup', end);
