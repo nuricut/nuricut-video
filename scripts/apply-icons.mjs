@@ -15,6 +15,8 @@ for (const d of ['', 'ko', 'zh', 'ja']) {
     if (DZ[f]) out = out.replace(/<div class="dz-icon">[^<]*<\/div>/, ico(DZ[f], ' lg dz-ico'));
     out = out.replace(/(<div class="trim-title">)✂️ /, `$1${ico('v_trim', ' bare')}`);
     if (f === 'guide.html') {
+      const STEPS = ['s_pick', 's_options', 's_start', 's_done'];
+      out = out.replace(/<li><span class="guide-num">(\d)<\/span>([^<]*)<\/li>/g, (m, n, label) => `<li>${ico(STEPS[n - 1])}<span class="gq-step">STEP ${n}</span><span class="gq-label">${label}</span></li>`);
       for (const [e, name] of Object.entries(EMOJI)) {
         out = out.split(`<span>${e}</span>`).join(ico(name));
         out = out.split(`<h2>${e} `).join(`<h2>${ico(name)}`);

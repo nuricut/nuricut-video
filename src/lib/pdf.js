@@ -156,34 +156,91 @@ export function parseRanges(text, max) {
 export const baseName = (name) => name.replace(/\.[^.]+$/, '');
 
 /* ---------- 끌어서 순서 바꾸기 (마우스·터치 공통, 손잡이로만 시작) ---------- */
-export function makeSortable(container, { item, handle, onEnd }) {
+// - 끄는 동안: 흐린 복사본이 손가락/마우스를 따라오고, 원래 자리는 점선 빈칸으로 표시
+// - 다른 칸들은 순간이동하지 않고 부드럽게 미끄러져 자리를 바꿈
+// - 놓으면 복사본이 새 자리로 내려앉고, markMoved면 옮긴 칸에 테두리 표시
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** 칸 위치가 바뀔 때 미끄러지듯 움직이게 (FLIP 방식) */
+function slide(els, mutate) {
+  const before = new Map(els.map((n) => [n, n.getBoundingClientRect()]));
+  mutate();
+  if (reduceMotion()) return;
+  for (const n of els) {
+    const a = before.get(n), b = n.getBoundingClientRect();
+    const dx = a.left - b.left, dy = a.top - b.top;
+    if (!dx && !dy) continue;
+    n.style.transition = 'none';
+    n.style.transform = `translate(${dx}px, ${dy}px)`;
+    requestAnimationFrame(() => {
+      n.style.transition = 'transform .24s cubic-bezier(.2, .8, .2, 1)';
+      n.style.transform = '';
+      n.addEventListener('transitionend', () => { n.style.transition = ''; }, { once: true });
+    });
+  }
+}
+
+/** 끄는 칸의 흐린 복사본 (canvas 그림까지 복사) */
+function makeGhost(el) {
+  const r = el.getBoundingClientRect();
+  const g = el.cloneNode(true);
+  const src = el.querySelectorAll('canvas'), dst = g.querySelectorAll('canvas');
+  dst.forEach((c, i) => { c.width = src[i].width; c.height = src[i].height; c.getContext('2d').drawImage(src[i], 0, 0); });
+  g.classList.add('drag-ghost');
+  g.classList.remove('sel', 'moved');
+  Object.assign(g.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' });
+  document.body.append(g);
+  return { g, r };
+}
+
+export function makeSortable(container, { item, handle, onEnd, markMoved = false }) {
   let drag = null;
+  const items = () => [...container.querySelectorAll(item)];
   container.addEventListener('pointerdown', (e) => {
     const h = e.target.closest(handle);
-    if (!h || !container.contains(h)) return;
+    if (!h || !container.contains(h) || e.button > 0) return;
     const el = h.closest(item);
     if (!el) return;
     e.preventDefault();
-    drag = { el, id: e.pointerId };
-    el.classList.add('dragging');
+    const { g, r } = makeGhost(el);
+    drag = { el, id: e.pointerId, g, dx: e.clientX - r.left, dy: e.clientY - r.top, start: items().indexOf(el) };
+    el.classList.add('placeholder');
     container.classList.add('sorting');
     h.setPointerCapture(e.pointerId);
   });
   container.addEventListener('pointermove', (e) => {
     if (!drag || e.pointerId !== drag.id) return;
+    drag.g.style.transform = `translate(${e.clientX - drag.dx - parseFloat(drag.g.style.left)}px, ${e.clientY - drag.dy - parseFloat(drag.g.style.top)}px) scale(1.04) rotate(-1.5deg)`;
     const over = document.elementFromPoint(e.clientX, e.clientY)?.closest(item);
-    if (!over || over === drag.el || !container.contains(over)) return;
+    if (!over || over === drag.el || !container.contains(over) || over.style.transform) return; // 움직이는 중인 칸은 건너뜀
     const r = over.getBoundingClientRect();
     const horizontal = getComputedStyle(container).display.includes('grid') && r.width < container.clientWidth * 0.9;
     const after = horizontal ? e.clientX > r.left + r.width / 2 : e.clientY > r.top + r.height / 2;
-    over[after ? 'after' : 'before'](drag.el);
+    if ((after && over.nextElementSibling === drag.el) || (!after && over.previousElementSibling === drag.el)) return;
+    slide(items(), () => over[after ? 'after' : 'before'](drag.el));
   });
   const end = (e) => {
     if (!drag || e.pointerId !== drag.id) return;
-    drag.el.classList.remove('dragging');
-    container.classList.remove('sorting');
+    const { el, g, start } = drag;
     drag = null;
-    onEnd?.([...container.querySelectorAll(item)].map((n) => n.dataset.key));
+    container.classList.remove('sorting');
+    const moved = items().indexOf(el) !== start;
+    // 복사본을 새 자리로 내려앉힌 뒤 지우기
+    const r = el.getBoundingClientRect();
+    g.style.transition = reduceMotion() ? 'none' : 'transform .2s ease, opacity .2s ease';
+    g.style.transform = `translate(${r.left - parseFloat(g.style.left)}px, ${r.top - parseFloat(g.style.top)}px)`;
+    g.style.opacity = '0.4';
+    setTimeout(() => {
+      g.remove();
+      el.classList.remove('placeholder');
+      if (moved && markMoved) {
+        el.classList.add('moved');
+        el.classList.remove('moved-pop');
+        void el.offsetWidth;
+        el.classList.add('moved-pop');
+      }
+      onEnd?.(items().map((n) => n.dataset.key), { moved, el });
+    }, reduceMotion() ? 0 : 200);
   };
   container.addEventListener('pointerup', end);
   container.addEventListener('pointercancel', end);

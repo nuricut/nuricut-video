@@ -45,7 +45,7 @@ grid.addEventListener('click', (e) => {
   refresh();
 });
 
-makeSortable(grid, { item: '.pg', handle: '.handle', onEnd: refresh });
+makeSortable(grid, { item: '.pg', handle: '.handle', onEnd: refresh, markMoved: true });
 
 $('sel-all').addEventListener('click', () => {
   const items = all();

@@ -7,6 +7,7 @@ import { brandHtml, brandText } from './site-parts.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://nuricut.video';
+export const STEP_ICONS = ['s_pick', 's_options', 's_start', 's_done'];
 
 /* ---------- 도구 목록 ---------- */
 const TOOLS = [
@@ -64,7 +65,7 @@ const T = {
     free: ['무료', '워터마크 없음', '횟수 제한 없음'],
     merge: { start: 'PDF 합치기' },
     split: { mode: '나누는 방법', range: ['범위로', '1-3, 4-6'], each: ['한 쪽씩', '쪽마다 파일'], pick: ['골라 뽑기', '원하는 쪽만'], rangeLabel: '쪽 범위', rangePh: '예: 1-3, 4-6, 7-', rangeHint: '쉼표로 나눈 묶음마다 파일 하나가 만들어져요. "7-"은 7쪽부터 끝까지.', pickHint: '뽑을 쪽을 눌러서 고르세요.', start: '나누기' },
-    organize: { all: '전체 선택', rotL: '왼쪽 회전', rotR: '오른쪽 회전', del: '삭제', blank: '빈 쪽 넣기', hint: '쪽을 눌러 고른 뒤 위 버튼을 누르세요. ⠿ 손잡이를 끌면 순서가 바뀌어요.', start: 'PDF 저장' },
+    organize: { all: '전체 선택', rotL: '왼쪽 회전', rotR: '오른쪽 회전', del: '삭제', blank: '빈 쪽 넣기', hint: '쪽을 눌러 고른 뒤 위 버튼을 누르세요. ⠿ 손잡이를 끌면 순서가 바뀌고, 옮긴 쪽은 분홍 테두리로 표시돼요.', start: 'PDF 저장' },
     img2pdf: { size: '용지 크기', a4: ['A4', '문서용'], fit: ['사진 크기', '여백 없이 그대로'], letter: ['레터', '미국 용지'], orient: '방향', auto: '자동', portrait: '세로', landscape: '가로', margin: '여백', m0: '없음', m1: '좁게', m2: '보통', start: 'PDF 만들기' },
     pdf2img: { format: '저장 형식', jpg: ['JPG', '가벼움'], png: ['PNG', '선명함'], quality: '화질', q1: ['가볍게', '96dpi'], q2: ['보통', '150dpi'], q3: ['고화질', '300dpi'], pickHint: '저장할 쪽을 눌러서 고르세요. 아무것도 안 고르면 전체를 저장해요.', start: '이미지로 저장' },
     guide: {
@@ -338,8 +339,8 @@ ${work}
   page({ file: 'guide.html', title: g.title, desc: g.desc, tool: 'guide', script: 'pdf-hub.js', body: `      <div class="doc guide">
       <h1>${g.h1.replace('{BRAND}', brandText('pdf'))}</h1>
       <p>${g.intro}</p>
-      <ol class="guide-quick">${g.quick.map((q, i) => `<li><span class="guide-num">${i + 1}</span>${q}</li>`).join('')}</ol>
-      <nav class="guide-toc">${ready.map(([k, , ic]) => `<a class="guide-toc-item" href="#${k}" data-tip="${g.tocTip.replace('{name}', t.tool[k][0])}"><span class="ico" data-icon="${ic}"></span>${t.tool[k][0]}</a>`).join('')}</nav>
+      <ol class="guide-quick">${g.quick.map((q, i) => `<li><span class="ico" data-icon="${STEP_ICONS[i]}"></span><span class="gq-step">STEP ${i + 1}</span><span class="gq-label">${q}</span></li>`).join('')}</ol>
+      <nav class="guide-toc">${ready.map(([k, , ic]) => `<a class="guide-toc-item" href="#${k}" data-tip="${g.tocTip.replace('{name}', t.tool[k][0])}"><span class="ico" data-icon="${ic}"></span>${t.tool[k][2]}</a>`).join('')}</nav>
 ${ready.map(([k, f, ic]) => `
       <section class="guide-section" id="${k}">
         <div class="guide-head"><h2><span class="ico" data-icon="${ic}"></span>${t.tool[k][0]}</h2><a class="btn-small" href="${url(f)}">${g.go}</a></div>

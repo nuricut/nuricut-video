@@ -22,6 +22,11 @@ export const ICONS = {
   v_gif: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M12 12c-1.2-1.5-2-2.1-2.9-2.1a2.1 2.1 0 0 0 0 4.2c.9 0 1.7-.6 2.9-2.1s2-2.1 2.9-2.1a2.1 2.1 0 0 1 0 4.2c-.9 0-1.7-.6-2.9-2.1z"/>',
   v_thumb: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M6.4 9.6V8.2h1.4M16.2 8.2h1.4v1.4M17.6 14.4v1.4h-1.4M7.8 15.8H6.4v-1.4"/><path d="M11 10.4v3.2l2.6-1.6z"/>',
   v_trim: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path class="a" d="M8.5 8.5v7M15.5 8.5v7"/><path d="M8.5 12h7" stroke-dasharray="1.6 2"/>',
+  // 사용방법 4단계
+  s_pick: '<path d="M4 15.5V19a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 20 19v-3.5"/><path class="a" d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/>',
+  s_options: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle class="a" cx="15" cy="7" r="2.2"/><circle class="a" cx="9" cy="17" r="2.2"/>',
+  s_start: '<circle cx="12" cy="12" r="8.5"/><path class="a" d="M10.3 8.8v6.4l5.2-3.2z"/>',
+  s_done: '<path d="M4 15.5V19a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 20 19v-3.5"/><path class="a" d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/>',
   // 화면 조작용 작은 아이콘
   top: '<path class="a" d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/>',
   rotateL: '<path class="a" d="M5 12a7 7 0 1 0 2.1-5"/><path class="a" d="M5 4.5V8h3.5"/>',
