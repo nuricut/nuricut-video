@@ -236,3 +236,8 @@ body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; b
 .pp-text small { color: var(--muted); font-size: .8rem; }
 .pp-btn { flex: none; font-size: .85rem; font-weight: 700; color: var(--pink); white-space: nowrap; }
 @media (max-width: 560px) { .pdf-promo { flex-wrap: wrap; } .pp-btn { width: 100%; text-align: right; } }
+
+/* 사용방법 바로가기 툴팁: 버튼 폭이 아니라 글자 길이에 맞춰 늘어나게 (버튼 글자는 한 줄 고정이라 툴팁만 따로) */
+.guide-toc-item::after { left: 50%; right: auto; width: max-content; max-width: min(260px, 90vw); white-space: normal; transform: translateX(-50%); padding: 6px 10px; }
+.guide-toc-item:first-child::after { left: 0; transform: none; }
+.guide-toc-item:last-child::after { left: auto; right: 0; transform: none; }
