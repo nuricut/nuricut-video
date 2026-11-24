@@ -221,3 +221,18 @@ body[data-tool="organize"] .pg { cursor: grab; }
 body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; background: var(--card); margin: 0 -4px 14px; padding: 8px 4px; }
 .sel-chip.inline { position: static; margin: 0 0 0 auto; box-shadow: none; padding: 3px 4px 3px 12px; font-size: .8rem; }
 .sel-chip.inline:not([hidden]) + .hist { margin-left: 8px; }
+
+/* 동영상 페이지의 PDF 도구 안내 */
+.pdf-promo { display: flex; align-items: center; gap: 14px; margin: 18px 0 4px; padding: 14px 16px; border-radius: 14px; text-decoration: none; color: var(--text);
+  background: linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(120deg, rgba(255,111,174,.55), rgba(255,179,138,.35), rgba(229,155,255,.55)) border-box;
+  border: 1px solid transparent; transition: transform .15s, box-shadow .15s; }
+.pdf-promo:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255, 111, 174, .12); }
+.pp-icons { display: flex; flex: none; }
+.pp-icons .ico { width: 36px; height: 36px; border-radius: 11px; margin-left: -8px; box-shadow: 0 0 0 2px var(--card); }
+.pp-icons .ico:first-child { margin-left: 0; }
+.pp-icons .ico svg { width: 21px; height: 21px; }
+.pp-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.pp-text b { font-size: .95rem; }
+.pp-text small { color: var(--muted); font-size: .8rem; }
+.pp-btn { flex: none; font-size: .85rem; font-weight: 700; color: var(--pink); white-space: nowrap; }
+@media (max-width: 560px) { .pdf-promo { flex-wrap: wrap; } .pp-btn { width: 100%; text-align: right; } }

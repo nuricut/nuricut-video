@@ -204,8 +204,12 @@ function build(lang) {
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(desc)}" />
     <meta property="og:url" content="${SITE}${url(file)}" />
-    <meta property="og:image" content="${SITE}/og/og-${lang}.png" />
+    <meta property="og:image" content="${SITE}/og/og-pdf-${lang}.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="nuricut.video PDF" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="${SITE}/og/og-pdf-${lang}.png" />
     ${hreflang}
   </head>
   <body data-tool="${tool}">
