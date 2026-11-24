@@ -3,28 +3,19 @@
 import { $, show, hide, formatSize, track } from './common.js';
 import { lang } from './i18n.js';
 import { renderIcons } from './pdf-icons.js';
+import { PDF_MSG } from './pdf-msg.js';
 
 export { $, show, hide, formatSize, track };
 
-/* ---------- 문구 (지금은 한국어만, 다른 언어는 공개 전에 추가) ---------- */
-const MSG = {
-  ko: {
-    onlyPdf: 'PDF 파일만 넣을 수 있어요.',
-    onlyImage: 'JPG·PNG·WebP 같은 이미지 파일만 넣을 수 있어요.',
-    encrypted: '"{name}"은(는) 암호가 걸린 PDF라 아직 열 수 없어요.',
-    broken: '"{name}"을(를) 열 수 없어요. 손상된 PDF일 수 있어요.',
-    failed: '처리에 실패했어요. 다른 파일로 다시 시도해 주세요.',
-    loading: 'PDF 여는 중…',
-    working: '처리 중…',
-    pages: '{n}쪽',
-    done: '✓ 완성! {info}',
-    restored: '이전에 넣은 파일을 불러왔어요.',
-  },
-};
+/* ---------- 문구 (4개 언어, src/lib/pdf-msg.js) ---------- */
+const COL = { ko: 0, en: 1, zh: 2, ja: 3 }[lang] ?? 1;
 export function m(key, vars = {}) {
-  const s = (MSG[lang] || MSG.ko)[key] ?? MSG.ko[key] ?? key;
+  const row = PDF_MSG[key];
+  const s = row ? row[COL] ?? row[1] : key;
   return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? '').toString());
 }
+/** 쪽 수: 영어는 1쪽일 때 단수 */
+export const pagesText = (n) => m(n === 1 ? 'page1' : 'pages', { n });
 
 /* ---------- 라이브러리 (필요할 때만 불러오기) ---------- */
 let pdfjsPromise;
@@ -410,7 +401,7 @@ export function pageGrid(container, pdf, { handle = false } = {}) {
     d.className = 'pg';
     d.dataset.page = i;
     d.dataset.key = i;
-    d.innerHTML = `${handle ? '<span class="handle" title="끌어서 순서 바꾸기">⠿</span>' : ''}<span class="check"></span><div class="sheet"></div><span class="no">${i}</span>`;
+    d.innerHTML = `${handle ? `<span class="handle" title="${m('dragTip')}">⠿</span>` : ''}<span class="check"></span><div class="sheet"></div><span class="no">${i}</span>`;
     container.append(d);
     items.push(d);
   }
@@ -462,7 +453,7 @@ export function createSelection(grid, { onChange, unit = '쪽', mount } = {}) {
       if (c) c.textContent = multi && i >= 0 ? i + 1 : '';
     });
     chip.hidden = !multi;
-    if (multi) chip.innerHTML = `<span><b>${order.length}</b>${unit} 선택됨</span><button type="button" class="btn-link">선택 해제</button>`;
+    if (multi) chip.innerHTML = `<span>${m('selCount', { n: order.length })}</span><button type="button" class="btn-link">${m('selClear')}</button>`;
     onChange?.(order.slice());
   }
   const api = {

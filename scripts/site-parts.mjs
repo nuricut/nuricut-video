@@ -2,8 +2,8 @@
 
 export const HOME = { en: '/', ko: '/ko/', zh: '/zh/', ja: '/ja/' };
 // PDF 페이지가 번역된 언어 (아직 번역 전인 언어는 한국어 PDF 페이지로 연결)
-export const PDF_READY = ['ko'];
-export const pdfHome = (lang) => (PDF_READY.includes(lang) ? `${HOME[lang]}pdf/` : '/ko/pdf/');
+export const PDF_READY = ['en', 'ko', 'zh', 'ja'];
+export const pdfHome = (lang) => (PDF_READY.includes(lang) ? `${HOME[lang]}pdf/` : '/pdf/');
 
 const TIP = {
   en: { videoHere: "You're using the <b>video tools</b>", videoGo: 'Switch to video tools?', videoSub: 'Compress · Shorts · GIF · Thumbnails',

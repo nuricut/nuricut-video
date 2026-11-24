@@ -1,5 +1,5 @@
 // 이미지 → PDF: 사진 여러 장을 PDF 하나로
-import { $, createPdfTool, getPdfLib, bytesOf, toBlob, makeSortable, baseName, formatSize } from '../lib/pdf.js';
+import { $, m, pagesText, createPdfTool, getPdfLib, bytesOf, toBlob, makeSortable, baseName, formatSize } from '../lib/pdf.js';
 
 const list = $('list');
 const urls = new WeakMap();
@@ -13,14 +13,14 @@ function render(files) {
     const row = document.createElement('div');
     row.className = 'file-row';
     row.dataset.key = i;
-    row.innerHTML = `<span class="handle" title="끌어서 순서 바꾸기">⠿</span><span class="thumb"><img alt="" /></span><span class="nm"><b></b><small>${i + 1}쪽 · ${formatSize(f.size)}</small></span><button class="icon-btn" type="button" title="빼기" aria-label="빼기">✕</button>`;
+    row.innerHTML = `<span class="handle" title="${m('dragTip')}">⠿</span><span class="thumb"><img alt="" /></span><span class="nm"><b></b><small>${m('imgRow', { i: i + 1, size: formatSize(f.size) })}</small></span><button class="icon-btn" type="button" title="${m('remove')}" aria-label="${m('remove')}">✕</button>`;
     row.querySelector('img').src = urls.get(f);
     row.querySelector('b').textContent = f.name;
     row.querySelector('button').onclick = () => tool.setFiles(files.filter((x) => x !== f));
     list.append(row);
   });
-  $('work-title').textContent = `사진 ${files.length}장`;
-  $('start').textContent = `PDF 만들기 (${files.length}쪽)`;
+  $('work-title').textContent = m('imgTitle', { n: files.length });
+  $('start').textContent = m('imgBtn', { n: files.length });
 }
 
 makeSortable(list, { item: '.file-row', handle: '.handle', onEnd: (keys) => tool.setFiles(keys.map((k) => tool.files[+k])) });
@@ -80,12 +80,12 @@ $('start').addEventListener('click', async () => {
   const size = opt('size');
   const orient = opt('orient');
   const margin = MARGINS[+opt('margin')];
-  tool.begin('PDF 만드는 중…');
+  tool.begin(m('making'));
   try {
     const { PDFDocument } = await getPdfLib();
     const doc = await PDFDocument.create();
     for (let i = 0; i < files.length; i++) {
-      tool.progress(i / files.length, `PDF 만드는 중… (${i + 1}/${files.length})`);
+      tool.progress(i / files.length, m('makingN', { i: i + 1, n: files.length }));
       const f = files[i];
       const b = await bytesOf(f);
       let img;
@@ -110,9 +110,9 @@ $('start').addEventListener('click', async () => {
       const w = img.width * k, h = img.height * k;
       page.drawImage(img, { x: (pw - w) / 2, y: (ph - h) / 2, width: w, height: h });
     }
-    tool.progress(0.97, '저장하는 중…');
+    tool.progress(0.97, m('saving'));
     const blob = await toBlob(doc);
-    tool.done({ blob, name: `${baseName(files[0].name)}${files.length > 1 ? `_외${files.length - 1}장` : ''}.pdf`, info: `${files.length}쪽`, pdf: true });
+    tool.done({ blob, name: `${baseName(files[0].name)}${files.length > 1 ? m('sfxMore', { n: files.length - 1 }) : ''}.pdf`, info: pagesText(files.length), pdf: true });
   } catch (e) {
     tool.fail(e);
   }

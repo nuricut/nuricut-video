@@ -321,24 +321,283 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/licenses.html"/>
   </url>
   <url>
+    <loc>https://nuricut.video/pdf/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/"/>
+  </url>
+  <url>
     <loc>https://nuricut.video/ko/pdf/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/merge.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/merge.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/merge.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/merge.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/merge.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/merge.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/merge.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/merge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/merge.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/split.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/split.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/split.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/split.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/split.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/split.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/split.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/split.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/split.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/organize.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/organize.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/organize.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/organize.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/organize.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/organize.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/organize.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/organize.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/organize.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/images-to-pdf.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/images-to-pdf.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/images-to-pdf.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/images-to-pdf.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/images-to-pdf.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/images-to-pdf.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/images-to-pdf.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/pdf-to-images.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/pdf-to-images.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/pdf-to-images.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/pdf-to-images.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/pdf-to-images.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/pdf-to-images.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/pdf-to-images.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/pdf/guide.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/guide.html"/>
   </url>
   <url>
     <loc>https://nuricut.video/ko/pdf/guide.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/guide.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/zh/pdf/guide.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/guide.html"/>
+  </url>
+  <url>
+    <loc>https://nuricut.video/ja/pdf/guide.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nuricut.video/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/pdf/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nuricut.video/pdf/guide.html"/>
   </url>
 </urlset>

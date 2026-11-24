@@ -211,6 +211,25 @@ export function initLanguage() {
   if (pref && pref !== lang) {
     const target = [...links].find((a) => a.dataset.lang === pref);
     if (target) location.replace(target.href);
+    return;
+  }
+  // 기본은 영어. 언어를 직접 고른 적이 없고, 한국에서 접속했거나 네이버에서 들어왔으면 한국어 페이지로
+  if (!pref && lang === 'en' && looksKorean()) {
+    const ko = [...links].find((a) => a.dataset.lang === 'ko');
+    if (ko) location.replace(ko.href + location.hash);
+  }
+}
+
+/** 한국 방문자로 보이는지: 네이버에서 유입 / 한국 시간대 / 브라우저 첫 언어가 한국어. 검색 로봇은 제외 */
+function looksKorean() {
+  try {
+    if (/bot|crawl|spider|slurp|yeti|daum|bingpreview|facebookexternalhit|kakaotalk-scrap/i.test(navigator.userAgent)) return false;
+    if (/^https?:\/\/([a-z0-9-]+\.)*naver\.(com|me)\b/i.test(document.referrer)) return true;
+    if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Seoul') return true;
+    const first = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
+    return first.startsWith('ko');
+  } catch {
+    return false;
   }
 }
 

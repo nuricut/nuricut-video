@@ -1,5 +1,5 @@
 // PDF 합치기: 여러 PDF를 순서대로 하나로
-import { $, createPdfTool, openForView, openForEdit, getPdfLib, renderThumb, bytesOf, toBlob, makeSortable, baseName, formatSize, UserError } from '../lib/pdf.js';
+import { $, m, pagesText, createPdfTool, openForView, openForEdit, getPdfLib, renderThumb, bytesOf, toBlob, makeSortable, baseName, formatSize, UserError } from '../lib/pdf.js';
 
 const list = $('list');
 const meta = new WeakMap(); // 파일 → { pages, canvas }
@@ -12,7 +12,7 @@ function render(files) {
     const row = document.createElement('div');
     row.className = 'file-row';
     row.dataset.key = i;
-    row.innerHTML = `<span class="handle" title="끌어서 순서 바꾸기">⠿</span><span class="thumb"></span><span class="nm"><b></b><small>${formatSize(f.size)}</small></span><button class="icon-btn" type="button" title="빼기" aria-label="빼기">✕</button>`;
+    row.innerHTML = `<span class="handle" title="${m('dragTip')}">⠿</span><span class="thumb"></span><span class="nm"><b></b><small>${formatSize(f.size)}</small></span><button class="icon-btn" type="button" title="${m('remove')}" aria-label="${m('remove')}">✕</button>`;
     row.querySelector('b').textContent = f.name;
     row.querySelector('button').onclick = () => tool.setFiles(files.filter((x) => x !== f));
     list.append(row);
@@ -36,9 +36,9 @@ async function fillMeta(f, row) {
     c.height = canvas.height;
     c.getContext('2d').drawImage(canvas, 0, 0);
     thumb.append(c);
-    row.querySelector('small').textContent = `${pages}쪽 · ${formatSize(f.size)}`;
+    row.querySelector('small').textContent = m('pageSize', { n: pages, size: formatSize(f.size) });
   } catch {
-    row.querySelector('small').textContent = '열 수 없는 PDF (암호 또는 손상)';
+    row.querySelector('small').textContent = m('mergeBad');
     row.querySelector('small').style.color = 'var(--err)';
   }
   updateTitle();
@@ -47,8 +47,8 @@ async function fillMeta(f, row) {
 function updateTitle() {
   const files = tool.files;
   const total = files.reduce((s, f) => s + (meta.get(f)?.pages || 0), 0);
-  $('work-title').textContent = `PDF ${files.length}개${total ? ` · 총 ${total}쪽` : ''}`;
-  $('start').textContent = total ? `PDF 합치기 (${total}쪽)` : 'PDF 합치기';
+  $('work-title').textContent = total ? m('mergeTitleTotal', { n: files.length, t: total }) : m('mergeTitle', { n: files.length });
+  $('start').textContent = total ? m('mergeBtnN', { t: total }) : m('mergeBtn');
 }
 
 makeSortable(list, {
@@ -62,20 +62,20 @@ makeSortable(list, {
 
 $('start').addEventListener('click', async () => {
   const files = tool.files;
-  if (files.length < 2) return tool.showError('PDF를 2개 이상 넣어 주세요.');
-  tool.begin('PDF 합치는 중…');
+  if (files.length < 2) return tool.showError(m('mergeNeed2'));
+  tool.begin(m('merging'));
   try {
     const { PDFDocument } = await getPdfLib();
     const out = await PDFDocument.create();
     for (let i = 0; i < files.length; i++) {
-      tool.progress(i / files.length, `합치는 중… (${i + 1}/${files.length}) ${files[i].name}`);
+      tool.progress(i / files.length, m('mergingN', { i: i + 1, n: files.length, name: files[i].name }));
       const src = await openForEdit(await bytesOf(files[i]), files[i].name);
       const pages = await out.copyPages(src, src.getPageIndices());
       pages.forEach((p) => out.addPage(p));
     }
-    tool.progress(0.95, '저장하는 중…');
+    tool.progress(0.95, m('saving'));
     const blob = await toBlob(out);
-    tool.done({ blob, name: `${baseName(files[0].name)}_합침.pdf`, info: `${out.getPageCount()}쪽`, pdf: true });
+    tool.done({ blob, name: `${baseName(files[0].name)}${m('sfxMerged')}.pdf`, info: pagesText(out.getPageCount()), pdf: true });
   } catch (e) {
     tool.fail(e);
   }

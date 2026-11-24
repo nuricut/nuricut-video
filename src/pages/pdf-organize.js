@@ -1,6 +1,6 @@
 // 페이지 정리: 순서 바꾸기·회전·삭제·빈 쪽 넣기
 // 바뀐 쪽은 표시(이동·회전·빈 쪽)를 달고, 위쪽에 변경 사항 요약 + 되돌리기·처음 상태로 버튼
-import { $, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, makeSortable, createSelection, toBlob, baseName } from '../lib/pdf.js';
+import { $, m, pagesText, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, makeSortable, createSelection, toBlob, baseName } from '../lib/pdf.js';
 import { iconSvg } from '../lib/pdf-icons.js';
 
 const grid = $('pages');
@@ -12,8 +12,8 @@ let deleted = 0;
 const log = document.createElement('div');
 log.className = 'change-log';
 log.innerHTML = `<span class="sum"></span><span class="hist">
-  <button id="undo" type="button" title="되돌리기 (Ctrl+Z)"><span class="ico bare">${iconSvg('undo')}</span>되돌리기</button>
-  <button id="reset" type="button" title="처음 불러온 상태로"><span class="ico bare">${iconSvg('reset')}</span>처음 상태로</button></span>`;
+  <button id="undo" type="button" title="${m('undoTitle')}"><span class="ico bare">${iconSvg('undo')}</span>${m('undo')}</button>
+  <button id="reset" type="button" title="${m('resetTitle')}"><span class="ico bare">${iconSvg('reset')}</span>${m('reset')}</button></span>`;
 grid.before(log);
 
 // 'N쪽 선택됨'은 변경 사항 줄 가운데(되돌리기 버튼 왼쪽)에 표시
@@ -72,7 +72,7 @@ const all = () => [...grid.querySelectorAll('.pg')];
 const selected = () => { const s = new Set(sel.list); return all().filter((d) => s.has(d)); };
 
 const rotLabel = (r) => (r === 180 ? '↻ 180°' : r === 90 ? '↻ 90°' : '↺ 90°');
-const rotTitle = (r) => (r === 180 ? '180° 회전' : r === 90 ? '오른쪽으로 90° 회전' : '왼쪽으로 90° 회전');
+const rotTitle = (r) => m(r === 180 ? 'rot180' : r === 90 ? 'rotR' : 'rotL');
 
 function refresh() {
   const items = all();
@@ -84,28 +84,28 @@ function refresh() {
     if (c) c.style.transform = `rotate(${r}deg)${r % 180 ? ' scale(.76)' : ''}`;
     // 바뀐 내용 표시 [글자, 종류, 설명]
     const marks = [];
-    if (d.dataset.page === 'blank') { marks.push(['빈 쪽', 'blank', '새로 넣은 빈 쪽']); nBlank++; }
-    if (d.classList.contains('moved')) { marks.push(['이동', 'moved', '순서를 옮긴 쪽']); nMoved++; }
+    if (d.dataset.page === 'blank') { marks.push([m('mkBlank'), 'blank', m('mkBlankTitle')]); nBlank++; }
+    if (d.classList.contains('moved')) { marks.push([m('mkMoved'), 'moved', m('mkMovedTitle')]); nMoved++; }
     if (r) { marks.push([rotLabel(r), 'rot', rotTitle(r)]); nRot++; }
     d.classList.toggle('changed', marks.length > 0);
     d.dataset.mark = marks[0]?.[1] || '';
     d.querySelector('.marks').innerHTML = marks.map(([t, k, title]) => `<span class="mk ${k}" title="${title}">${t}</span>`).join('');
   });
   const parts = [];
-  if (nMoved) parts.push(`<span class="mk moved">이동 ${nMoved}</span>`);
-  if (nRot) parts.push(`<span class="mk rot">회전 ${nRot}</span>`);
-  if (nBlank) parts.push(`<span class="mk blank">빈 쪽 ${nBlank}</span>`);
-  if (deleted) parts.push(`<span class="mk del">삭제 ${deleted}</span>`);
-  log.querySelector('.sum').innerHTML = parts.length ? `<b>변경 사항</b>${parts.join('')}` : '<span class="empty">아직 바꾼 내용이 없어요</span>';
+  if (nMoved) parts.push(`<span class="mk moved">${m('sumMoved', { n: nMoved })}</span>`);
+  if (nRot) parts.push(`<span class="mk rot">${m('sumRot', { n: nRot })}</span>`);
+  if (nBlank) parts.push(`<span class="mk blank">${m('sumBlank', { n: nBlank })}</span>`);
+  if (deleted) parts.push(`<span class="mk del">${m('sumDel', { n: deleted })}</span>`);
+  log.querySelector('.sum').innerHTML = parts.length ? `<b>${m('changes')}</b>${parts.join('')}` : `<span class="empty">${m('noChanges')}</span>`;
   $('undo').disabled = !history.length;
   $('reset').disabled = !history.length;
 
   const n = sel.list.length;
   ['rot-l', 'rot-r', 'del'].forEach((id) => ($(id).disabled = !n));
-  $('sel-all').textContent = n && n === items.length ? '선택 해제' : '전체 선택';
+  $('sel-all').textContent = n && n === items.length ? m('deselectAll') : m('selectAll');
   const f = tool.files[0];
-  $('work-title').textContent = f ? `${f.name} · ${items.length}쪽` : '';
-  $('start').textContent = `PDF 저장 (${items.length}쪽)`;
+  $('work-title').textContent = f ? m('fileTitle', { name: f.name, n: items.length }) : '';
+  $('start').textContent = m('saveBtn', { n: items.length });
   $('start').disabled = !items.length;
 }
 
@@ -148,7 +148,7 @@ $('rot-l').addEventListener('click', () => rotate(-90));
 $('rot-r').addEventListener('click', () => rotate(90));
 $('del').addEventListener('click', () => {
   const s = selected();
-  if (s.length === all().length) return tool.showError('모든 쪽을 지울 수는 없어요. 최소 한 쪽은 남겨 주세요.');
+  if (s.length === all().length) return tool.showError(m('cantDeleteAll'));
   record();
   deleted += s.filter((d) => d.dataset.page !== 'blank').length;
   s.forEach((d) => d.remove());
@@ -161,7 +161,7 @@ $('blank').addEventListener('click', () => {
   d.dataset.page = 'blank';
   d.dataset.rot = 0;
   d.dataset.key = 'blank' + Date.now() + Math.random().toString(36).slice(2, 6);
-  d.innerHTML = '<span class="handle" title="끌어서 순서 바꾸기">⠿</span><span class="check"></span><div class="sheet"><div class="blank-page"></div></div><span class="no"></span><span class="marks"></span>';
+  d.innerHTML = `<span class="handle" title="${m('dragTip')}">⠿</span><span class="check"></span><div class="sheet"><div class="blank-page"></div></div><span class="no"></span><span class="marks"></span>`;
   pool.set(d.dataset.key, d);
   const last = selected().at(-1);
   if (last) last.after(d);
@@ -182,7 +182,7 @@ document.addEventListener('keydown', (e) => {
 $('start').addEventListener('click', async () => {
   const file = tool.files[0];
   const items = all();
-  tool.begin('저장하는 중…');
+  tool.begin(m('saving'));
   try {
     const { PDFDocument, degrees } = await getPdfLib();
     const src = await openForEdit(await bytesOf(file), file.name);
@@ -203,7 +203,7 @@ $('start').addEventListener('click', async () => {
       lastSize = p.getSize();
     }
     const blob = await toBlob(out);
-    tool.done({ blob, name: `${baseName(file.name)}_정리.pdf`, info: `${items.length}쪽`, pdf: true });
+    tool.done({ blob, name: `${baseName(file.name)}${m('sfxOrganized')}.pdf`, info: pagesText(items.length), pdf: true });
   } catch (e) {
     tool.fail(e);
   }

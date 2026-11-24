@@ -1,5 +1,5 @@
 // PDF 나누기: 범위로 / 한 쪽씩 / 골라 뽑기
-import { $, show, hide, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, createSelection, parseRanges, makeZip, baseName } from '../lib/pdf.js';
+import { $, m as M, pagesText, show, hide, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, createSelection, parseRanges, makeZip, baseName } from '../lib/pdf.js';
 
 const grid = $('pages');
 const rangeIn = $('range');
@@ -17,7 +17,7 @@ const tool = createPdfTool({
     view?.destroy();
     view = await openForView(await bytesOf(file));
     total = view.numPages;
-    $('work-title').textContent = `${file.name} · ${total}쪽`;
+    $('work-title').textContent = M('fileTitle', { name: file.name, n: total });
     items = pageGrid(grid, view);
     items.forEach((d) => d.addEventListener('click', () => { if (mode() === 'pick') sel.toggle(d); }));
     sel.clear();
@@ -54,20 +54,20 @@ function update() {
     const gi = where.get(+d.dataset.page);
     if (gi === undefined) { d.dataset.group = -1; return; }
     d.dataset.group = gi % 6;
-    if (m === 'range') d.insertAdjacentHTML('beforeend', `<span class="gtag">${gi + 1}번</span>`);
+    if (m === 'range') d.insertAdjacentHTML('beforeend', `<span class="gtag">${M('groupTag', { n: gi + 1 })}</span>`);
   });
   const sum = $('summary');
   const btn = $('start');
   if (!g) {
-    sum.textContent = m === 'pick' ? '뽑을 쪽을 눌러서 골라 주세요.' : `쪽 범위를 확인해 주세요. (전체 ${total}쪽)`;
+    sum.textContent = m === 'pick' ? M('pickNeed') : M('rangeBad', { n: total });
     btn.disabled = true;
     return;
   }
   btn.disabled = false;
-  if (m === 'each') sum.textContent = `${total}쪽을 한 쪽씩 PDF ${total}개로 나눠요 (ZIP 하나로 받기)`;
-  else if (m === 'pick') sum.textContent = `고른 ${g[0].length}쪽(${g[0].join(', ')})을 PDF 하나로 뽑아요`;
-  else sum.textContent = `PDF ${g.length}개로 나눠요: ` + g.map((p) => (p.length > 1 ? `${p[0]}–${p.at(-1)}쪽` : `${p[0]}쪽`)).join(', ') + (g.length > 1 ? ' (ZIP 하나로 받기)' : '');
-  btn.textContent = g.length > 1 ? `PDF ${g.length}개로 나누기` : 'PDF 만들기';
+  if (m === 'each') sum.textContent = M('eachSum', { n: total });
+  else if (m === 'pick') sum.textContent = M('pickSum', { n: g[0].length, list: g[0].join(', ') });
+  else sum.textContent = M('rangeSum', { n: g.length, list: g.map((p) => (p.length > 1 ? M('pageRange', { a: p[0], b: p.at(-1) }) : M('pageOne', { a: p[0] }))).join(', ') }) + (g.length > 1 ? M('zipNote') : '');
+  btn.textContent = g.length > 1 ? M('splitBtnN', { n: g.length }) : M('makePdf');
 }
 
 document.querySelectorAll('input[name=mode]').forEach((r) => r.addEventListener('change', update));
@@ -77,25 +77,25 @@ $('start').addEventListener('click', async () => {
   const g = groups();
   if (!g) return;
   const file = tool.files[0];
-  tool.begin('나누는 중…');
+  tool.begin(M('splitting'));
   try {
     const { PDFDocument } = await getPdfLib();
     const src = await openForEdit(await bytesOf(file), file.name);
     const base = baseName(file.name);
     const outs = [];
     for (let i = 0; i < g.length; i++) {
-      tool.progress(i / g.length, `나누는 중… (${i + 1}/${g.length})`);
+      tool.progress(i / g.length, M('splittingN', { i: i + 1, n: g.length }));
       const doc = await PDFDocument.create();
       const pages = await doc.copyPages(src, g[i].map((p) => p - 1));
       pages.forEach((p) => doc.addPage(p));
       const label = g[i].length > 1 ? `${g[i][0]}-${g[i].at(-1)}` : `${g[i][0]}`;
-      outs.push({ name: `${base}_${mode() === 'pick' ? '추출' : label}.pdf`, data: await doc.save({ useObjectStreams: true }) });
+      outs.push({ name: `${base}_${mode() === 'pick' ? M('sfxExtract') : label}.pdf`, data: await doc.save({ useObjectStreams: true }) });
     }
     if (outs.length === 1) {
-      tool.done({ blob: new Blob([outs[0].data], { type: 'application/pdf' }), name: outs[0].name, info: `${g[0].length}쪽`, pdf: true });
+      tool.done({ blob: new Blob([outs[0].data], { type: 'application/pdf' }), name: outs[0].name, info: pagesText(g[0].length), pdf: true });
     } else {
-      tool.progress(0.97, 'ZIP으로 묶는 중…');
-      tool.done({ blob: await makeZip(outs), name: `${base}_나눔.zip`, info: `PDF ${outs.length}개 (ZIP)` });
+      tool.progress(0.97, M('zipping'));
+      tool.done({ blob: await makeZip(outs), name: `${base}${M('sfxSplit')}.zip`, info: M('pdfNZip', { n: outs.length }) });
     }
   } catch (e) {
     tool.fail(e);

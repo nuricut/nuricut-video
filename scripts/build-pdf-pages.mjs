@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { brandHtml, brandText } from './site-parts.mjs';
+import { INTL } from './pdf-texts-intl.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://nuricut.video';
@@ -115,18 +116,28 @@ const T = {
       ['암호가 걸린 PDF도 되나요?', '지금은 암호가 걸린 PDF는 열 수 없어요. 암호 풀기 기능은 나중에 추가할 예정이에요.'],
       ['도구를 이어서 쓸 수 있나요?', '네. 결과 화면에서 "이 결과로 다른 도구 이어서 쓰기"를 누른 뒤 위쪽 탭에서 다른 도구를 고르면, 방금 만든 PDF로 바로 이어서 작업할 수 있어요.'],
     ],
+    faqTitle: '자주 묻는 질문',
     footerNote: '🔒 {BRAND}는 사용자의 파일을 서버로 전송하거나 저장하지 않습니다.<br />모든 처리는 사용자 기기의 브라우저 안에서 이루어집니다.',
     videoTools: '동영상 도구',
     footerPdf: ['PDF 합치기', 'PDF 나누기', '페이지 정리', '이미지 → PDF', 'PDF → 이미지'],
   },
 };
 
-/* ---------- 기존 한국어 페이지에서 공통 조각 가져오기 ---------- */
-const ref = fs.readFileSync(path.join(root, 'ko/index.html'), 'utf8');
-const langMenu = ref.match(/<details class="lang-menu">[\s\S]*?<\/details>/)[0];
-const headTop = ref.match(/<meta charset="UTF-8" \/>[\s\S]*?<meta name="viewport"[^>]*\/>/)[0];
-const footerRef = ref.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)[0];
-const lockSvg = ref.match(/<span class="card-safe">(<svg[\s\S]*?<\/svg>)/)[1];
+Object.assign(T, INTL);
+const LANGS = ['en', 'ko', 'zh', 'ja'];
+const HREFLANG = { en: 'en', ko: 'ko', zh: 'zh-Hans', ja: 'ja' };
+const pdfBase = (l) => (l === 'en' ? '/pdf/' : `/${l}/pdf/`);
+
+/* ---------- 각 언어의 기존 동영상 첫 페이지에서 공통 조각(언어 메뉴·푸터 등) 가져오기 ---------- */
+function refParts(lang) {
+  const ref = fs.readFileSync(path.join(root, lang === 'en' ? 'index.html' : `${lang}/index.html`), 'utf8');
+  return {
+    langMenu: ref.match(/<details class="lang-menu">[\s\S]*?<\/details>/)[0],
+    headTop: ref.match(/<meta charset="UTF-8" \/>[\s\S]*?<meta name="viewport"[^>]*\/>/)[0],
+    footerRef: ref.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)[0],
+    lockSvg: ref.match(/<span class="card-safe">(<svg[\s\S]*?<\/svg>)/)[1],
+  };
+}
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const radio = (name, value, [label, small], checked) =>
@@ -134,12 +145,16 @@ const radio = (name, value, [label, small], checked) =>
 
 function build(lang) {
   const t = T[lang];
+  const { langMenu: menuRef, headTop, footerRef, lockSvg } = refParts(lang);
+  // 언어 메뉴: 같은 PDF 페이지의 다른 언어판으로 연결
+  const langMenu = (file) => menuRef.replace(/href="[^"]*"(\s+data-lang="(\w+)")/g, (_, rest, l) => `href="${pdfBase(l)}${file === 'index.html' ? '' : file}"${rest}`);
   const base = lang === 'en' ? '/pdf/' : `/${lang}/pdf/`;
   const url = (file) => base + (file === 'index.html' ? '' : file);
   const toolUrl = (key) => url(TOOLS.find((x) => x[0] === key)[1]);
   const outDir = path.join(root, lang === 'en' ? 'pdf' : `${lang}/pdf`);
   fs.mkdirSync(outDir, { recursive: true });
 
+  let curFile = 'index.html';
   const header = (activeNav) => `<header class="site-header">
       <div class="wrap">
         ${brandHtml(lang, 'pdf')}
@@ -150,7 +165,7 @@ function build(lang) {
           <a href="${toolUrl('organize')}"${activeNav === 'organize' ? ' class="active"' : ''}>${t.tool.organize[2]}</a>
           <a href="${url('guide.html')}"${activeNav === 'guide' ? ' class="active"' : ''}>${t.nav.guide}</a>
         </nav>
-        ${langMenu}
+        ${langMenu(curFile)}
       </div>
     </header>`;
 
@@ -162,18 +177,21 @@ function build(lang) {
     .replace(/<div class="footer-links">[\s\S]*?<\/div>/, `<div class="footer-links">
           ${TOOLS.filter((x) => x[4]).map(([k, f], i) => `<a href="${url(f)}">${t.footerPdf[i]}</a>`).join('\n          ')}
           <a href="${url('guide.html')}">${t.nav.guide}</a>
-          <a href="/${lang}/">${t.videoTools}</a>
+          <a href="${lang === 'en' ? '/' : `/${lang}/`}">${t.videoTools}</a>
         </div>`)
     .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote.replace('{BRAND}', brandText('pdf'))}</p>`);
 
   const cardFoot = `<div class="card-foot"><span class="card-safe">${lockSvg}<span><span class="nb">${t.safe[0]}</span> · <span class="nb">${t.safe[1]}</span></span></span><span class="card-free"><span class="nb"><b>${t.free[0]}</b></span> · <span class="nb">${t.free[1]}</span> · <span class="nb">${t.free[2]}</span></span></div>`;
 
   const faq = `<section class="faq">
-        <h2>자주 묻는 질문</h2>
+        <h2>${t.faqTitle}</h2>
         ${t.faq.map(([q, a]) => `<details>\n          <summary>${q}</summary>\n          <p>${a}</p>\n        </details>`).join('\n        ')}
       </section>`;
 
   const page = ({ file, title, desc, body, script, tool = 'hub' }) => {
+    curFile = file;
+    const alt = (l) => `${SITE}${pdfBase(l)}${file === 'index.html' ? '' : file}`;
+    const hreflang = LANGS.map((l) => `<link rel="alternate" hreflang="${HREFLANG[l]}" href="${alt(l)}" />`).join('\n    ') + `\n    <link rel="alternate" hreflang="x-default" href="${alt('en')}" />`;
     const html = `<!doctype html>
 <html lang="${lang}">
   <head>
@@ -188,6 +206,7 @@ function build(lang) {
     <meta property="og:url" content="${SITE}${url(file)}" />
     <meta property="og:image" content="${SITE}/og/og-${lang}.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    ${hreflang}
   </head>
   <body data-tool="${tool}">
     ${header(tool)}
@@ -359,4 +378,4 @@ ${ready.map(([k, f, ic]) => `
   console.log(lang, 'PDF 페이지 7개 생성 →', path.relative(root, outDir));
 }
 
-for (const lang of Object.keys(T)) build(lang);
+for (const lang of LANGS) build(lang);

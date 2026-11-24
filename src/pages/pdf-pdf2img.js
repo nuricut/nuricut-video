@@ -1,5 +1,5 @@
 // PDF → 이미지: 쪽을 JPG·PNG로 저장 (여러 장은 ZIP)
-import { $, createPdfTool, openForView, bytesOf, pageGrid, createSelection, renderPage, makeZip, baseName } from '../lib/pdf.js';
+import { $, m, createPdfTool, openForView, bytesOf, pageGrid, createSelection, renderPage, makeZip, baseName } from '../lib/pdf.js';
 
 const grid = $('pages');
 grid.classList.add('picking');
@@ -29,8 +29,8 @@ const picked = () => {
 function update() {
   const f = tool.files[0];
   const n = items.filter((d) => d.classList.contains('sel')).length;
-  $('work-title').textContent = f ? `${f.name} · ${items.length}쪽` : '';
-  $('start').textContent = n ? `고른 ${n}쪽을 이미지로 저장` : `전체 ${items.length}쪽을 이미지로 저장`;
+  $('work-title').textContent = f ? m('fileTitle', { name: f.name, n: items.length }) : '';
+  $('start').textContent = n ? m('toImgSel', { n }) : m('toImgAll', { n: items.length });
 }
 
 const canvasToBlob = (c, type, q) => new Promise((r) => c.toBlob(r, type, q));
@@ -42,11 +42,11 @@ $('start').addEventListener('click', async () => {
   const dpi = +document.querySelector('input[name=quality]:checked').value;
   const type = fmt === 'png' ? 'image/png' : 'image/jpeg';
   const base = baseName(file.name);
-  tool.begin('이미지로 바꾸는 중…');
+  tool.begin(m('converting'));
   try {
     const outs = [];
     for (let i = 0; i < pages.length; i++) {
-      tool.progress(i / pages.length, `이미지로 바꾸는 중… (${i + 1}/${pages.length})`);
+      tool.progress(i / pages.length, m('convertingN', { i: i + 1, n: pages.length }));
       const page = await view.getPage(pages[i]);
       const vp = page.getViewport({ scale: 1 });
       // 너무 큰 그림은 브라우저가 못 그리므로 한 변 최대 8000px로 제한
@@ -57,11 +57,11 @@ $('start').addEventListener('click', async () => {
       outs.push({ name: `${base}_${String(pages[i]).padStart(String(view.numPages).length, '0')}.${fmt}`, blob });
     }
     if (outs.length === 1) {
-      tool.done({ blob: outs[0].blob, name: outs[0].name, info: '이미지 1장' });
+      tool.done({ blob: outs[0].blob, name: outs[0].name, info: m('img1') });
     } else {
-      tool.progress(0.97, 'ZIP으로 묶는 중…');
+      tool.progress(0.97, m('zipping'));
       const entries = await Promise.all(outs.map(async (o) => ({ name: o.name, data: new Uint8Array(await o.blob.arrayBuffer()) })));
-      tool.done({ blob: await makeZip(entries), name: `${base}_이미지.zip`, info: `이미지 ${outs.length}장 (ZIP)` });
+      tool.done({ blob: await makeZip(entries), name: `${base}${m('sfxImages')}.zip`, info: m('imgN', { n: outs.length }) });
     }
   } catch (e) {
     tool.fail(e);
