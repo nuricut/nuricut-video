@@ -10,6 +10,11 @@ for (const p of pages) {
   input[`zh-${p}`] = resolve(__dirname, `zh/${p}.html`);
   input[`ja-${p}`] = resolve(__dirname, `ja/${p}.html`);
 }
+// PDF 도구 (scripts/build-pdf-pages.mjs 로 생성). 번역된 언어만 추가
+const pdfPages = ['index', 'merge', 'split', 'organize', 'images-to-pdf', 'pdf-to-images'];
+for (const lang of ['ko']) {
+  for (const p of pdfPages) input[`${lang}-pdf-${p}`] = resolve(__dirname, `${lang}/pdf/${p}.html`);
+}
 
 export default defineConfig({
   // ffmpeg.wasm은 자체 워커를 쓰므로 Vite 사전 번들링에서 제외해야 정상 동작합니다.
@@ -18,6 +23,7 @@ export default defineConfig({
   },
   // 도구마다 별도 페이지 (검색 노출에 유리)
   build: {
+    target: 'es2022', // PDF 엔진(pdf.js)이 최신 문법을 사용
     rollupOptions: { input },
   },
 });

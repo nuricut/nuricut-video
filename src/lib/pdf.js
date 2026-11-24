@@ -1,0 +1,333 @@
+// PDF 도구 공통: 파일 받기·기억, PDF 열기/그리기, 진행·결과 화면, 끌어서 순서 바꾸기, ZIP
+// 모든 처리는 브라우저 안에서만 이루어지고, 파일은 이 기기 밖으로 나가지 않습니다.
+import { $, show, hide, formatSize, track } from './common.js';
+import { lang } from './i18n.js';
+import { renderIcons } from './pdf-icons.js';
+
+export { $, show, hide, formatSize, track };
+
+/* ---------- 문구 (지금은 한국어만, 다른 언어는 공개 전에 추가) ---------- */
+const MSG = {
+  ko: {
+    onlyPdf: 'PDF 파일만 넣을 수 있어요.',
+    onlyImage: 'JPG·PNG·WebP 같은 이미지 파일만 넣을 수 있어요.',
+    encrypted: '"{name}"은(는) 암호가 걸린 PDF라 아직 열 수 없어요.',
+    broken: '"{name}"을(를) 열 수 없어요. 손상된 PDF일 수 있어요.',
+    failed: '처리에 실패했어요. 다른 파일로 다시 시도해 주세요.',
+    loading: 'PDF 여는 중…',
+    working: '처리 중…',
+    pages: '{n}쪽',
+    done: '✓ 완성! {info}',
+    restored: '이전에 넣은 파일을 불러왔어요.',
+  },
+};
+export function m(key, vars = {}) {
+  const s = (MSG[lang] || MSG.ko)[key] ?? MSG.ko[key] ?? key;
+  return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? '').toString());
+}
+
+/* ---------- 라이브러리 (필요할 때만 불러오기) ---------- */
+let pdfjsPromise;
+export function getPdfjs() {
+  pdfjsPromise ??= (async () => {
+    const pdfjs = await import('pdfjs-dist');
+    const { default: workerUrl } = await import('pdfjs-dist/build/pdf.worker.min.mjs?url');
+    pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
+    return pdfjs;
+  })();
+  return pdfjsPromise;
+}
+export const getPdfLib = () => import('pdf-lib');
+
+/** 화면에 그리기용 PDF 열기 (pdf.js). bytes는 복사해서 넘겨 원본이 손상되지 않게 함 */
+export async function openForView(bytes) {
+  const pdfjs = await getPdfjs();
+  return pdfjs.getDocument({
+    data: bytes.slice(0),
+    cMapUrl: '/pdfjs/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/pdfjs/standard_fonts/',
+  }).promise;
+}
+
+/** 편집용 PDF 열기 (pdf-lib). 암호·손상 PDF는 알아보기 쉬운 메시지로 */
+export async function openForEdit(bytes, name) {
+  const { PDFDocument } = await getPdfLib();
+  try {
+    return await PDFDocument.load(bytes, { updateMetadata: false });
+  } catch (e) {
+    if (/encrypt/i.test(e?.message || '') || e?.name === 'EncryptedPDFError') throw new UserError(m('encrypted', { name }));
+    throw new UserError(m('broken', { name }));
+  }
+}
+
+export class UserError extends Error {}
+
+/** PDF 한 쪽을 지정한 폭의 canvas로 그리기 */
+export async function renderPage(pdf, pageNo, width, { scale: fixedScale } = {}) {
+  const page = await pdf.getPage(pageNo);
+  const base = page.getViewport({ scale: 1 });
+  const scale = fixedScale ?? width / base.width;
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.floor(viewport.width));
+  canvas.height = Math.max(1, Math.floor(viewport.height));
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  await page.render({ canvasContext: ctx, viewport }).promise;
+  page.cleanup();
+  return canvas;
+}
+
+/** 썸네일: 화면 선명도를 위해 기기 배율만큼 크게 그림 */
+export function renderThumb(pdf, pageNo, cssWidth = 120) {
+  return renderPage(pdf, pageNo, cssWidth * Math.min(2, window.devicePixelRatio || 1));
+}
+
+/* ---------- 파일 기억 (탭을 옮겨도 유지) ----------
+   IndexedDB는 이 브라우저 안에만 저장되는 공간입니다. 서버로 가지 않습니다. */
+const DB = 'nuricut-pdf';
+function db() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB, 1);
+    req.onupgradeneeded = () => req.result.createObjectStore('kv');
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function kv(mode, fn) {
+  try {
+    const d = await db();
+    return await new Promise((resolve, reject) => {
+      const tx = d.transaction('kv', mode);
+      const r = fn(tx.objectStore('kv'));
+      tx.oncomplete = () => resolve(r?.result);
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch {
+    return undefined; // 사생활 보호 모드 등에서 저장이 막혀도 도구는 그대로 동작
+  }
+}
+export async function saveFiles(key, files) {
+  const list = files.map((f) => ({ name: f.name, type: f.type, blob: f instanceof Blob ? f : f.blob }));
+  await kv('readwrite', (s) => s.put(list, key));
+}
+export async function loadFiles(key) {
+  const list = await kv('readonly', (s) => s.get(key));
+  if (!Array.isArray(list)) return [];
+  return list.map((x) => new File([x.blob], x.name, { type: x.type }));
+}
+export const clearFiles = (key) => kv('readwrite', (s) => s.delete(key));
+
+/* ---------- 파일 종류 ---------- */
+export const isPdf = (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name);
+export const isImage = (f) => /^image\/(jpeg|png|webp|gif|bmp|avif)$/.test(f.type) || /\.(jpe?g|png|webp|gif|bmp|avif)$/i.test(f.name);
+
+/* ---------- ZIP 묶기 (이미 압축된 PDF·이미지라 '보관'만) ---------- */
+export async function makeZip(entries) {
+  const { zipSync } = await import('fflate');
+  const files = {};
+  const used = new Set();
+  for (const { name, data } of entries) {
+    let n = name, i = 2;
+    while (used.has(n)) n = name.replace(/(\.[^.]+)$/, ` (${i++})$1`);
+    used.add(n);
+    files[n] = [data instanceof Uint8Array ? data : new Uint8Array(data), { level: 0 }];
+  }
+  return new Blob([zipSync(files)], { type: 'application/zip' });
+}
+
+/** "1-3, 5, 8-" 같은 쪽 범위를 [[1,2,3],[5],[8..max]]로. 잘못되면 null */
+export function parseRanges(text, max) {
+  const groups = [];
+  for (const part of text.split(/[,，、\s]+/).filter(Boolean)) {
+    const mm = part.match(/^(\d+)?\s*[-~–]\s*(\d+)?$|^(\d+)$/);
+    if (!mm) return null;
+    let a, b;
+    if (mm[3]) a = b = +mm[3];
+    else { a = mm[1] ? +mm[1] : 1; b = mm[2] ? +mm[2] : max; }
+    if (a < 1 || b > max || a > b) return null;
+    groups.push(Array.from({ length: b - a + 1 }, (_, i) => a + i));
+  }
+  return groups.length ? groups : null;
+}
+
+export const baseName = (name) => name.replace(/\.[^.]+$/, '');
+
+/* ---------- 끌어서 순서 바꾸기 (마우스·터치 공통, 손잡이로만 시작) ---------- */
+export function makeSortable(container, { item, handle, onEnd }) {
+  let drag = null;
+  container.addEventListener('pointerdown', (e) => {
+    const h = e.target.closest(handle);
+    if (!h || !container.contains(h)) return;
+    const el = h.closest(item);
+    if (!el) return;
+    e.preventDefault();
+    drag = { el, id: e.pointerId };
+    el.classList.add('dragging');
+    container.classList.add('sorting');
+    h.setPointerCapture(e.pointerId);
+  });
+  container.addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const over = document.elementFromPoint(e.clientX, e.clientY)?.closest(item);
+    if (!over || over === drag.el || !container.contains(over)) return;
+    const r = over.getBoundingClientRect();
+    const horizontal = getComputedStyle(container).display.includes('grid') && r.width < container.clientWidth * 0.9;
+    const after = horizontal ? e.clientX > r.left + r.width / 2 : e.clientY > r.top + r.height / 2;
+    over[after ? 'after' : 'before'](drag.el);
+  });
+  const end = (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    drag.el.classList.remove('dragging');
+    container.classList.remove('sorting');
+    drag = null;
+    onEnd?.([...container.querySelectorAll(item)].map((n) => n.dataset.key));
+  };
+  container.addEventListener('pointerup', end);
+  container.addEventListener('pointercancel', end);
+}
+
+/* ---------- 도구 페이지 공통 틀 ----------
+   HTML의 정해진 id: dropzone, file-input, work, progress-box, status, bar-fill, result, result-info,
+   download, continue, again, error */
+export function createPdfTool({ kind = 'pdf', key = kind === 'pdf' ? 'pdfs' : 'images', multiple = true, onFiles, onReset }) {
+  renderIcons();
+  const el = {
+    dropzone: $('dropzone'), input: $('file-input'), work: $('work'), progress: $('progress-box'), status: $('status'),
+    bar: $('bar-fill'), result: $('result'), resultInfo: $('result-info'), download: $('download'), cont: $('continue'),
+    again: $('again'), error: $('error'), add: $('add-files'), clear: $('clear-files'),
+  };
+  const accept = kind === 'pdf' ? isPdf : isImage;
+  let files = [];
+
+  const showError = (msg) => { el.error.textContent = msg; show(el.error); };
+
+  async function setFiles(list, { persist = true } = {}) {
+    files = list;
+    hide(el.error, el.result, el.progress);
+    if (!files.length) { hide(el.work); show(el.dropzone); onReset?.(); if (persist) clearFiles(key); return; }
+    hide(el.dropzone);
+    show(el.work);
+    if (persist) saveFiles(key, files);
+    try {
+      await onFiles(files);
+    } catch (e) {
+      console.error(e);
+      showError(e instanceof UserError ? e.message : m('failed'));
+    }
+  }
+
+  function take(list, append) {
+    const all = [...list];
+    const ok = all.filter(accept);
+    if (all.length && !ok.length) return showError(m(kind === 'pdf' ? 'onlyPdf' : 'onlyImage'));
+    if (!ok.length) return;
+    track('file_selected', { file_type: kind, count: ok.length });
+    setFiles(multiple ? (append ? [...files, ...ok] : ok) : [ok[0]]);
+  }
+
+  el.input.multiple = multiple;
+  el.input.addEventListener('change', (e) => { take(e.target.files, el.input.dataset.append === '1'); el.input.value = ''; el.input.dataset.append = ''; });
+  const zone = el.dropzone;
+  ['dragenter', 'dragover'].forEach((t) => zone.addEventListener(t, (e) => { e.preventDefault(); zone.classList.add('drag'); }));
+  ['dragleave', 'drop'].forEach((t) => zone.addEventListener(t, (e) => { e.preventDefault(); zone.classList.remove('drag'); }));
+  zone.addEventListener('drop', (e) => take(e.dataTransfer.files, false));
+  // 작업 화면에 파일을 떨어뜨려도 추가
+  el.work.addEventListener('dragover', (e) => e.preventDefault());
+  el.work.addEventListener('drop', (e) => { e.preventDefault(); take(e.dataTransfer.files, multiple); });
+  el.add?.addEventListener('click', () => { el.input.dataset.append = '1'; el.input.click(); });
+  el.clear?.addEventListener('click', () => setFiles([]));
+  el.again?.addEventListener('click', () => { hide(el.result); show(el.work); });
+
+  // 이전 탭에서 넣어 둔 파일 불러오기
+  loadFiles(key).then((saved) => { if (saved.length && !files.length) setFiles(multiple ? saved : [saved[0]], { persist: false }); });
+
+  return {
+    el,
+    get files() { return files; },
+    setFiles,
+    showError,
+    begin(text = m('working')) {
+      hide(el.work, el.error, el.result);
+      show(el.progress);
+      this.progress(0, text);
+    },
+    progress(ratio, text) {
+      el.bar.style.width = Math.round(Math.max(0, Math.min(1, ratio)) * 100) + '%';
+      if (text) el.status.textContent = text;
+    },
+    /** 결과 표시. output: {blob, name, info, pdf(다른 도구로 이어서 쓸 수 있으면 true)} */
+    done({ blob, name, info, pdf = false }) {
+      hide(el.progress);
+      if (el.download._url) URL.revokeObjectURL(el.download._url);
+      el.download._url = URL.createObjectURL(blob);
+      el.download.href = el.download._url;
+      el.download.download = name;
+      el.resultInfo.textContent = m('done', { info: `${info} · ${formatSize(blob.size)}` });
+      if (el.cont) {
+        el.cont.hidden = !pdf;
+        el.cont.onclick = async () => {
+          await saveFiles('pdfs', [new File([blob], name, { type: 'application/pdf' })]);
+          document.querySelector('.pdf-tabs')?.classList.add('pulse');
+          el.cont.textContent = el.cont.dataset.doneText || el.cont.textContent;
+          el.cont.disabled = true;
+          document.querySelector('.pdf-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        el.cont.disabled = false;
+        if (el.cont.dataset.text) el.cont.textContent = el.cont.dataset.text;
+      }
+      show(el.result);
+      track('pdf_done', { tool: document.body.dataset.tool });
+    },
+    fail(e) {
+      console.error(e);
+      hide(el.progress);
+      show(el.work);
+      showError(e instanceof UserError ? e.message : m('failed'));
+      track('process_error');
+    },
+  };
+}
+
+/** 쪽 미리보기 칸들을 만들고 썸네일을 차례로 채움. 반환: 칸 요소 배열 (1쪽부터) */
+export function pageGrid(container, pdf, { handle = false } = {}) {
+  container.innerHTML = '';
+  const items = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const d = document.createElement('div');
+    d.className = 'pg';
+    d.dataset.page = i;
+    d.dataset.key = i;
+    d.innerHTML = `${handle ? '<span class="handle" title="끌어서 순서 바꾸기">⠿</span>' : ''}<span class="check"></span><div class="sheet"></div><span class="no">${i}</span>`;
+    container.append(d);
+    items.push(d);
+  }
+  const token = (container._token = Symbol());
+  (async () => {
+    for (const d of items) {
+      if (container._token !== token) return; // 다른 파일로 바뀌면 중단
+      try {
+        const c = await renderThumb(pdf, +d.dataset.page, 110);
+        d.querySelector('.sheet').prepend(c);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+  })();
+  return items;
+}
+
+/** 파일 → ArrayBuffer (캐시) */
+const bufCache = new WeakMap();
+export async function bytesOf(file) {
+  if (!bufCache.has(file)) bufCache.set(file, new Uint8Array(await file.arrayBuffer()));
+  return bufCache.get(file);
+}
+
+/** PDF 저장 → Blob */
+export async function toBlob(doc) {
+  const bytes = await doc.save({ useObjectStreams: true });
+  return new Blob([bytes], { type: 'application/pdf' });
+}
