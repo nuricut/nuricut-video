@@ -1,11 +1,12 @@
 // PDF 나누기: 범위로 / 한 쪽씩 / 골라 뽑기
-import { $, show, hide, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, parseRanges, makeZip, baseName } from '../lib/pdf.js';
+import { $, show, hide, createPdfTool, openForView, openForEdit, getPdfLib, bytesOf, pageGrid, createSelection, parseRanges, makeZip, baseName } from '../lib/pdf.js';
 
 const grid = $('pages');
 const rangeIn = $('range');
 let view = null; // pdf.js 문서
 let items = [];
 let total = 0;
+const sel = createSelection(grid, { onChange: () => update() });
 
 const mode = () => document.querySelector('input[name=mode]:checked').value;
 
@@ -18,11 +19,8 @@ const tool = createPdfTool({
     total = view.numPages;
     $('work-title').textContent = `${file.name} · ${total}쪽`;
     items = pageGrid(grid, view);
-    items.forEach((d) => d.addEventListener('click', () => {
-      if (mode() !== 'pick') return;
-      d.classList.toggle('sel');
-      update();
-    }));
+    items.forEach((d) => d.addEventListener('click', () => { if (mode() === 'pick') sel.toggle(d); }));
+    sel.clear();
     const half = Math.ceil(total / 2);
     rangeIn.value = total > 1 ? `1-${half}, ${half + 1}-` : '1';
     update();
@@ -45,6 +43,7 @@ function update() {
   $('range-field').hidden = m !== 'range';
   $('pick-hint').hidden = m !== 'pick';
   grid.classList.toggle('picking', m === 'pick');
+  if (m !== 'pick' && sel.list.length) return sel.clear(); // 고르기 모드를 벗어나면 선택 해제 (다시 update 호출됨)
   const g = groups();
   // 쪽마다 어느 파일로 가는지 색으로 표시
   const where = new Map();
@@ -52,7 +51,6 @@ function update() {
   items.forEach((d) => {
     d.querySelector('.gtag')?.remove();
     if (m === 'pick') { delete d.dataset.group; return; }
-    d.classList.remove('sel');
     const gi = where.get(+d.dataset.page);
     if (gi === undefined) { d.dataset.group = -1; return; }
     d.dataset.group = gi % 6;

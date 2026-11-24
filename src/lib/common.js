@@ -10,13 +10,14 @@ initSupport();
 renderIcons();
 initBackToTop();
 
-/* 맨 위로 버튼: 화면 한 장 넘게 내려가면 오른쪽 아래에 나타남 */
+/* 맨 위로 버튼: 지금 보이는 화면 한 장만큼 넘게 내려가면 오른쪽 아래에 나타남.
+   브라우저를 확대·축소하면 '화면 한 장'의 크기도 함께 바뀌므로 기준이 자동으로 맞춰짐 */
 function initBackToTop() {
-  const label = { ko: '맨 위로', en: 'Back to top', zh: '回到顶部', ja: 'トップへ戻る' }[lang] || 'Back to top';
+  const label = { ko: '맨 위로 올라갑니다', en: 'Back to top', zh: '回到顶部', ja: 'ページの先頭へ戻ります' }[lang] || 'Back to top';
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'to-top';
-  btn.title = label;
+  btn.dataset.tip = label;
   btn.setAttribute('aria-label', label);
   btn.innerHTML = `<span class="ico bare">${iconSvg('top')}</span>`;
   document.body.append(btn);
@@ -25,9 +26,11 @@ function initBackToTop() {
   let ticking = false;
   const update = () => {
     ticking = false;
-    btn.classList.toggle('show', window.scrollY > Math.min(600, window.innerHeight * 0.8));
+    btn.classList.toggle('show', window.scrollY > window.innerHeight);
   };
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll); // 확대·축소, 창 크기 변경
   update();
 }
 

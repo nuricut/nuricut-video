@@ -193,24 +193,55 @@ function makeGhost(el) {
   return { g, r };
 }
 
-export function makeSortable(container, { item, handle, onEnd, markMoved = false }) {
+export function makeSortable(container, { item, handle, onEnd, markMoved = false, anywhere = false }) {
   let drag = null;
+  let pending = null; // anywhere 모드: 클릭인지 끌기인지 아직 모르는 상태
+  let skipClick = false;
   const items = () => [...container.querySelectorAll(item)];
-  container.addEventListener('pointerdown', (e) => {
-    const h = e.target.closest(handle);
-    if (!h || !container.contains(h) || e.button > 0) return;
-    const el = h.closest(item);
-    if (!el) return;
-    e.preventDefault();
+
+  function start(el, e, captureEl) {
     const { g, r } = makeGhost(el);
     drag = { el, id: e.pointerId, g, dx: e.clientX - r.left, dy: e.clientY - r.top, start: items().indexOf(el) };
     el.classList.add('placeholder');
     container.classList.add('sorting');
-    h.setPointerCapture(e.pointerId);
-  });
-  container.addEventListener('pointermove', (e) => {
-    if (!drag || e.pointerId !== drag.id) return;
+    try { captureEl.setPointerCapture(e.pointerId); } catch {}
+    moveGhost(e);
+  }
+  function moveGhost(e) {
     drag.g.style.transform = `translate(${e.clientX - drag.dx - parseFloat(drag.g.style.left)}px, ${e.clientY - drag.dy - parseFloat(drag.g.style.top)}px) scale(1.04) rotate(-1.5deg)`;
+  }
+
+  container.addEventListener('pointerdown', (e) => {
+    if (e.button > 0 || drag) return;
+    const h = handle && e.target.closest(handle);
+    const el = e.target.closest(item);
+    if (!el || !container.contains(el)) return;
+    if (h) { e.preventDefault(); start(el, e, h); return; } // 손잡이: 바로 끌기
+    if (!anywhere || e.target.closest('button, a, input, select')) return;
+    // 마우스는 6px 넘게 움직이면 끌기, 터치는 0.3초 꾹 누르면 끌기 (그냥 밀면 화면 스크롤)
+    pending = { el, e, x: e.clientX, y: e.clientY, touch: e.pointerType === 'touch' };
+    if (pending.touch) {
+      pending.timer = setTimeout(() => {
+        if (!pending) return;
+        const p = pending; pending = null;
+        navigator.vibrate?.(15);
+        start(p.el, p.e, p.el);
+      }, 300);
+    }
+  });
+  // 터치로 끄는 중에는 화면이 스크롤되지 않게
+  container.addEventListener('touchmove', (e) => { if (drag) e.preventDefault(); }, { passive: false });
+  container.addEventListener('click', (e) => { if (skipClick) { skipClick = false; e.stopPropagation(); e.preventDefault(); } }, true);
+
+  container.addEventListener('pointermove', (e) => {
+    if (pending && e.pointerId === pending.e.pointerId) {
+      const dist = Math.hypot(e.clientX - pending.x, e.clientY - pending.y);
+      if (pending.touch) { if (dist > 8) { clearTimeout(pending.timer); pending = null; } return; }
+      if (dist > 6) { const p = pending; pending = null; start(p.el, e, p.el); drag.dx = p.x - p.el.getBoundingClientRect().left; drag.dy = p.y - p.el.getBoundingClientRect().top; }
+      else return;
+    }
+    if (!drag || e.pointerId !== drag.id) return;
+    moveGhost(e);
     const over = document.elementFromPoint(e.clientX, e.clientY)?.closest(item);
     if (!over || over === drag.el || !container.contains(over) || over.style.transform) return; // 움직이는 중인 칸은 건너뜀
     const r = over.getBoundingClientRect();
@@ -220,9 +251,12 @@ export function makeSortable(container, { item, handle, onEnd, markMoved = false
     slide(items(), () => over[after ? 'after' : 'before'](drag.el));
   });
   const end = (e) => {
+    if (pending && e.pointerId === pending.e.pointerId) { clearTimeout(pending.timer); pending = null; return; } // 그냥 클릭
     if (!drag || e.pointerId !== drag.id) return;
     const { el, g, start } = drag;
     drag = null;
+    skipClick = true; // 끌기 끝에 생기는 클릭으로 선택이 바뀌지 않게
+    setTimeout(() => (skipClick = false), 350);
     container.classList.remove('sorting');
     const moved = items().indexOf(el) !== start;
     // 복사본을 새 자리로 내려앉힌 뒤 지우기
@@ -387,4 +421,38 @@ export async function bytesOf(file) {
 export async function toBlob(doc) {
   const bytes = await doc.save({ useObjectStreams: true });
   return new Blob([bytes], { type: 'application/pdf' });
+}
+
+/* ---------- 쪽 여러 개 고르기 ----------
+   2개 이상 고르면 고른 순서대로 번호를 달고, 위쪽에 "N쪽 선택됨" 표시. 1개일 때는 체크만 */
+export function createSelection(grid, { onChange, unit = '쪽' } = {}) {
+  let order = [];
+  const chip = document.createElement('div');
+  chip.className = 'sel-chip';
+  chip.hidden = true;
+  grid.before(chip);
+  chip.addEventListener('click', (e) => { if (e.target.closest('button')) api.clear(); });
+  function render() {
+    order = order.filter((el) => el.isConnected);
+    const multi = order.length >= 2;
+    grid.querySelectorAll('.pg').forEach((el) => {
+      const i = order.indexOf(el);
+      el.classList.toggle('sel', i >= 0);
+      el.classList.toggle('multi', multi && i >= 0);
+      const c = el.querySelector('.check');
+      if (c) c.textContent = multi && i >= 0 ? i + 1 : '';
+    });
+    chip.hidden = !multi;
+    if (multi) chip.innerHTML = `<span><b>${order.length}</b>${unit} 선택됨</span><button type="button" class="btn-link">선택 해제</button>`;
+    onChange?.(order.slice());
+  }
+  const api = {
+    toggle(el) { const i = order.indexOf(el); if (i >= 0) order.splice(i, 1); else order.push(el); render(); },
+    set(list) { order = list.slice(); render(); },
+    clear() { if (order.length) { order = []; render(); } },
+    /** 고른 순서 */
+    get list() { return order.filter((el) => el.isConnected); },
+    render,
+  };
+  return api;
 }

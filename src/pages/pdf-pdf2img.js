@@ -1,10 +1,11 @@
 // PDF → 이미지: 쪽을 JPG·PNG로 저장 (여러 장은 ZIP)
-import { $, createPdfTool, openForView, bytesOf, pageGrid, renderPage, makeZip, baseName } from '../lib/pdf.js';
+import { $, createPdfTool, openForView, bytesOf, pageGrid, createSelection, renderPage, makeZip, baseName } from '../lib/pdf.js';
 
 const grid = $('pages');
 grid.classList.add('picking');
 let view = null;
 let items = [];
+const sel = createSelection(grid, { onChange: () => update() });
 
 const tool = createPdfTool({
   kind: 'pdf',
@@ -13,7 +14,8 @@ const tool = createPdfTool({
     view?.destroy();
     view = await openForView(await bytesOf(file));
     items = pageGrid(grid, view);
-    items.forEach((d) => d.addEventListener('click', () => { d.classList.toggle('sel'); update(); }));
+    items.forEach((d) => d.addEventListener('click', () => sel.toggle(d)));
+    sel.clear();
     update();
   },
   onReset: () => { view?.destroy(); view = null; },
