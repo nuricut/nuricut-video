@@ -5,6 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { brandHtml, brandText } from './site-parts.mjs';
 import { INTL } from './pdf-texts-intl.mjs';
+import { MORE } from './pdf-texts-more.mjs';
+import { buildMore } from './pdf-pages-more.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://nuricut.video';
@@ -18,13 +20,13 @@ const TOOLS = [
   ['organize', 'organize.html', 'organize', 'arrange', true],
   ['img2pdf', 'images-to-pdf.html', 'img2pdf', 'convert', true],
   ['pdf2img', 'pdf-to-images.html', 'pdf2img', 'convert', true],
-  ['text', null, 'text', 'convert', false],
-  ['number', null, 'number', 'edit', false],
-  ['watermark', null, 'watermark', 'edit', false],
-  ['sign', null, 'sign', 'edit', false],
-  ['crop', null, 'crop', 'optimize', false],
-  ['compress', null, 'compress', 'optimize', false],
-  ['clean', null, 'clean', 'optimize', false],
+  ['text', 'extract-text.html', 'text', 'convert', true],
+  ['number', 'page-numbers.html', 'number', 'edit', true],
+  ['watermark', 'watermark.html', 'watermark', 'edit', true],
+  ['sign', 'sign.html', 'sign', 'edit', true],
+  ['crop', 'crop.html', 'crop', 'optimize', true],
+  ['compress', 'compress.html', 'compress', 'optimize', true],
+  ['clean', 'remove-metadata.html', 'clean', 'optimize', true],
 ];
 
 /* ---------- 문구 ---------- */
@@ -145,6 +147,10 @@ const radio = (name, value, [label, small], checked) =>
 
 function build(lang) {
   const t = T[lang];
+  const more = MORE[lang] || MORE.ko;
+  t.page = { ...more.page, ...t.page };
+  t.guide.sections = { ...more.guide, ...t.guide.sections };
+  t.more = more;
   const { langMenu: menuRef, headTop, footerRef, lockSvg } = refParts(lang);
   // 언어 메뉴: 같은 PDF 페이지의 다른 언어판으로 연결
   const langMenu = (file) => menuRef.replace(/href="[^"]*"(\s+data-lang="(\w+)")/g, (_, rest, l) => `href="${pdfBase(l)}${file === 'index.html' ? '' : file}"${rest}`);
@@ -355,6 +361,8 @@ ${work}
             <div id="pages" class="pages"></div>
             <button id="start" class="btn-primary" type="button">${pi.start}</button>
           </div>` });
+
+  buildMore({ more: t.more, toolPage, head, radio });
 
   /* ----- 사용방법 ----- */
   const g = t.guide;

@@ -241,3 +241,53 @@ body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; b
 .guide-toc-item::after { left: 50%; right: auto; width: max-content; max-width: min(260px, 90vw); white-space: normal; transform: translateX(-50%); padding: 6px 10px; }
 .guide-toc-item:first-child::after { left: 0; transform: none; }
 .guide-toc-item:last-child::after { left: auto; right: 0; transform: none; }
+
+/* ───────── 추가 PDF 도구 화면 ───────── */
+.two-col { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.opt-col { display: grid; gap: 16px; min-width: 0; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+/* 미리보기 */
+.pv { position: relative; border-radius: 10px; overflow: hidden; background: #0c0c10; border: 1px solid var(--line); line-height: 0; }
+.pv canvas { width: 100%; height: auto; display: block; background: #fff; }
+.pv-num { position: absolute; line-height: 1; font-family: Helvetica, Arial, sans-serif; color: #333338; white-space: nowrap; }
+.crop-shade { position: absolute; box-shadow: 0 0 0 9999px rgba(0, 0, 0, .55); outline: 2px dashed #ff9ed2; outline-offset: -1px; pointer-events: none; }
+/* 쪽 번호 위치 고르기 (위 3칸 / 아래 3칸) */
+.posgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.posgrid label { position: relative; }
+.posgrid input { position: absolute; opacity: 0; pointer-events: none; }
+.posgrid span { display: block; text-align: center; padding: 8px 4px; border: 1px solid var(--line); border-radius: 9px; font-size: .78rem; color: var(--muted); cursor: pointer; }
+.posgrid input:checked + span { border-color: var(--primary); background: var(--primary-soft); color: var(--primary); font-weight: 700; }
+.posgrid label:nth-child(-n+3) span { border-top-width: 3px; }
+.posgrid label:nth-child(n+4) span { border-bottom-width: 3px; }
+/* 여백 mm 입력 */
+.mm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+/* 문서 정보 표 */
+.meta-table { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.mt-row { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 8px 12px; font-size: .86rem; border-top: 1px solid var(--line); }
+.mt-row:first-child { border-top: 0; }
+.mt-row span { color: var(--muted); }
+.mt-row b { font-weight: 500; color: var(--muted); word-break: break-all; }
+.mt-row.has b { color: var(--text); font-weight: 600; }
+.mt-row.has span::before { content: "● "; color: #ff9ed2; }
+@media (max-width: 480px) { .mt-row { grid-template-columns: 1fr; gap: 2px; } }
+/* 텍스트 추출 결과 */
+.text-result { display: grid; gap: 8px; }
+.text-result textarea { font: 400 .85rem/1.6 ui-monospace, Consolas, "Malgun Gothic", monospace; resize: vertical; min-height: 180px; }
+.text-result .btn-small { justify-self: end; }
+/* 서명 패드 */
+.sign-pad { width: 100%; aspect-ratio: 3 / 1; border-radius: 12px; touch-action: none; cursor: crosshair;
+  background: #fff linear-gradient(transparent calc(78% - 1px), #d6d6de calc(78% - 1px), #d6d6de 78%, transparent 78%); }
+.pad-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pad-tools .seg { flex: 1; min-width: 200px; }
+.sign-img-pv { line-height: 0; }
+.sign-img-pv img { max-width: 260px; max-height: 120px; border-radius: 8px; background: repeating-conic-gradient(#e9e9ee 0 25%, #fff 0 50%) 0 0 / 16px 16px; }
+/* 서명 배치 */
+.place-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+.place-bar #page-no { font-size: .86rem; color: var(--muted); min-width: 150px; text-align: center; }
+.place-bar #add { margin-left: auto; border-color: #4a3f8f; color: #fff; background: var(--primary-soft); }
+.stage { position: relative; width: 100%; max-width: 640px; margin: 0 auto; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 4px 18px rgba(0, 0, 0, .5); }
+.stage-page { display: block; width: 100%; height: 100%; }
+.sign-box { position: absolute; cursor: move; touch-action: none; outline: 2px dashed var(--primary); outline-offset: 2px; border-radius: 2px; }
+.sign-box img { width: 100%; height: 100%; display: block; pointer-events: none; user-select: none; }
+.sb-x { position: absolute; top: -12px; right: -12px; width: 24px; height: 24px; border-radius: 50%; border: 0; background: #2a2a32; color: #fff; font-size: .7rem; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+.sb-rz { position: absolute; right: -8px; bottom: -8px; width: 16px; height: 16px; border-radius: 4px; background: var(--primary); cursor: nwse-resize; box-shadow: 0 0 0 2px #fff; }
