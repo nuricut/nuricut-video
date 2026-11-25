@@ -38,3 +38,9 @@ export function brandHtml(lang, mode) {
   };
   return `<div class="brand"><a class="brand-home" href="${home}" aria-label="nuricut.video ${t.home}"><img src="/logo.svg" alt="" width="30" height="30" />nuricut.<span class="brand-tip" role="tooltip">${t[mode + 'Home']}</span></a>${seg('video', 'video')}${seg('pdf', 'PDF')}</div>`;
 }
+
+// nuricut kids가 번역된 언어 (아직은 한국어만. 번역되면 여기에 추가 → 사이트 바닥글·안내에 키즈 링크가 생김)
+export const KIDS_READY = ['ko'];
+export const KIDS_LABEL = { en: 'Kids playground', ko: '키즈 놀이터', zh: '儿童乐园', ja: 'キッズ広場' };
+export const kidsHome = (lang) => (lang === 'en' ? '/kids/' : `/${lang}/kids/`);
+export const kidsFooterLink = (lang) => (KIDS_READY.includes(lang) ? `\n          <a href="${kidsHome(lang)}">${KIDS_LABEL[lang]}</a>` : '');

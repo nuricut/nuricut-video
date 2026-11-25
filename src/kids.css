@@ -161,7 +161,7 @@ button { font: inherit; color: inherit; }
   transition: transform .08s ease, box-shadow .08s ease, background .15s;
 }
 .k-seg button:active, .k-tool-btn:active, .px-frame-list button:active, .sm-strip button:active, .px-pal button:active, .sm-switch:active,
-.k-press { transform: translateY(4px) !important; box-shadow: 0 0 0 #e6dcea !important; }
+.k-seg button.k-down, .k-tool-btn.k-down, .px-frame-list button.k-down, .sm-strip button.k-down, .px-pal button.k-down, .sm-switch.k-down { transform: translateY(4px) !important; box-shadow: 0 0 0 #e6dcea !important; }
 /* 고른 상태: 분홍 테두리 + 분홍 그림자 (떠 있는 채로 색만 바뀜) */
 .k-seg button.on, .k-tool-btn[aria-pressed="true"], .px-frame-list button.on, .sm-strip button.on {
   background: #fff0f7; border-color: var(--pink); box-shadow: 0 4px 0 #f5a8cb; color: #d93c84;
@@ -172,7 +172,7 @@ button { font: inherit; color: inherit; }
 .k-tool-btn[aria-pressed="true"] { box-shadow: 0 4px 0 #f5a8cb; }
 .px-pal button { border: 3px solid #fff; box-shadow: 0 0 0 2px #e6dcea, 0 4px 0 2px #e6dcea; }
 .px-pal button.on { box-shadow: 0 0 0 3px var(--ink), 0 4px 0 3px var(--ink); transform: none; }
-.px-pal button:active { box-shadow: 0 0 0 2px #e6dcea !important; }
+.px-pal button:active, .px-pal button.k-down { box-shadow: 0 0 0 2px #e6dcea !important; }
 .k-tool-btn:disabled { opacity: .4; cursor: default; transform: none !important; box-shadow: 0 4px 0 #e6dcea !important; }
 .sm-strip button { padding: 0; }
 @keyframes k-pop { 0% { transform: scale(1); } 40% { transform: scale(1.12) rotate(-4deg); } 100% { transform: scale(1); } }
@@ -196,3 +196,33 @@ button { font: inherit; color: inherit; }
 .k-how li span:last-child { align-self: start; }
 .k-hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
 .px-save-bg { margin: 10px 0 0; }
+
+/* 큰 버튼(저장·새 칸·재생 등)도 같은 방식: 바닥 그림자는 제자리, 버튼 면만 쑥 들어갔다 나옴 */
+.k-btn { --d: 5px; --sc: #d94e8f; box-shadow: 0 var(--d) 0 var(--sc); }
+.k-btn.sky { --sc: #2f8fd0; } .k-btn.mint { --sc: #28a072; }
+.k-btn.ghost { --d: 4px; --sc: #e2d8e6; }
+.k-btn.sky, .k-btn.mint, .k-btn.ghost { box-shadow: 0 var(--d) 0 var(--sc); }
+.k-btn:active:not(:disabled), .k-btn.k-down:not(:disabled) { transform: translateY(var(--d)); box-shadow: 0 0 0 var(--sc); }
+.sm-shutter { transition: transform .08s, box-shadow .08s; }
+.sm-shutter:active:not(:disabled), .sm-shutter.k-down { transform: translateY(4px); box-shadow: 0 1px 0 #f0d0e0; }
+
+/* 소제목: 귀여운 그림 + 글자 */
+.k-h { display: flex; align-items: center; gap: 8px; }
+.k-h .kh { width: 30px; height: 30px; flex: none; display: flex; }
+.k-h .kh svg { width: 100%; height: 100%; }
+.k-h small { color: var(--muted); font-weight: 700; font-size: .78rem; margin-left: 2px; }
+
+/* 원하는 색 만들기: 색 칸과 같은 모양, 두 칸 너비 */
+.px-mycolor { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; align-items: center; margin-top: 10px; }
+.px-mycolor input { grid-column: span 2; width: 100%; height: auto; aspect-ratio: 2 / 1; padding: 0; border-radius: 10px; border: 3px solid #fff; background: #fff;
+  box-shadow: 0 0 0 2px #e6dcea, 0 4px 0 2px #e6dcea; cursor: pointer; transition: transform .08s, box-shadow .08s; }
+.px-mycolor input:active, .px-mycolor input.k-down { transform: translateY(4px); box-shadow: 0 0 0 2px #e6dcea; }
+.px-mycolor input::-webkit-color-swatch-wrapper { padding: 0; }
+.px-mycolor input::-webkit-color-swatch { border: 0; border-radius: 7px; }
+.px-mycolor input::-moz-color-swatch { border: 0; border-radius: 7px; }
+.px-mycolor span { grid-column: span 4; }
+@media (max-width: 1000px) { .px-mycolor { grid-template-columns: repeat(9, 1fr); } .px-mycolor span { grid-column: span 7; } }
+@media (max-width: 520px) { .px-mycolor { grid-template-columns: repeat(6, 1fr); } .px-mycolor span { grid-column: span 4; } }
+
+/* 바닥: 어른용 도구 (작게) */
+.k-grown { font-size: .8rem; }

@@ -2,6 +2,7 @@
 // 사진은 이 기기 안에서만 다루고 서버로 보내지 않습니다.
 import { getFFmpeg, run, readOutput } from '../lib/ffmpeg.js';
 import { kidTrack } from '../lib/kids-usage.js';
+import '../lib/kids-press.js';
 
 const $ = (id) => document.getElementById(id);
 const TXT = window.KIDS_TXT || {};

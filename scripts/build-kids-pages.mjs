@@ -32,9 +32,23 @@ export const KID_ICONS = {
   trash: `<svg viewBox="0 0 48 48" class="ki"><path d="M10 14h28M19 14V9h10v5M13 14l2 27h18l2-27" fill="none" stroke="#24203a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21v13M27 21v13" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round"/></svg>`,
 };
 
+/* ---------- 소제목 아이콘 ---------- */
+export const HEAD_ICONS = {
+  palette: `<svg viewBox="0 0 32 32"><path d="M16 4C9 4 4 9 4 15.5 4 22 9 27 14.6 27c1.9 0 2.5-1.3 1.9-2.7-.7-1.6.4-3.1 2.2-3.1h3.2c3.6 0 6.1-2.5 6.1-6C28 8.9 22.6 4 16 4z" fill="#ffe7bf" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="14" r="2.4" fill="#ff6fae"/><circle cx="14.5" cy="9" r="2.4" fill="#ffd23f"/><circle cx="20.5" cy="9.5" r="2.4" fill="#5fd4a8"/><circle cx="24" cy="15" r="2.4" fill="#6cc4ff"/><circle cx="11" cy="20.5" r="2.4" fill="#b99bff"/></svg>`,
+  toolbox: `<svg viewBox="0 0 32 32"><path d="M12 10V7.5A1.5 1.5 0 0 1 13.5 6h5A1.5 1.5 0 0 1 20 7.5V10" fill="none" stroke="#24203a" stroke-width="2"/><rect x="4" y="10" width="24" height="16" rx="3.5" fill="#ff8fbf" stroke="#24203a" stroke-width="1.8"/><path d="M4 16h24" stroke="#24203a" stroke-width="1.8"/><rect x="13.5" y="14" width="5" height="4.5" rx="1.2" fill="#ffd27a" stroke="#24203a" stroke-width="1.6"/><circle cx="10" cy="21" r="1.2" fill="#24203a"/><circle cx="22" cy="21" r="1.2" fill="#24203a"/><path d="M14.5 22.3q1.5 1.3 3 0" fill="none" stroke="#24203a" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  film: `<svg viewBox="0 0 32 32"><rect x="3" y="7" width="26" height="18" rx="3" fill="#5fd4a8" stroke="#24203a" stroke-width="1.8"/><g fill="#fff"><rect x="4.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="4.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="9.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="9.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="14.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="14.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="19.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="19.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="24.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="24.5" y="21.6" width="2.5" height="1.8" rx=".6"/></g><rect x="6" y="12" width="9" height="8" rx="1.5" fill="#fff" stroke="#24203a" stroke-width="1.4"/><rect x="17" y="12" width="9" height="8" rx="1.5" fill="#fff" stroke="#24203a" stroke-width="1.4"/><circle cx="9.5" cy="16.5" r="2" fill="#ff6fae"/><circle cx="22.5" cy="15" r="2" fill="#ff6fae"/></svg>`,
+  tv: `<svg viewBox="0 0 32 32"><path d="M11 4l5 5 5-5" fill="none" stroke="#24203a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="9" width="26" height="18" rx="4" fill="#9ad7ff" stroke="#24203a" stroke-width="1.8"/><rect x="6" y="12" width="20" height="12" rx="2.5" fill="#fff"/><path d="M14 15v6l5-3z" fill="#ff6fae" stroke="#24203a" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
+  save: `<svg viewBox="0 0 32 32"><path d="M5 15h22v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="#ffd27a" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 15l3-4h16l3 4z" fill="#ffe7bf" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 2.5v10M12 8.5l4 4 4-4" fill="none" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 25s-3.6-2.1-3.6-4.3a1.8 1.8 0 0 1 3.6-.6 1.8 1.8 0 0 1 3.6.6c0 2.2-3.6 4.3-3.6 4.3z" fill="#ff6fae"/></svg>`,
+  bunny: `<svg viewBox="0 0 32 32"><ellipse cx="11.5" cy="8" rx="3" ry="6.5" fill="#fff" stroke="#24203a" stroke-width="1.7"/><ellipse cx="20.5" cy="8" rx="3" ry="6.5" fill="#fff" stroke="#24203a" stroke-width="1.7"/><ellipse cx="11.5" cy="8.5" rx="1.3" ry="4" fill="#ffb3d1"/><ellipse cx="20.5" cy="8.5" rx="1.3" ry="4" fill="#ffb3d1"/><circle cx="16" cy="20" r="9" fill="#fff" stroke="#24203a" stroke-width="1.7" stroke-dasharray="3 2.2"/><circle cx="12.6" cy="19" r="1.3" fill="#24203a"/><circle cx="19.4" cy="19" r="1.3" fill="#24203a"/><path d="M14.5 22.4q1.5 1.2 3 0" fill="none" stroke="#24203a" stroke-width="1.4" stroke-linecap="round"/><circle cx="10.5" cy="22" r="1.4" fill="#ffb3d1"/><circle cx="21.5" cy="22" r="1.4" fill="#ffb3d1"/></svg>`,
+  photos: `<svg viewBox="0 0 32 32"><g transform="rotate(-10 12 16)"><rect x="4" y="7" width="15" height="17" rx="2" fill="#fff" stroke="#24203a" stroke-width="1.6"/><rect x="6" y="9" width="11" height="9" fill="#ffd27a"/></g><g transform="rotate(8 20 16)"><rect x="12" y="8" width="16" height="18" rx="2" fill="#fff" stroke="#24203a" stroke-width="1.7"/><rect x="14" y="10" width="12" height="10" fill="#9ad7ff"/><circle cx="21.5" cy="13.5" r="2" fill="#ff6fae"/><path d="M14 20l4-4 3 2.5 5-3.5V20z" fill="#5fd4a8"/></g></svg>`,
+  speed: `<svg viewBox="0 0 32 32"><path d="M2.5 13h5M1.5 18h6M3.5 23h4" stroke="#b99bff" stroke-width="2" stroke-linecap="round"/><rect x="16" y="2.5" width="6" height="3" rx="1" fill="#24203a"/><circle cx="19" cy="18" r="11" fill="#fff" stroke="#24203a" stroke-width="1.8"/><circle cx="19" cy="18" r="8" fill="#fff7d6"/><path d="M19 18v-6M19 18l4 3" stroke="#ff6fae" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="18" r="1.4" fill="#24203a"/></svg>`,
+  wand: `<svg viewBox="0 0 32 32"><path d="M5 27L18.5 13.5" stroke="#24203a" stroke-width="4.4" stroke-linecap="round"/><path d="M5 27L18.5 13.5" stroke="#b99bff" stroke-width="2.2" stroke-linecap="round"/><path d="M21 3.5l1.6 3.6 3.9.4-2.9 2.6.8 3.9-3.4-2-3.4 2 .8-3.9-2.9-2.6 3.9-.4z" fill="#ffd23f" stroke="#24203a" stroke-width="1.5" stroke-linejoin="round"/><path d="M27 16l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7zM9 6l.6 1.4 1.4.6-1.4.6L9 10l-.6-1.4L7 8l1.4-.6z" fill="#ff6fae"/></svg>`,
+};
+const hd = (icon, text) => `<h3 class="k-h"><span class="kh">${HEAD_ICONS[icon]}</span><span>${text}</span></h3>`;
+
 const T = {
   ko: {
-    home: '/ko/kids/', main: '/ko/', mainLabel: 'nuricut으로',
+    home: '/ko/kids/', main: '/ko/', grown: ['어른용 도구', '동영상', 'PDF'],
     nav: ['홈', '스톱모션', '픽셀아트'],
     safe: '🔒 사진·그림은 내 기기에만',
     footer: '🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.',
@@ -57,15 +71,15 @@ const T = {
       title: '픽셀아트 공방 - 움직이는 도트 그림 만들기 | nuricut kids',
       desc: '네모 칸을 칠해서 픽셀아트 캐릭터를 그리고, 여러 장을 이어 움직이는 GIF로 저장해요. 무료, 가입 없음.',
       h1: '👾 픽셀아트 공방', sub: '네모 칸을 칠해서 나만의 캐릭터를 그리고 움직여 보세요',
-      colors: '🎨 색 고르기', myColor: '원하는 색 만들기', rainbow: '무지개 붓 (칠할 때마다 색이 바뀌어요)', pngBg: ['투명 배경', '흰 배경'],
-      tools: '🛠️ 도구',
+      colors: '색 고르기', myColor: '원하는 색 만들기', rainbow: '무지개 붓 (칠할 때마다 색이 바뀌어요)', pngBg: ['투명 배경', '흰 배경'],
+      tools: '도구',
       pencil: ['연필', '한 칸씩 칠해요'], eraser: ['지우개', '칸을 지워요'], fill: ['채우기', '같은 색 칸을 한 번에'],
       mirror: ['좌우 대칭', '반만 그려도 양쪽에'], undo: ['되돌리기', ''], redo: ['다시하기', ''], clear: ['모두 지우기', ''],
       size: '칸 크기', onion: '앞 그림 비쳐 보기',
-      frames: '🎞️ 그림 칸 (여러 장을 이어서 움직여요)', addFrame: '＋ 새 칸', dupFrame: '⧉ 복사', delFrame: '✕ 빼기',
-      preview: '👀 움직이는 모습', speed: ['느리게', '보통', '빠르게'],
-      save: '💾 저장하기', saveGif: '움직이는 GIF', savePng: '지금 그림 (PNG)',
-      starters: '🐰 따라 그리기', starterNames: ['토끼', '하트', '별'],
+      frames: '그림 칸 <small>여러 장을 이어서 움직여요</small>', addFrame: '＋ 새 칸', dupFrame: '⧉ 복사', delFrame: '✕ 빼기',
+      preview: '움직이는 모습', speed: ['느리게', '보통', '빠르게'],
+      save: '저장하기', saveGif: '움직이는 GIF', savePng: '지금 그림 (PNG)',
+      starters: '따라 그리기', starterNames: ['토끼', '하트', '별'],
       confirmClear: '지금 그림 칸을 모두 지울까요?',
       saved: '저장했어요!',
       undone: '↩ 한 번 되돌렸어요', redone: '↪ 다시 했어요', cleared: '🧽 모두 지웠어요', nothing: '더 되돌릴 게 없어요',
@@ -78,11 +92,11 @@ const T = {
       orPhotos: '카메라가 없나요?', photos: '🖼️ 사진 파일로 만들기',
       shoot: '찰칵! (사진 찍기)', shootHint: '스페이스바를 눌러도 찍혀요',
       onion: '👻 전 사진 겹쳐 보기',
-      frames: '🎞️ 찍은 사진', delFrame: '선택한 사진 빼기',
+      frames: '찍은 사진', delFrame: '선택한 사진 빼기',
       play: '▶ 재생', stop: '■ 멈춤', backToCam: '📷 다시 찍기',
-      speed: '🐢 빠르기 🐇', speeds: ['느리게', '보통', '빠르게'],
-      effect: '✨ 효과', effects: ['없음', '흑백', '옛날 영화'],
-      save: '💾 저장하기', saveGif: 'GIF로 저장', saveMp4: '영상(MP4)으로 저장',
+      speed: '빠르기', speeds: ['느리게', '보통', '빠르게'],
+      effect: '효과', effects: ['없음', '흑백', '옛날 영화'],
+      save: '저장하기', saveGif: 'GIF로 저장', saveMp4: '영상(MP4)으로 저장',
       engine: '처음 한 번은 만드는 프로그램(약 10MB)을 받아요…', making: '만드는 중… {p}%',
       needFrames: '사진을 2장 이상 찍어 주세요.', camFail: '카메라를 켤 수 없어요. 카메라 사용을 허락했는지 확인하거나, 사진 파일로 만들어 보세요.',
       count: '사진 {n}장', saved: '저장했어요!',
@@ -104,7 +118,7 @@ function build(lang) {
         <span class="k-safe">${t.safe}</span>
       </div>
     </header>`;
-  const footer = `<footer class="k-foot"><div class="k-wrap"><p>${t.footer}</p><p><a href="${t.main}">← ${t.mainLabel}</a> · <a href="${t.main}privacy.html">개인정보처리방침</a> · <a href="${t.main}terms.html">이용약관</a></p></div></footer>`;
+  const footer = `<footer class="k-foot"><div class="k-wrap"><p>${t.footer}</p><p class="k-grown">${t.grown[0]}: <a href="${t.main}">${t.grown[1]}</a> · <a href="${t.main}pdf/">${t.grown[2]}</a></p><p><a href="${t.main}privacy.html">개인정보처리방침</a> · <a href="${t.main}terms.html">이용약관</a></p></div></footer>`;
   const page = (file, active, { title, desc }, body, script) => {
     fs.writeFileSync(path.join(outDir, file), `<!doctype html>
 <html lang="${lang}">
@@ -158,10 +172,10 @@ ${body}
   page('pixel.html', 2, p, `      <section class="k-title"><h1>${p.h1}</h1><p>${p.sub}</p></section>
       <section class="px-app">
         <div class="k-card px-left">
-          <h3>${p.colors}</h3>
+          ${hd('palette', p.colors)}
           <div id="palette" class="px-pal"></div>
-          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /> ${p.myColor}</label>
-          <h3>${p.tools}</h3>
+          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /><span>${p.myColor}</span></label>
+          ${hd('toolbox', p.tools)}
           <div class="px-tools">
             ${tool('t-pencil', 'pencil', p.pencil, ' data-tool="pencil" aria-pressed="true"')}
             ${tool('t-fill', 'fill', p.fill, ' data-tool="fill"')}
@@ -174,15 +188,15 @@ ${body}
           <div class="px-top"><label>${p.size} <select id="grid-size"><option value="16" selected>16 × 16</option><option value="24">24 × 24</option><option value="32">32 × 32</option></select></label>
             <label class="k-check"><input id="onion" type="checkbox" checked /> ${p.onion}</label></div>
           <div class="px-board"><canvas id="board" width="512" height="512"></canvas></div>
-          <h3>${p.frames}</h3>
+          ${hd('film', p.frames)}
           <div class="px-frames"><div id="frames" class="px-frame-list"></div>
             <div class="px-frame-btns"><button id="f-add" class="k-btn sm ghost" type="button">${p.addFrame}</button><button id="f-dup" class="k-btn sm ghost" type="button">${p.dupFrame}</button><button id="f-del" class="k-btn sm ghost" type="button">${p.delFrame}</button></div></div>
         </div>
         <div class="px-right">
-          <div class="k-card"><h3>${p.preview}</h3><canvas id="preview" class="px-preview" width="256" height="256"></canvas>
+          <div class="k-card">${hd('tv', p.preview)}<canvas id="preview" class="px-preview" width="256" height="256"></canvas>
             <div class="k-seg" id="speed">${p.speed.map((s, i) => `<button type="button" data-ms="${[320, 160, 80][i]}"${i === 1 ? ' class="on"' : ''}>${s}</button>`).join('')}</div></div>
-          <div class="k-card"><h3>${p.save}</h3><button id="save-gif" class="k-btn mint full" type="button">${p.saveGif}</button><button id="save-png" class="k-btn ghost full" type="button">${p.savePng}</button><div class="k-seg px-save-bg" id="png-bg"><button type="button" data-bg="clear" class="on">${p.pngBg[0]}</button><button type="button" data-bg="white">${p.pngBg[1]}</button></div></div>
-          <div class="k-card"><h3>${p.starters}</h3><div class="k-seg" id="starters">${p.starterNames.map((n, i) => `<button type="button" data-starter="${i}">${n}</button>`).join('')}</div></div>
+          <div class="k-card">${hd('save', p.save)}<button id="save-gif" class="k-btn mint full" type="button">${p.saveGif}</button><button id="save-png" class="k-btn ghost full" type="button">${p.savePng}</button><div class="k-seg px-save-bg" id="png-bg"><button type="button" data-bg="clear" class="on">${p.pngBg[0]}</button><button type="button" data-bg="white">${p.pngBg[1]}</button></div></div>
+          <div class="k-card">${hd('bunny', p.starters)}<div class="k-seg" id="starters">${p.starterNames.map((n, i) => `<button type="button" data-starter="${i}">${n}</button>`).join('')}</div></div>
         </div>
       </section>
       <script>window.KIDS_TXT = ${JSON.stringify({ confirmClear: p.confirmClear, saved: p.saved, rainbow: p.rainbow, undone: p.undone, redone: p.redone, cleared: p.cleared, nothing: p.nothing })};</script>`, 'kids-pixel.js');
@@ -207,13 +221,13 @@ ${body}
           </div>
           <div class="sm-shoot-row"><button id="shoot" class="sm-shutter" type="button" aria-label="${s.shoot}" disabled></button><span class="sm-shoot-txt"><b>${s.shoot}</b><small>${s.shootHint}</small></span>
             <label class="k-check"><input id="onion" type="checkbox" checked /> ${s.onion}</label></div>
-          <div class="k-card sm-strip-box"><h3>${s.frames}</h3><div id="strip" class="sm-strip"></div><button id="del-frame" class="k-btn sm ghost" type="button" disabled>${s.delFrame}</button></div>
+          <div class="k-card sm-strip-box">${hd('photos', s.frames)}<div id="strip" class="sm-strip"></div><button id="del-frame" class="k-btn sm ghost" type="button" disabled>${s.delFrame}</button></div>
         </div>
         <div class="sm-side">
           <div class="k-card"><button id="play" class="k-btn full" type="button" disabled>${s.play}</button><button id="back-cam" class="k-btn ghost full" type="button" hidden>${s.backToCam}</button></div>
-          <div class="k-card"><h3>${s.speed}</h3><div class="k-seg" id="speed">${s.speeds.map((x, i) => `<button type="button" data-fps="${[4, 8, 12][i]}"${i === 1 ? ' class="on"' : ''}>${x}</button>`).join('')}</div></div>
-          <div class="k-card"><h3>${s.effect}</h3><div class="k-seg" id="effect">${s.effects.map((x, i) => `<button type="button" data-fx="${['none', 'gray', 'old'][i]}"${i === 0 ? ' class="on"' : ''}>${x}</button>`).join('')}</div></div>
-          <div class="k-card"><h3>${s.save}</h3><button id="save-gif" class="k-btn mint full" type="button" disabled>${s.saveGif}</button><button id="save-mp4" class="k-btn ghost full" type="button" disabled>${s.saveMp4}</button>
+          <div class="k-card">${hd('speed', s.speed)}<div class="k-seg" id="speed">${s.speeds.map((x, i) => `<button type="button" data-fps="${[4, 8, 12][i]}"${i === 1 ? ' class="on"' : ''}>${x}</button>`).join('')}</div></div>
+          <div class="k-card">${hd('wand', s.effect)}<div class="k-seg" id="effect">${s.effects.map((x, i) => `<button type="button" data-fx="${['none', 'gray', 'old'][i]}"${i === 0 ? ' class="on"' : ''}>${x}</button>`).join('')}</div></div>
+          <div class="k-card">${hd('save', s.save)}<button id="save-gif" class="k-btn mint full" type="button" disabled>${s.saveGif}</button><button id="save-mp4" class="k-btn ghost full" type="button" disabled>${s.saveMp4}</button>
             <div id="progress" class="k-progress" hidden><div class="k-bar"><i id="bar"></i></div><span id="progress-txt"></span></div></div>
         </div>
       </section>

@@ -241,3 +241,8 @@ body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; b
 .guide-toc-item::after { left: 50%; right: auto; width: max-content; max-width: min(260px, 90vw); white-space: normal; transform: translateX(-50%); padding: 6px 10px; }
 .guide-toc-item:first-child::after { left: 0; transform: none; }
 .guide-toc-item:last-child::after { left: auto; right: 0; transform: none; }
+
+/* 동영상 페이지의 nuricut kids 안내 (PDF 안내와 같은 모양, 토끼 그림) */
+.kids-promo { margin-top: 10px; }
+.kp-art { flex: none; width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #fff0f7, #eaf6ff); display: flex; align-items: center; justify-content: center; }
+.kp-art img { width: 34px; height: 34px; }

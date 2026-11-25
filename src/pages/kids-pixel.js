@@ -2,6 +2,7 @@
 // 그림은 이 브라우저 안에만 자동 저장됩니다(서버로 보내지 않음).
 import { encodeGif } from '../lib/gif.js';
 import { kidTrack } from '../lib/kids-usage.js';
+import '../lib/kids-press.js';
 
 const $ = (id) => document.getElementById(id);
 const TXT = window.KIDS_TXT || {};
