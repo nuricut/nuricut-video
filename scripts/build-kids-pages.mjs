@@ -67,6 +67,7 @@ const T = {
         ['pixel.html', '👾', '픽셀아트 공방', '네모 칸을 칠해서 캐릭터를 그리고 움직여요', ['마우스·손가락', '움직이는 그림 저장'], 'mint'],
       ],
       go: '시작하기 →',
+      battleCard: ["픽셀아트 대전","친구와 팀을 나눠 같은 그림판을 칠하고, 칸을 더 많이 차지한 팀이 이겨요",["친구와 함께","방 코드"]],
       trust: ['🙅 가입·로그인 없음', '🚫 광고 없음', '🔒 서버로 보내지 않아요', '🆓 무료'],
       how: '이렇게 만들어요',
       steps: [['1', '도구 고르기', '스톱모션이나 픽셀아트를 골라요'], ['2', '만들기', '사진을 찍거나 칸을 칠해요'], ['3', '움직여 보기', '재생 버튼으로 바로 확인해요'], ['4', '저장하기', 'GIF나 영상으로 저장해서 자랑해요']],
@@ -176,6 +177,7 @@ ${body}
       </section>
       <section id="tools" class="k-tools">
         ${h.cards.map(([f, emo, name, d, tags, color]) => `<a class="k-card k-tool" href="${f}"><span class="k-art ${color}">${emo}</span><span><b>${name}</b><span class="k-d">${d}</span><span class="k-tags">${tags.map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm ${color}">${h.go}</span></span></a>`).join('\n        ')}
+        <div class="k-card k-tool soon" aria-disabled="true"><span class="k-art lilac">⚔️</span><span><b>${h.battleCard[0]} <em class="k-soon">${t.battle.soon}</em></b><span class="k-d">${h.battleCard[1]}</span><span class="k-tags">${h.battleCard[2].map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm soon-btn">🔜 ${t.battle.soon}</span></span></div>
       </section>
       <section class="k-how"><h2>${h.how}</h2><ol>${h.steps.map(([n, a, b]) => `<li><span class="ks">${I['s' + n]}</span><b><em>${n}</em>${a}</b><span>${b}</span></li>`).join('')}</ol></section>
       <div class="k-trust">${h.trust.map((x) => `<span>${x}</span>`).join('')}</div>`, 'kids-hub.js');

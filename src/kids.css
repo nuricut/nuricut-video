@@ -292,3 +292,19 @@ html[lang^="zh"] body, html[lang="ja"] body { word-break: normal; line-break: st
 .kb-score .s { text-align: right; }
 /* 무지개 칸(맨 왼쪽)의 이름 말풍선은 왼쪽 맞춤 → 화면 밖으로 안 나감 */
 @media (hover: hover) { .px-pal button.rainbow[data-name]:hover::after { left: -3px; transform: none; } }
+
+/* 첫 화면 가운데 카드: 3칸 (스톱모션 · 픽셀아트 · 픽셀아트 대전[출시 예정]), 좁으면 알아서 줄바꿈 */
+.k-tools { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.k-tool { grid-template-columns: 80px minmax(0, 1fr); gap: 14px; padding: 16px; align-items: start; }
+.k-tool .k-art { height: 80px; border-radius: 18px; font-size: 2.4rem; }
+.k-tool b { font-size: 1.12rem; }
+.k-tool .k-d { font-size: .86rem; }
+.k-tool .k-tags { margin-bottom: 10px; }
+.k-art.lilac { background: #f3eeff; }
+.k-tool.soon { cursor: default; background: #fcfaff; }
+.k-tool.soon:hover { transform: none; }
+.k-tool.soon .k-art { filter: saturate(.9); }
+.k-soon { font-style: normal; font-size: .64rem; font-weight: 900; color: #fff; background: linear-gradient(90deg, #ff6fae, #b99bff); border-radius: 99px; padding: 2px 7px; vertical-align: 3px; margin-left: 4px; white-space: nowrap; }
+.k-btn.soon-btn { background: #ece6f3; color: #8a829c; --sc: #ddd4e8; box-shadow: 0 4px 0 #ddd4e8; cursor: default; }
+.k-btn.soon-btn:active, .k-btn.soon-btn.k-down { transform: none !important; box-shadow: 0 4px 0 #ddd4e8 !important; }
+@media (max-width: 760px) { .k-tools { grid-template-columns: minmax(0, 1fr); } }
