@@ -11,7 +11,7 @@ const FIELDS = [
   ['metaCreated', (d) => fmtDate(d.getCreationDate())],
   ['metaModified', (d) => fmtDate(d.getModificationDate())],
 ];
-const fmtDate = (dt) => (dt instanceof Date && !isNaN(dt) ? dt.toLocaleString() : '');
+const fmtDate = (dt) => (dt instanceof Date && !isNaN(dt) ? dt.toLocaleString(document.documentElement.lang || undefined) : ''); // 페이지 언어로 날짜 표시
 let found = 0;
 
 const tool = createPdfTool({

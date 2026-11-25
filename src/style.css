@@ -462,3 +462,11 @@ h1, h2, .sub, .dz-title, .dz-hint, .trim-title, .status, .saved, .error,
 p, li, .card-safe, .card-free, .file-meta { text-wrap: pretty; }
 
 [hidden] { display: none !important; }
+
+/* 중국어·일본어는 띄어쓰기가 없어 keep-all이면 줄이 안 바뀌므로 글자 단위 줄바꿈 */
+html[lang^="zh"] body, html[lang="ja"] body { word-break: normal; line-break: strict; }
+/* 좁은 두 칸 줄(.row2) 안의 3개짜리 선택 버튼: 'グレー' 같은 짧은 단어가 글자 중간에서 끊기지 않게 */
+.row2 .seg { gap: 6px; }
+.row2 .seg span { padding-left: 4px; padding-right: 4px; word-break: keep-all; }
+/* 중·일: 짧은 선택 버튼·메뉴 이름은 단어 중간에서 끊지 않음 */
+html[lang^="zh"] :is(.seg span, .nav a, .pdf-tabs a), html[lang="ja"] :is(.seg span, .nav a, .pdf-tabs a) { word-break: keep-all; }
