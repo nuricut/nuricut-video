@@ -39,13 +39,13 @@ const T = {
       organize: ['페이지 정리', '순서·회전·삭제', '페이지 정리'],
       img2pdf: ['이미지 → PDF', '사진 여러 장을 PDF로', '이미지→PDF'],
       pdf2img: ['PDF → 이미지', 'JPG·PNG로 저장', 'PDF→이미지'],
-      text: ['텍스트 추출', '글자만 TXT로'],
-      number: ['쪽 번호', '번호 자동 넣기'],
-      watermark: ['워터마크', '글자·로고 넣기'],
-      sign: ['서명·도장', '원하는 위치에'],
-      crop: ['여백 자르기', '쪽 테두리 정리'],
-      compress: ['용량 줄이기', '사진 많은 PDF에 효과적'],
-      clean: ['문서 정보 지우기', '작성자 등 숨은 정보 삭제'],
+      text: ['텍스트 추출', '글자만 TXT로', '텍스트 추출'],
+      number: ['쪽 번호', '번호 자동 넣기', '쪽 번호'],
+      watermark: ['워터마크', '글자·로고 넣기', '워터마크'],
+      sign: ['서명·도장', '원하는 위치에', '서명·도장'],
+      crop: ['여백 자르기', '쪽 테두리 정리', '여백 자르기'],
+      compress: ['용량 줄이기', '사진 많은 PDF에 효과적', '용량 줄이기'],
+      clean: ['문서 정보 지우기', '작성자 등 숨은 정보 삭제', '정보 지우기'],
     },
     soon: '곧 추가',
     nav: { hub: 'PDF 도구', guide: '사용방법' },
@@ -181,7 +181,7 @@ function build(lang) {
 
   const footer = footerRef
     .replace(/<div class="footer-links">[\s\S]*?<\/div>/, `<div class="footer-links">
-          ${TOOLS.filter((x) => x[4]).map(([k, f], i) => `<a href="${url(f)}">${t.footerPdf[i]}</a>`).join('\n          ')}
+          ${TOOLS.filter((x) => x[4]).map(([k, f], i) => `<a href="${url(f)}">${t.footerPdf[i] || t.tool[k][0]}</a>`).join('\n          ')}
           <a href="${url('guide.html')}">${t.nav.guide}</a>
           ${footerXLinks(lang, 'pdf')}
         </div>`)

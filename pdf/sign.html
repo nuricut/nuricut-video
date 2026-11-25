@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 서명·도장 넣기 - 직접 그리거나 이미지로 | nuricut.video</title>
-    <meta name="description" content="PDF에 서명을 직접 그리거나 도장 이미지를 불러와 원하는 위치에 넣으세요. 흰 배경 자동 제거. 업로드 없이 무료." />
+    <title>Sign a PDF - draw a signature or add a stamp | nuricut.video</title>
+    <meta name="description" content="Draw your signature or load a stamp image and place it anywhere on your PDF. White backgrounds are removed automatically. Free, no upload." />
     <link rel="canonical" href="https://nuricut.video/pdf/sign.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 서명·도장 넣기 - 직접 그리거나 이미지로 | nuricut.video" />
-    <meta property="og:description" content="PDF에 서명을 직접 그리거나 도장 이미지를 불러와 원하는 위치에 넣으세요. 흰 배경 자동 제거. 업로드 없이 무료." />
+    <meta property="og:title" content="Sign a PDF - draw a signature or add a stamp | nuricut.video" />
+    <meta property="og:description" content="Draw your signature or load a stamp image and place it anywhere on your PDF. White backgrounds are removed automatically. Free, no upload." />
     <meta property="og:url" content="https://nuricut.video/pdf/sign.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-en.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/pdf/sign.html" class="active" aria-current="page"><span class="ico" data-icon="sign"></span>undefined</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>Extract text</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>Page numbers</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>Watermark</a><a href="/pdf/sign.html" class="active" aria-current="page"><span class="ico" data-icon="sign"></span>Sign</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>Crop</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>Compress</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>Metadata</a></nav>
       <section class="hero">
-        <h1>서명·도장 넣기</h1>
-        <p class="sub">그리거나 불러와서 원하는 위치에</p>
+        <h1>Sign & stamp</h1>
+        <p class="sub">Draw or load it, then place it anywhere</p>
       </section>
 
       <section class="card">
@@ -69,25 +69,25 @@
             <button id="clear-files" class="btn-link" type="button">Other file</button>
           </div>
           <div class="options" style="margin-top:0">
-            <div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="src" value="draw" checked /><span>직접 그리기<small>마우스·손가락</small></span></label><label><input type="radio" name="src" value="upload" /><span>이미지 불러오기<small>도장·서명 사진</small></span></label></div>
+            <div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="src" value="draw" checked /><span>Draw it<small>Mouse or finger</small></span></label><label><input type="radio" name="src" value="upload" /><span>Load an image<small>Stamp or signature photo</small></span></label></div>
             <div id="draw-box" class="field">
               <canvas id="pad" class="sign-pad" width="1200" height="400"></canvas>
-              <div class="pad-tools"><span class="label">펜 색</span><div class="seg" style="grid-template-columns:repeat(3,1fr)" role="radiogroup"><label><input type="radio" name="pen" value="#111111" checked /><span>검정</span></label><label><input type="radio" name="pen" value="#1d4ed8" /><span>파랑</span></label><label><input type="radio" name="pen" value="#c81e1e" /><span>빨강</span></label></div><button id="pad-clear" class="btn-small" type="button">지우기</button></div>
-              <p class="hint">위 칸에 서명을 그려 주세요.</p>
+              <div class="pad-tools"><span class="label">Pen color</span><div class="seg" style="grid-template-columns:repeat(3,1fr)" role="radiogroup"><label><input type="radio" name="pen" value="#111111" checked /><span>Black</span></label><label><input type="radio" name="pen" value="#1d4ed8" /><span>Blue</span></label><label><input type="radio" name="pen" value="#c81e1e" /><span>Red</span></label></div><button id="pad-clear" class="btn-small" type="button">Clear</button></div>
+              <p class="hint">Draw your signature in the box above.</p>
             </div>
             <div id="upload-box" class="field" hidden>
-              <label class="label" for="sign-img">이미지 고르기</label><input id="sign-img" class="text-input" type="file" accept="image/*" />
-              <label class="check"><input id="rm-white" type="checkbox" checked /> 흰 배경 지우기</label>
+              <label class="label" for="sign-img">Choose an image</label><input id="sign-img" class="text-input" type="file" accept="image/*" />
+              <label class="check"><input id="rm-white" type="checkbox" checked /> Remove white background</label>
               <div id="img-preview" class="sign-img-pv"></div>
             </div>
             <div class="field">
-              <span class="label">넣을 위치</span>
-              <div class="place-bar"><button id="prev" class="btn-small" type="button" aria-label="이전 쪽">◀</button><span id="page-no"></span><button id="next" class="btn-small" type="button" aria-label="다음 쪽">▶</button>
-                <button id="add" class="btn-small" type="button">＋ 이 쪽에 넣기</button><button id="all" class="btn-small" type="button">모든 쪽 같은 위치에</button></div>
+              <span class="label">Where to place it</span>
+              <div class="place-bar"><button id="prev" class="btn-small" type="button" aria-label="Previous page">◀</button><span id="page-no"></span><button id="next" class="btn-small" type="button" aria-label="Next page">▶</button>
+                <button id="add" class="btn-small" type="button">＋ Add to this page</button><button id="all" class="btn-small" type="button">Same spot on every page</button></div>
               <div id="stage" class="stage"></div>
-              <p class="hint">넣은 서명을 끌어서 옮기고, 오른쪽 아래 모서리를 끌어 크기를 바꾸세요.</p>
+              <p class="hint">Drag a signature to move it, and drag its bottom-right corner to resize.</p>
             </div>
-            <button id="start" class="btn-primary" type="button">PDF 저장</button>
+            <button id="start" class="btn-primary" type="button">Save PDF</button>
           </div>
         </div>
 
@@ -139,13 +139,13 @@
           <a href="/pdf/organize.html">Organize pages</a>
           <a href="/pdf/images-to-pdf.html">Images to PDF</a>
           <a href="/pdf/pdf-to-images.html">PDF to images</a>
-          <a href="/pdf/extract-text.html">undefined</a>
-          <a href="/pdf/page-numbers.html">undefined</a>
-          <a href="/pdf/watermark.html">undefined</a>
-          <a href="/pdf/sign.html">undefined</a>
-          <a href="/pdf/crop.html">undefined</a>
-          <a href="/pdf/compress.html">undefined</a>
-          <a href="/pdf/remove-metadata.html">undefined</a>
+          <a href="/pdf/extract-text.html">Extract text</a>
+          <a href="/pdf/page-numbers.html">Page numbers</a>
+          <a href="/pdf/watermark.html">Watermark</a>
+          <a href="/pdf/sign.html">Sign & stamp</a>
+          <a href="/pdf/crop.html">Crop margins</a>
+          <a href="/pdf/compress.html">Compress PDF</a>
+          <a href="/pdf/remove-metadata.html">Remove metadata</a>
           <a href="/pdf/guide.html">How to</a>
           <!-- x-links --><span class="foot-other" aria-label="Other tools"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/">Video editing<span class="foot-tip" role="tooltip"><b>Go to the video tools?</b><small>Compress · Shorts · GIF · Thumbnails</small></span></a><a class="foot-x kids" href="/kids/">Kids playground<span class="foot-tip" role="tooltip"><b>Go to the kids playground?</b><small>Stop motion · Pixel art for kids</small></span></a></span><!-- /x-links -->
         </div>

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 서명·도장 넣기 - 직접 그리거나 이미지로 | nuricut.video</title>
-    <meta name="description" content="PDF에 서명을 직접 그리거나 도장 이미지를 불러와 원하는 위치에 넣으세요. 흰 배경 자동 제거. 업로드 없이 무료." />
+    <title>PDF 签名・盖章 - 手写或使用图片 | nuricut.video</title>
+    <meta name="description" content="直接手写签名或导入印章图片，放到 PDF 的任意位置。自动去除白色背景。免费，无需上传。" />
     <link rel="canonical" href="https://nuricut.video/zh/pdf/sign.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 서명·도장 넣기 - 직접 그리거나 이미지로 | nuricut.video" />
-    <meta property="og:description" content="PDF에 서명을 직접 그리거나 도장 이미지를 불러와 원하는 위치에 넣으세요. 흰 배경 자동 제거. 업로드 없이 무료." />
+    <meta property="og:title" content="PDF 签名・盖章 - 手写或使用图片 | nuricut.video" />
+    <meta property="og:description" content="直接手写签名或导入印章图片，放到 PDF 的任意位置。自动去除白色背景。免费，无需上传。" />
     <meta property="og:url" content="https://nuricut.video/zh/pdf/sign.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-zh.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/zh/pdf/sign.html" class="active" aria-current="page"><span class="ico" data-icon="sign"></span>undefined</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>提取文字</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>页码</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>水印</a><a href="/zh/pdf/sign.html" class="active" aria-current="page"><span class="ico" data-icon="sign"></span>签名</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>裁边</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>压缩</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>清除信息</a></nav>
       <section class="hero">
-        <h1>서명·도장 넣기</h1>
-        <p class="sub">그리거나 불러와서 원하는 위치에</p>
+        <h1>签名・盖章</h1>
+        <p class="sub">手写或导入后放到任意位置</p>
       </section>
 
       <section class="card">
@@ -69,25 +69,25 @@
             <button id="clear-files" class="btn-link" type="button">其他文件</button>
           </div>
           <div class="options" style="margin-top:0">
-            <div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="src" value="draw" checked /><span>직접 그리기<small>마우스·손가락</small></span></label><label><input type="radio" name="src" value="upload" /><span>이미지 불러오기<small>도장·서명 사진</small></span></label></div>
+            <div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="src" value="draw" checked /><span>手写<small>鼠标或手指</small></span></label><label><input type="radio" name="src" value="upload" /><span>导入图片<small>印章或签名照片</small></span></label></div>
             <div id="draw-box" class="field">
               <canvas id="pad" class="sign-pad" width="1200" height="400"></canvas>
-              <div class="pad-tools"><span class="label">펜 색</span><div class="seg" style="grid-template-columns:repeat(3,1fr)" role="radiogroup"><label><input type="radio" name="pen" value="#111111" checked /><span>검정</span></label><label><input type="radio" name="pen" value="#1d4ed8" /><span>파랑</span></label><label><input type="radio" name="pen" value="#c81e1e" /><span>빨강</span></label></div><button id="pad-clear" class="btn-small" type="button">지우기</button></div>
-              <p class="hint">위 칸에 서명을 그려 주세요.</p>
+              <div class="pad-tools"><span class="label">笔的颜色</span><div class="seg" style="grid-template-columns:repeat(3,1fr)" role="radiogroup"><label><input type="radio" name="pen" value="#111111" checked /><span>黑色</span></label><label><input type="radio" name="pen" value="#1d4ed8" /><span>蓝色</span></label><label><input type="radio" name="pen" value="#c81e1e" /><span>红色</span></label></div><button id="pad-clear" class="btn-small" type="button">清除</button></div>
+              <p class="hint">请在上方框内写下签名。</p>
             </div>
             <div id="upload-box" class="field" hidden>
-              <label class="label" for="sign-img">이미지 고르기</label><input id="sign-img" class="text-input" type="file" accept="image/*" />
-              <label class="check"><input id="rm-white" type="checkbox" checked /> 흰 배경 지우기</label>
+              <label class="label" for="sign-img">选择图片</label><input id="sign-img" class="text-input" type="file" accept="image/*" />
+              <label class="check"><input id="rm-white" type="checkbox" checked /> 去除白色背景</label>
               <div id="img-preview" class="sign-img-pv"></div>
             </div>
             <div class="field">
-              <span class="label">넣을 위치</span>
-              <div class="place-bar"><button id="prev" class="btn-small" type="button" aria-label="이전 쪽">◀</button><span id="page-no"></span><button id="next" class="btn-small" type="button" aria-label="다음 쪽">▶</button>
-                <button id="add" class="btn-small" type="button">＋ 이 쪽에 넣기</button><button id="all" class="btn-small" type="button">모든 쪽 같은 위치에</button></div>
+              <span class="label">放置位置</span>
+              <div class="place-bar"><button id="prev" class="btn-small" type="button" aria-label="上一页">◀</button><span id="page-no"></span><button id="next" class="btn-small" type="button" aria-label="下一页">▶</button>
+                <button id="add" class="btn-small" type="button">＋ 放到这一页</button><button id="all" class="btn-small" type="button">所有页同一位置</button></div>
               <div id="stage" class="stage"></div>
-              <p class="hint">넣은 서명을 끌어서 옮기고, 오른쪽 아래 모서리를 끌어 크기를 바꾸세요.</p>
+              <p class="hint">拖动签名可以移动，拖动右下角可以调整大小。</p>
             </div>
-            <button id="start" class="btn-primary" type="button">PDF 저장</button>
+            <button id="start" class="btn-primary" type="button">保存 PDF</button>
           </div>
         </div>
 
@@ -139,13 +139,13 @@
           <a href="/zh/pdf/organize.html">整理页面</a>
           <a href="/zh/pdf/images-to-pdf.html">图片转 PDF</a>
           <a href="/zh/pdf/pdf-to-images.html">PDF 转图片</a>
-          <a href="/zh/pdf/extract-text.html">undefined</a>
-          <a href="/zh/pdf/page-numbers.html">undefined</a>
-          <a href="/zh/pdf/watermark.html">undefined</a>
-          <a href="/zh/pdf/sign.html">undefined</a>
-          <a href="/zh/pdf/crop.html">undefined</a>
-          <a href="/zh/pdf/compress.html">undefined</a>
-          <a href="/zh/pdf/remove-metadata.html">undefined</a>
+          <a href="/zh/pdf/extract-text.html">提取文字</a>
+          <a href="/zh/pdf/page-numbers.html">添加页码</a>
+          <a href="/zh/pdf/watermark.html">水印</a>
+          <a href="/zh/pdf/sign.html">签名·印章</a>
+          <a href="/zh/pdf/crop.html">裁剪边距</a>
+          <a href="/zh/pdf/compress.html">压缩 PDF</a>
+          <a href="/zh/pdf/remove-metadata.html">删除文档信息</a>
           <a href="/zh/pdf/guide.html">使用方法</a>
           <!-- x-links --><span class="foot-other" aria-label="其他工具"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/zh/">视频编辑<span class="foot-tip" role="tooltip"><b>要前往视频编辑吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a><a class="foot-x kids" href="/zh/kids/">儿童乐园<span class="foot-tip" role="tooltip"><b>要前往儿童乐园吗？</b><small>给孩子的定格动画 · 像素画</small></span></a></span><!-- /x-links -->
         </div>

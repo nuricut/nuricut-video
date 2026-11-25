@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 쪽 번호 넣기 - 위치·형식 선택 | nuricut.video</title>
-    <meta name="description" content="PDF에 쪽 번호를 자동으로 넣으세요. 위치 6곳, &quot;1 / 10&quot; 같은 형식, 시작 번호를 고를 수 있어요. 업로드 없이 무료." />
+    <title>PDF 添加页码 - 选择位置和样式 | nuricut.video</title>
+    <meta name="description" content="为 PDF 自动添加页码。可选择 6 个位置、&quot;1 / 10&quot; 等样式和起始页码。免费，无需上传。" />
     <link rel="canonical" href="https://nuricut.video/zh/pdf/page-numbers.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 쪽 번호 넣기 - 위치·형식 선택 | nuricut.video" />
-    <meta property="og:description" content="PDF에 쪽 번호를 자동으로 넣으세요. 위치 6곳, &quot;1 / 10&quot; 같은 형식, 시작 번호를 고를 수 있어요. 업로드 없이 무료." />
+    <meta property="og:title" content="PDF 添加页码 - 选择位置和样式 | nuricut.video" />
+    <meta property="og:description" content="为 PDF 自动添加页码。可选择 6 个位置、&quot;1 / 10&quot; 等样式和起始页码。免费，无需上传。" />
     <meta property="og:url" content="https://nuricut.video/zh/pdf/page-numbers.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-zh.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/zh/pdf/page-numbers.html" class="active" aria-current="page"><span class="ico" data-icon="number"></span>undefined</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>提取文字</a><a href="/zh/pdf/page-numbers.html" class="active" aria-current="page"><span class="ico" data-icon="number"></span>页码</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>水印</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>签名</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>裁边</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>压缩</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>清除信息</a></nav>
       <section class="hero">
-        <h1>쪽 번호 넣기</h1>
-        <p class="sub">모든 쪽에 번호를 자동으로</p>
+        <h1>添加页码</h1>
+        <p class="sub">为每一页自动编号</p>
       </section>
 
       <section class="card">
@@ -70,19 +70,19 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">위치</span>
-                <div class="posgrid" role="radiogroup"><label title="왼쪽 위"><input type="radio" name="pos" value="tl" /><span>왼쪽 위</span></label><label title="가운데 위"><input type="radio" name="pos" value="tc" /><span>가운데 위</span></label><label title="오른쪽 위"><input type="radio" name="pos" value="tr" /><span>오른쪽 위</span></label><label title="왼쪽 아래"><input type="radio" name="pos" value="bl" /><span>왼쪽 아래</span></label><label title="가운데 아래"><input type="radio" name="pos" value="bc" checked /><span>가운데 아래</span></label><label title="오른쪽 아래"><input type="radio" name="pos" value="br" /><span>오른쪽 아래</span></label></div>
+              <div class="field"><span class="label">位置</span>
+                <div class="posgrid" role="radiogroup"><label title="左上"><input type="radio" name="pos" value="tl" /><span>左上</span></label><label title="上方居中"><input type="radio" name="pos" value="tc" /><span>上方居中</span></label><label title="右上"><input type="radio" name="pos" value="tr" /><span>右上</span></label><label title="左下"><input type="radio" name="pos" value="bl" /><span>左下</span></label><label title="下方居中"><input type="radio" name="pos" value="bc" checked /><span>下方居中</span></label><label title="右下"><input type="radio" name="pos" value="br" /><span>右下</span></label></div>
               </div>
-              <div class="field"><span class="label">형식</span><div class="seg" role="radiogroup"><label><input type="radio" name="fmt" value="n" checked /><span>1</span></label><label><input type="radio" name="fmt" value="nt" /><span>1 / 10</span></label><label><input type="radio" name="fmt" value="dash" /><span>- 1 -</span></label></div></div>
+              <div class="field"><span class="label">样式</span><div class="seg" role="radiogroup"><label><input type="radio" name="fmt" value="n" checked /><span>1</span></label><label><input type="radio" name="fmt" value="nt" /><span>1 / 10</span></label><label><input type="radio" name="fmt" value="dash" /><span>- 1 -</span></label></div></div>
               <div class="row2">
-                <div class="field"><label class="label" for="start-no">시작 번호</label><input id="start-no" class="text-input" type="number" min="0" value="1" /></div>
-                <div class="field"><span class="label">글자 크기</span><div class="seg" role="radiogroup"><label><input type="radio" name="size" value="9" /><span>작게</span></label><label><input type="radio" name="size" value="11" checked /><span>보통</span></label><label><input type="radio" name="size" value="14" /><span>크게</span></label></div></div>
+                <div class="field"><label class="label" for="start-no">起始页码</label><input id="start-no" class="text-input" type="number" min="0" value="1" /></div>
+                <div class="field"><span class="label">字号</span><div class="seg" role="radiogroup"><label><input type="radio" name="size" value="9" /><span>小</span></label><label><input type="radio" name="size" value="11" checked /><span>中</span></label><label><input type="radio" name="size" value="14" /><span>大</span></label></div></div>
               </div>
-              <label class="check"><input id="skip-first" type="checkbox" /> 첫 쪽(표지)에는 번호 넣지 않기</label>
+              <label class="check"><input id="skip-first" type="checkbox" /> 第一页（封面）不加页码</label>
             </div>
-            <div class="opt-col"><span class="label">미리보기</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">预览</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">쪽 번호 넣기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">添加页码</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -133,13 +133,13 @@
           <a href="/zh/pdf/organize.html">整理页面</a>
           <a href="/zh/pdf/images-to-pdf.html">图片转 PDF</a>
           <a href="/zh/pdf/pdf-to-images.html">PDF 转图片</a>
-          <a href="/zh/pdf/extract-text.html">undefined</a>
-          <a href="/zh/pdf/page-numbers.html">undefined</a>
-          <a href="/zh/pdf/watermark.html">undefined</a>
-          <a href="/zh/pdf/sign.html">undefined</a>
-          <a href="/zh/pdf/crop.html">undefined</a>
-          <a href="/zh/pdf/compress.html">undefined</a>
-          <a href="/zh/pdf/remove-metadata.html">undefined</a>
+          <a href="/zh/pdf/extract-text.html">提取文字</a>
+          <a href="/zh/pdf/page-numbers.html">添加页码</a>
+          <a href="/zh/pdf/watermark.html">水印</a>
+          <a href="/zh/pdf/sign.html">签名·印章</a>
+          <a href="/zh/pdf/crop.html">裁剪边距</a>
+          <a href="/zh/pdf/compress.html">压缩 PDF</a>
+          <a href="/zh/pdf/remove-metadata.html">删除文档信息</a>
           <a href="/zh/pdf/guide.html">使用方法</a>
           <!-- x-links --><span class="foot-other" aria-label="其他工具"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/zh/">视频编辑<span class="foot-tip" role="tooltip"><b>要前往视频编辑吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a><a class="foot-x kids" href="/zh/kids/">儿童乐园<span class="foot-tip" role="tooltip"><b>要前往儿童乐园吗？</b><small>给孩子的定格动画 · 像素画</small></span></a></span><!-- /x-links -->
         </div>

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 쪽 번호 넣기 - 위치·형식 선택 | nuricut.video</title>
-    <meta name="description" content="PDF에 쪽 번호를 자동으로 넣으세요. 위치 6곳, &quot;1 / 10&quot; 같은 형식, 시작 번호를 고를 수 있어요. 업로드 없이 무료." />
+    <title>Add Page Numbers to PDF - choose position &amp; style | nuricut.video</title>
+    <meta name="description" content="Number every page of a PDF automatically. Choose from 6 positions, styles like &quot;1 / 10&quot; and a starting number. Free, no upload." />
     <link rel="canonical" href="https://nuricut.video/pdf/page-numbers.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 쪽 번호 넣기 - 위치·형식 선택 | nuricut.video" />
-    <meta property="og:description" content="PDF에 쪽 번호를 자동으로 넣으세요. 위치 6곳, &quot;1 / 10&quot; 같은 형식, 시작 번호를 고를 수 있어요. 업로드 없이 무료." />
+    <meta property="og:title" content="Add Page Numbers to PDF - choose position &amp; style | nuricut.video" />
+    <meta property="og:description" content="Number every page of a PDF automatically. Choose from 6 positions, styles like &quot;1 / 10&quot; and a starting number. Free, no upload." />
     <meta property="og:url" content="https://nuricut.video/pdf/page-numbers.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-en.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/pdf/page-numbers.html" class="active" aria-current="page"><span class="ico" data-icon="number"></span>undefined</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>Extract text</a><a href="/pdf/page-numbers.html" class="active" aria-current="page"><span class="ico" data-icon="number"></span>Page numbers</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>Watermark</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>Sign</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>Crop</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>Compress</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>Metadata</a></nav>
       <section class="hero">
-        <h1>쪽 번호 넣기</h1>
-        <p class="sub">모든 쪽에 번호를 자동으로</p>
+        <h1>Page numbers</h1>
+        <p class="sub">Number every page automatically</p>
       </section>
 
       <section class="card">
@@ -70,19 +70,19 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">위치</span>
-                <div class="posgrid" role="radiogroup"><label title="왼쪽 위"><input type="radio" name="pos" value="tl" /><span>왼쪽 위</span></label><label title="가운데 위"><input type="radio" name="pos" value="tc" /><span>가운데 위</span></label><label title="오른쪽 위"><input type="radio" name="pos" value="tr" /><span>오른쪽 위</span></label><label title="왼쪽 아래"><input type="radio" name="pos" value="bl" /><span>왼쪽 아래</span></label><label title="가운데 아래"><input type="radio" name="pos" value="bc" checked /><span>가운데 아래</span></label><label title="오른쪽 아래"><input type="radio" name="pos" value="br" /><span>오른쪽 아래</span></label></div>
+              <div class="field"><span class="label">Position</span>
+                <div class="posgrid" role="radiogroup"><label title="Top left"><input type="radio" name="pos" value="tl" /><span>Top left</span></label><label title="Top center"><input type="radio" name="pos" value="tc" /><span>Top center</span></label><label title="Top right"><input type="radio" name="pos" value="tr" /><span>Top right</span></label><label title="Bottom left"><input type="radio" name="pos" value="bl" /><span>Bottom left</span></label><label title="Bottom center"><input type="radio" name="pos" value="bc" checked /><span>Bottom center</span></label><label title="Bottom right"><input type="radio" name="pos" value="br" /><span>Bottom right</span></label></div>
               </div>
-              <div class="field"><span class="label">형식</span><div class="seg" role="radiogroup"><label><input type="radio" name="fmt" value="n" checked /><span>1</span></label><label><input type="radio" name="fmt" value="nt" /><span>1 / 10</span></label><label><input type="radio" name="fmt" value="dash" /><span>- 1 -</span></label></div></div>
+              <div class="field"><span class="label">Style</span><div class="seg" role="radiogroup"><label><input type="radio" name="fmt" value="n" checked /><span>1</span></label><label><input type="radio" name="fmt" value="nt" /><span>1 / 10</span></label><label><input type="radio" name="fmt" value="dash" /><span>- 1 -</span></label></div></div>
               <div class="row2">
-                <div class="field"><label class="label" for="start-no">시작 번호</label><input id="start-no" class="text-input" type="number" min="0" value="1" /></div>
-                <div class="field"><span class="label">글자 크기</span><div class="seg" role="radiogroup"><label><input type="radio" name="size" value="9" /><span>작게</span></label><label><input type="radio" name="size" value="11" checked /><span>보통</span></label><label><input type="radio" name="size" value="14" /><span>크게</span></label></div></div>
+                <div class="field"><label class="label" for="start-no">Start at</label><input id="start-no" class="text-input" type="number" min="0" value="1" /></div>
+                <div class="field"><span class="label">Text size</span><div class="seg" role="radiogroup"><label><input type="radio" name="size" value="9" /><span>Small</span></label><label><input type="radio" name="size" value="11" checked /><span>Medium</span></label><label><input type="radio" name="size" value="14" /><span>Large</span></label></div></div>
               </div>
-              <label class="check"><input id="skip-first" type="checkbox" /> 첫 쪽(표지)에는 번호 넣지 않기</label>
+              <label class="check"><input id="skip-first" type="checkbox" /> Don't number the first page (cover)</label>
             </div>
-            <div class="opt-col"><span class="label">미리보기</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">Preview</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">쪽 번호 넣기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">Add page numbers</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -133,13 +133,13 @@
           <a href="/pdf/organize.html">Organize pages</a>
           <a href="/pdf/images-to-pdf.html">Images to PDF</a>
           <a href="/pdf/pdf-to-images.html">PDF to images</a>
-          <a href="/pdf/extract-text.html">undefined</a>
-          <a href="/pdf/page-numbers.html">undefined</a>
-          <a href="/pdf/watermark.html">undefined</a>
-          <a href="/pdf/sign.html">undefined</a>
-          <a href="/pdf/crop.html">undefined</a>
-          <a href="/pdf/compress.html">undefined</a>
-          <a href="/pdf/remove-metadata.html">undefined</a>
+          <a href="/pdf/extract-text.html">Extract text</a>
+          <a href="/pdf/page-numbers.html">Page numbers</a>
+          <a href="/pdf/watermark.html">Watermark</a>
+          <a href="/pdf/sign.html">Sign & stamp</a>
+          <a href="/pdf/crop.html">Crop margins</a>
+          <a href="/pdf/compress.html">Compress PDF</a>
+          <a href="/pdf/remove-metadata.html">Remove metadata</a>
           <a href="/pdf/guide.html">How to</a>
           <!-- x-links --><span class="foot-other" aria-label="Other tools"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/">Video editing<span class="foot-tip" role="tooltip"><b>Go to the video tools?</b><small>Compress · Shorts · GIF · Thumbnails</small></span></a><a class="foot-x kids" href="/kids/">Kids playground<span class="foot-tip" role="tooltip"><b>Go to the kids playground?</b><small>Stop motion · Pixel art for kids</small></span></a></span><!-- /x-links -->
         </div>

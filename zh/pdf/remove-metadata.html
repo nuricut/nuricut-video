@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 문서 정보 지우기 - 작성자·프로그램 삭제 | nuricut.video</title>
-    <meta name="description" content="PDF에 숨어 있는 작성자, 만든 프로그램, 날짜 같은 문서 정보를 확인하고 한 번에 지우세요. 업로드 없이 무료." />
+    <title>删除 PDF 文档信息 - 清除作者和软件信息 | nuricut.video</title>
+    <meta name="description" content="查看 PDF 中隐藏的作者、制作软件、日期等文档信息，并一键删除。免费，无需上传。" />
     <link rel="canonical" href="https://nuricut.video/zh/pdf/remove-metadata.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 문서 정보 지우기 - 작성자·프로그램 삭제 | nuricut.video" />
-    <meta property="og:description" content="PDF에 숨어 있는 작성자, 만든 프로그램, 날짜 같은 문서 정보를 확인하고 한 번에 지우세요. 업로드 없이 무료." />
+    <meta property="og:title" content="删除 PDF 文档信息 - 清除作者和软件信息 | nuricut.video" />
+    <meta property="og:description" content="查看 PDF 中隐藏的作者、制作软件、日期等文档信息，并一键删除。免费，无需上传。" />
     <meta property="og:url" content="https://nuricut.video/zh/pdf/remove-metadata.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-zh.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/zh/pdf/remove-metadata.html" class="active" aria-current="page"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>提取文字</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>页码</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>水印</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>签名</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>裁边</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>压缩</a><a href="/zh/pdf/remove-metadata.html" class="active" aria-current="page"><span class="ico" data-icon="clean"></span>清除信息</a></nav>
       <section class="hero">
-        <h1>문서 정보 지우기</h1>
-        <p class="sub">작성자·프로그램 같은 숨은 정보 삭제</p>
+        <h1>删除文档信息</h1>
+        <p class="sub">删除作者、软件等隐藏信息</p>
       </section>
 
       <section class="card">
@@ -69,9 +69,9 @@
             <button id="clear-files" class="btn-link" type="button">其他文件</button>
           </div>
           <div class="options" style="margin-top:0">
-            <div class="field"><span class="label">이 PDF에 들어 있는 문서 정보</span><div id="meta" class="meta-table"></div></div>
-            <p class="hint">쪽 내용은 그대로 두고, 파일 속 숨은 정보만 지워요.</p>
-            <button id="start" class="btn-primary" type="button">문서 정보 모두 지우기</button>
+            <div class="field"><span class="label">这个 PDF 中的文档信息</span><div id="meta" class="meta-table"></div></div>
+            <p class="hint">页面内容保持不变，只删除文件中隐藏的信息。</p>
+            <button id="start" class="btn-primary" type="button">删除全部文档信息</button>
           </div>
         </div>
 
@@ -123,13 +123,13 @@
           <a href="/zh/pdf/organize.html">整理页面</a>
           <a href="/zh/pdf/images-to-pdf.html">图片转 PDF</a>
           <a href="/zh/pdf/pdf-to-images.html">PDF 转图片</a>
-          <a href="/zh/pdf/extract-text.html">undefined</a>
-          <a href="/zh/pdf/page-numbers.html">undefined</a>
-          <a href="/zh/pdf/watermark.html">undefined</a>
-          <a href="/zh/pdf/sign.html">undefined</a>
-          <a href="/zh/pdf/crop.html">undefined</a>
-          <a href="/zh/pdf/compress.html">undefined</a>
-          <a href="/zh/pdf/remove-metadata.html">undefined</a>
+          <a href="/zh/pdf/extract-text.html">提取文字</a>
+          <a href="/zh/pdf/page-numbers.html">添加页码</a>
+          <a href="/zh/pdf/watermark.html">水印</a>
+          <a href="/zh/pdf/sign.html">签名·印章</a>
+          <a href="/zh/pdf/crop.html">裁剪边距</a>
+          <a href="/zh/pdf/compress.html">压缩 PDF</a>
+          <a href="/zh/pdf/remove-metadata.html">删除文档信息</a>
           <a href="/zh/pdf/guide.html">使用方法</a>
           <!-- x-links --><span class="foot-other" aria-label="其他工具"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/zh/">视频编辑<span class="foot-tip" role="tooltip"><b>要前往视频编辑吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a><a class="foot-x kids" href="/zh/kids/">儿童乐园<span class="foot-tip" role="tooltip"><b>要前往儿童乐园吗？</b><small>给孩子的定格动画 · 像素画</small></span></a></span><!-- /x-links -->
         </div>

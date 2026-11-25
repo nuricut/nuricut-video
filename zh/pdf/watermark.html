@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 워터마크 넣기 - 글자·로고 | nuricut.video</title>
-    <meta name="description" content="PDF에 &quot;대외비&quot; 같은 글자나 로고 이미지를 워터마크로 넣으세요. 색·투명도·배치 선택. 업로드 없이 무료." />
+    <title>PDF 添加水印 - 文字或标志 | nuricut.video</title>
+    <meta name="description" content="在 PDF 上添加&quot;机密&quot;等文字或标志图片作为水印。可选择颜色、透明度和排列方式。免费，无需上传。" />
     <link rel="canonical" href="https://nuricut.video/zh/pdf/watermark.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 워터마크 넣기 - 글자·로고 | nuricut.video" />
-    <meta property="og:description" content="PDF에 &quot;대외비&quot; 같은 글자나 로고 이미지를 워터마크로 넣으세요. 색·투명도·배치 선택. 업로드 없이 무료." />
+    <meta property="og:title" content="PDF 添加水印 - 文字或标志 | nuricut.video" />
+    <meta property="og:description" content="在 PDF 上添加&quot;机密&quot;等文字或标志图片作为水印。可选择颜色、透明度和排列方式。免费，无需上传。" />
     <meta property="og:url" content="https://nuricut.video/zh/pdf/watermark.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-zh.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/zh/pdf/watermark.html" class="active" aria-current="page"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>提取文字</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>页码</a><a href="/zh/pdf/watermark.html" class="active" aria-current="page"><span class="ico" data-icon="watermark"></span>水印</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>签名</a><a href="/zh/pdf/crop.html"><span class="ico" data-icon="crop"></span>裁边</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>压缩</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>清除信息</a></nav>
       <section class="hero">
-        <h1>워터마크</h1>
-        <p class="sub">글자나 로고를 은은하게 넣기</p>
+        <h1>水印</h1>
+        <p class="sub">淡淡地加上文字或标志</p>
       </section>
 
       <section class="card">
@@ -70,19 +70,19 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">종류</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="kind" value="text" checked /><span>글자<small>대외비·DRAFT 등</small></span></label><label><input type="radio" name="kind" value="image" /><span>이미지<small>로고·도장</small></span></label></div></div>
-              <div id="text-field" class="field"><label class="label" for="wm-text">워터마크 글자</label><input id="wm-text" class="text-input" type="text" value="대외비" maxlength="40" /></div>
-              <div id="img-field" class="field" hidden><label class="label" for="wm-img">이미지 고르기</label><input id="wm-img" class="text-input" type="file" accept="image/*" /></div>
+              <div class="field"><span class="label">类型</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="kind" value="text" checked /><span>文字<small>机密、DRAFT 等</small></span></label><label><input type="radio" name="kind" value="image" /><span>图片<small>标志或印章</small></span></label></div></div>
+              <div id="text-field" class="field"><label class="label" for="wm-text">水印文字</label><input id="wm-text" class="text-input" type="text" value="机密" maxlength="40" /></div>
+              <div id="img-field" class="field" hidden><label class="label" for="wm-img">选择图片</label><input id="wm-img" class="text-input" type="file" accept="image/*" /></div>
               <div class="row2">
-                <div id="color-field" class="field"><span class="label">색</span><div class="seg" role="radiogroup"><label><input type="radio" name="color" value="gray" checked /><span>회색</span></label><label><input type="radio" name="color" value="red" /><span>빨강</span></label><label><input type="radio" name="color" value="blue" /><span>파랑</span></label></div></div>
-                <div class="field"><span class="label">진하기</span><div class="seg" role="radiogroup"><label><input type="radio" name="opacity" value="0.12" /><span>연하게</span></label><label><input type="radio" name="opacity" value="0.22" checked /><span>보통</span></label><label><input type="radio" name="opacity" value="0.4" /><span>진하게</span></label></div></div>
+                <div id="color-field" class="field"><span class="label">颜色</span><div class="seg" role="radiogroup"><label><input type="radio" name="color" value="gray" checked /><span>灰色</span></label><label><input type="radio" name="color" value="red" /><span>红色</span></label><label><input type="radio" name="color" value="blue" /><span>蓝色</span></label></div></div>
+                <div class="field"><span class="label">浓度</span><div class="seg" role="radiogroup"><label><input type="radio" name="opacity" value="0.12" /><span>淡</span></label><label><input type="radio" name="opacity" value="0.22" checked /><span>中</span></label><label><input type="radio" name="opacity" value="0.4" /><span>浓</span></label></div></div>
               </div>
-              <div class="field"><span class="label">배치</span><div class="seg" role="radiogroup"><label><input type="radio" name="layout" value="diag" checked /><span>대각선<small>가운데</small></span></label><label><input type="radio" name="layout" value="horiz" /><span>가로<small>가운데</small></span></label><label><input type="radio" name="layout" value="tile" /><span>바둑판<small>반복</small></span></label></div></div>
-              <div class="field"><span class="label">크기</span><div class="seg" role="radiogroup"><label><input type="radio" name="scale" value="0.35" /><span>작게</span></label><label><input type="radio" name="scale" value="0.55" checked /><span>보통</span></label><label><input type="radio" name="scale" value="0.8" /><span>크게</span></label></div></div>
+              <div class="field"><span class="label">排列</span><div class="seg" role="radiogroup"><label><input type="radio" name="layout" value="diag" checked /><span>斜向<small>居中</small></span></label><label><input type="radio" name="layout" value="horiz" /><span>横向<small>居中</small></span></label><label><input type="radio" name="layout" value="tile" /><span>平铺<small>重复</small></span></label></div></div>
+              <div class="field"><span class="label">大小</span><div class="seg" role="radiogroup"><label><input type="radio" name="scale" value="0.35" /><span>小</span></label><label><input type="radio" name="scale" value="0.55" checked /><span>中</span></label><label><input type="radio" name="scale" value="0.8" /><span>大</span></label></div></div>
             </div>
-            <div class="opt-col"><span class="label">미리보기 (1쪽)</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">预览（第 1 页）</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">워터마크 넣기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">添加水印</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -133,13 +133,13 @@
           <a href="/zh/pdf/organize.html">整理页面</a>
           <a href="/zh/pdf/images-to-pdf.html">图片转 PDF</a>
           <a href="/zh/pdf/pdf-to-images.html">PDF 转图片</a>
-          <a href="/zh/pdf/extract-text.html">undefined</a>
-          <a href="/zh/pdf/page-numbers.html">undefined</a>
-          <a href="/zh/pdf/watermark.html">undefined</a>
-          <a href="/zh/pdf/sign.html">undefined</a>
-          <a href="/zh/pdf/crop.html">undefined</a>
-          <a href="/zh/pdf/compress.html">undefined</a>
-          <a href="/zh/pdf/remove-metadata.html">undefined</a>
+          <a href="/zh/pdf/extract-text.html">提取文字</a>
+          <a href="/zh/pdf/page-numbers.html">添加页码</a>
+          <a href="/zh/pdf/watermark.html">水印</a>
+          <a href="/zh/pdf/sign.html">签名·印章</a>
+          <a href="/zh/pdf/crop.html">裁剪边距</a>
+          <a href="/zh/pdf/compress.html">压缩 PDF</a>
+          <a href="/zh/pdf/remove-metadata.html">删除文档信息</a>
           <a href="/zh/pdf/guide.html">使用方法</a>
           <!-- x-links --><span class="foot-other" aria-label="其他工具"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/zh/">视频编辑<span class="foot-tip" role="tooltip"><b>要前往视频编辑吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a><a class="foot-x kids" href="/zh/kids/">儿童乐园<span class="foot-tip" role="tooltip"><b>要前往儿童乐园吗？</b><small>给孩子的定格动画 · 像素画</small></span></a></span><!-- /x-links -->
         </div>

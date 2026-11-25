@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 여백 자르기 - 자동·직접 | nuricut.video</title>
-    <meta name="description" content="PDF 쪽의 남는 여백을 잘라내세요. 내용에 맞춰 자동으로, 또는 mm 단위로 직접. 업로드 없이 무료." />
+    <title>PDF 裁剪页边距 - 自动或手动 | nuricut.video</title>
+    <meta name="description" content="裁掉 PDF 页面多余的边距，可按内容自动裁剪，也可按毫米手动设置。免费，无需上传。" />
     <link rel="canonical" href="https://nuricut.video/zh/pdf/crop.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 여백 자르기 - 자동·직접 | nuricut.video" />
-    <meta property="og:description" content="PDF 쪽의 남는 여백을 잘라내세요. 내용에 맞춰 자동으로, 또는 mm 단위로 직접. 업로드 없이 무료." />
+    <meta property="og:title" content="PDF 裁剪页边距 - 自动或手动 | nuricut.video" />
+    <meta property="og:description" content="裁掉 PDF 页面多余的边距，可按内容自动裁剪，也可按毫米手动设置。免费，无需上传。" />
     <meta property="og:url" content="https://nuricut.video/zh/pdf/crop.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-zh.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/zh/pdf/crop.html" class="active" aria-current="page"><span class="ico" data-icon="crop"></span>undefined</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/zh/pdf/merge.html"><span class="ico" data-icon="merge"></span>合并</a><a href="/zh/pdf/split.html"><span class="ico" data-icon="split"></span>拆分</a><a href="/zh/pdf/organize.html"><span class="ico" data-icon="organize"></span>整理页面</a><a href="/zh/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>图片→PDF</a><a href="/zh/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→图片</a><a href="/zh/pdf/extract-text.html"><span class="ico" data-icon="text"></span>提取文字</a><a href="/zh/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>页码</a><a href="/zh/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>水印</a><a href="/zh/pdf/sign.html"><span class="ico" data-icon="sign"></span>签名</a><a href="/zh/pdf/crop.html" class="active" aria-current="page"><span class="ico" data-icon="crop"></span>裁边</a><a href="/zh/pdf/compress.html"><span class="ico" data-icon="compress"></span>压缩</a><a href="/zh/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>清除信息</a></nav>
       <section class="hero">
-        <h1>여백 자르기</h1>
-        <p class="sub">남는 여백을 자동으로 또는 직접 잘라내기</p>
+        <h1>裁剪页边距</h1>
+        <p class="sub">自动或手动裁掉多余的边距</p>
       </section>
 
       <section class="card">
@@ -70,15 +70,15 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">자르는 방법</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="mode" value="auto" checked /><span>자동<small>내용에 맞춰</small></span></label><label><input type="radio" name="mode" value="manual" /><span>직접<small>mm 단위</small></span></label></div></div>
-              <div id="auto-field" class="field"><label class="label" for="pad-mm">내용 둘레 여유 (mm)</label><input id="pad-mm" class="text-input" type="number" min="0" max="50" value="5" /></div>
+              <div class="field"><span class="label">裁剪方式</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="mode" value="auto" checked /><span>自动<small>按内容裁剪</small></span></label><label><input type="radio" name="mode" value="manual" /><span>手动<small>以毫米为单位</small></span></label></div></div>
+              <div id="auto-field" class="field"><label class="label" for="pad-mm">内容周围留白 (mm)</label><input id="pad-mm" class="text-input" type="number" min="0" max="50" value="5" /></div>
               <div id="manual-field" class="mm-grid" hidden>
-                <label class="field"><span class="label">위 (mm)</span><input id="mm-top" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">아래 (mm)</span><input id="mm-bottom" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">왼쪽 (mm)</span><input id="mm-left" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">오른쪽 (mm)</span><input id="mm-right" class="text-input" type="number" min="0" max="200" value="15" /></label>
+                <label class="field"><span class="label">上 (mm)</span><input id="mm-top" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">下 (mm)</span><input id="mm-bottom" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">左 (mm)</span><input id="mm-left" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">右 (mm)</span><input id="mm-right" class="text-input" type="number" min="0" max="200" value="15" /></label>
               </div>
             </div>
-            <div class="opt-col"><span class="label">미리보기 (1쪽) — 어두운 부분이 잘려 나가요</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">预览（第 1 页）— 暗色部分会被裁掉</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">여백 자르기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">裁剪页边距</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -129,13 +129,13 @@
           <a href="/zh/pdf/organize.html">整理页面</a>
           <a href="/zh/pdf/images-to-pdf.html">图片转 PDF</a>
           <a href="/zh/pdf/pdf-to-images.html">PDF 转图片</a>
-          <a href="/zh/pdf/extract-text.html">undefined</a>
-          <a href="/zh/pdf/page-numbers.html">undefined</a>
-          <a href="/zh/pdf/watermark.html">undefined</a>
-          <a href="/zh/pdf/sign.html">undefined</a>
-          <a href="/zh/pdf/crop.html">undefined</a>
-          <a href="/zh/pdf/compress.html">undefined</a>
-          <a href="/zh/pdf/remove-metadata.html">undefined</a>
+          <a href="/zh/pdf/extract-text.html">提取文字</a>
+          <a href="/zh/pdf/page-numbers.html">添加页码</a>
+          <a href="/zh/pdf/watermark.html">水印</a>
+          <a href="/zh/pdf/sign.html">签名·印章</a>
+          <a href="/zh/pdf/crop.html">裁剪边距</a>
+          <a href="/zh/pdf/compress.html">压缩 PDF</a>
+          <a href="/zh/pdf/remove-metadata.html">删除文档信息</a>
           <a href="/zh/pdf/guide.html">使用方法</a>
           <!-- x-links --><span class="foot-other" aria-label="其他工具"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/zh/">视频编辑<span class="foot-tip" role="tooltip"><b>要前往视频编辑吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a><a class="foot-x kids" href="/zh/kids/">儿童乐园<span class="foot-tip" role="tooltip"><b>要前往儿童乐园吗？</b><small>给孩子的定格动画 · 像素画</small></span></a></span><!-- /x-links -->
         </div>

@@ -1,5 +1,6 @@
 // PDF 추가 도구 7종(텍스트 추출·쪽 번호·워터마크·서명·여백 자르기·용량 줄이기·문서 정보 지우기) 페이지 문구.
-// 언어가 비어 있으면 한국어로 대신 표시됩니다(로컬 확인용). 공개 전에 en·zh·ja를 채울 것.
+// 한국어는 아래, 영어·중국어·일본어는 pdf-texts-more-intl.mjs
+import { MORE_INTL } from './pdf-texts-more-intl.mjs';
 export const MORE = {
   ko: {
     page: {
@@ -29,3 +30,4 @@ export const MORE = {
     },
   },
 };
+Object.assign(MORE, MORE_INTL);

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 여백 자르기 - 자동·직접 | nuricut.video</title>
-    <meta name="description" content="PDF 쪽의 남는 여백을 잘라내세요. 내용에 맞춰 자동으로, 또는 mm 단위로 직접. 업로드 없이 무료." />
+    <title>Crop PDF Margins - automatic or manual | nuricut.video</title>
+    <meta name="description" content="Trim the extra margins from PDF pages, automatically to fit the content or by exact millimeters. Free, no upload." />
     <link rel="canonical" href="https://nuricut.video/pdf/crop.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 여백 자르기 - 자동·직접 | nuricut.video" />
-    <meta property="og:description" content="PDF 쪽의 남는 여백을 잘라내세요. 내용에 맞춰 자동으로, 또는 mm 단위로 직접. 업로드 없이 무료." />
+    <meta property="og:title" content="Crop PDF Margins - automatic or manual | nuricut.video" />
+    <meta property="og:description" content="Trim the extra margins from PDF pages, automatically to fit the content or by exact millimeters. Free, no upload." />
     <meta property="og:url" content="https://nuricut.video/pdf/crop.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-en.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/pdf/crop.html" class="active" aria-current="page"><span class="ico" data-icon="crop"></span>undefined</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>Extract text</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>Page numbers</a><a href="/pdf/watermark.html"><span class="ico" data-icon="watermark"></span>Watermark</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>Sign</a><a href="/pdf/crop.html" class="active" aria-current="page"><span class="ico" data-icon="crop"></span>Crop</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>Compress</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>Metadata</a></nav>
       <section class="hero">
-        <h1>여백 자르기</h1>
-        <p class="sub">남는 여백을 자동으로 또는 직접 잘라내기</p>
+        <h1>Crop margins</h1>
+        <p class="sub">Trim extra margins automatically or by hand</p>
       </section>
 
       <section class="card">
@@ -70,15 +70,15 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">자르는 방법</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="mode" value="auto" checked /><span>자동<small>내용에 맞춰</small></span></label><label><input type="radio" name="mode" value="manual" /><span>직접<small>mm 단위</small></span></label></div></div>
-              <div id="auto-field" class="field"><label class="label" for="pad-mm">내용 둘레 여유 (mm)</label><input id="pad-mm" class="text-input" type="number" min="0" max="50" value="5" /></div>
+              <div class="field"><span class="label">How to crop</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="mode" value="auto" checked /><span>Automatic<small>Fit the content</small></span></label><label><input type="radio" name="mode" value="manual" /><span>Manual<small>In millimeters</small></span></label></div></div>
+              <div id="auto-field" class="field"><label class="label" for="pad-mm">Space around content (mm)</label><input id="pad-mm" class="text-input" type="number" min="0" max="50" value="5" /></div>
               <div id="manual-field" class="mm-grid" hidden>
-                <label class="field"><span class="label">위 (mm)</span><input id="mm-top" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">아래 (mm)</span><input id="mm-bottom" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">왼쪽 (mm)</span><input id="mm-left" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">오른쪽 (mm)</span><input id="mm-right" class="text-input" type="number" min="0" max="200" value="15" /></label>
+                <label class="field"><span class="label">Top (mm)</span><input id="mm-top" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">Bottom (mm)</span><input id="mm-bottom" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">Left (mm)</span><input id="mm-left" class="text-input" type="number" min="0" max="200" value="15" /></label><label class="field"><span class="label">Right (mm)</span><input id="mm-right" class="text-input" type="number" min="0" max="200" value="15" /></label>
               </div>
             </div>
-            <div class="opt-col"><span class="label">미리보기 (1쪽) — 어두운 부분이 잘려 나가요</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">Preview (page 1) — the dark area is cut off</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">여백 자르기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">Crop margins</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -129,13 +129,13 @@
           <a href="/pdf/organize.html">Organize pages</a>
           <a href="/pdf/images-to-pdf.html">Images to PDF</a>
           <a href="/pdf/pdf-to-images.html">PDF to images</a>
-          <a href="/pdf/extract-text.html">undefined</a>
-          <a href="/pdf/page-numbers.html">undefined</a>
-          <a href="/pdf/watermark.html">undefined</a>
-          <a href="/pdf/sign.html">undefined</a>
-          <a href="/pdf/crop.html">undefined</a>
-          <a href="/pdf/compress.html">undefined</a>
-          <a href="/pdf/remove-metadata.html">undefined</a>
+          <a href="/pdf/extract-text.html">Extract text</a>
+          <a href="/pdf/page-numbers.html">Page numbers</a>
+          <a href="/pdf/watermark.html">Watermark</a>
+          <a href="/pdf/sign.html">Sign & stamp</a>
+          <a href="/pdf/crop.html">Crop margins</a>
+          <a href="/pdf/compress.html">Compress PDF</a>
+          <a href="/pdf/remove-metadata.html">Remove metadata</a>
           <a href="/pdf/guide.html">How to</a>
           <!-- x-links --><span class="foot-other" aria-label="Other tools"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/">Video editing<span class="foot-tip" role="tooltip"><b>Go to the video tools?</b><small>Compress · Shorts · GIF · Thumbnails</small></span></a><a class="foot-x kids" href="/kids/">Kids playground<span class="foot-tip" role="tooltip"><b>Go to the kids playground?</b><small>Stop motion · Pixel art for kids</small></span></a></span><!-- /x-links -->
         </div>

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="/src/brand-pdf.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDF 워터마크 넣기 - 글자·로고 | nuricut.video</title>
-    <meta name="description" content="PDF에 &quot;대외비&quot; 같은 글자나 로고 이미지를 워터마크로 넣으세요. 색·투명도·배치 선택. 업로드 없이 무료." />
+    <title>Add a Watermark to PDF - text or logo | nuricut.video</title>
+    <meta name="description" content="Stamp text like &quot;CONFIDENTIAL&quot; or a logo image onto your PDF as a watermark. Choose color, opacity and layout. Free, no upload." />
     <link rel="canonical" href="https://nuricut.video/pdf/watermark.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="nuricut.video" />
-    <meta property="og:title" content="PDF 워터마크 넣기 - 글자·로고 | nuricut.video" />
-    <meta property="og:description" content="PDF에 &quot;대외비&quot; 같은 글자나 로고 이미지를 워터마크로 넣으세요. 색·투명도·배치 선택. 업로드 없이 무료." />
+    <meta property="og:title" content="Add a Watermark to PDF - text or logo | nuricut.video" />
+    <meta property="og:description" content="Stamp text like &quot;CONFIDENTIAL&quot; or a logo image onto your PDF as a watermark. Choose color, opacity and layout. Free, no upload." />
     <meta property="og:url" content="https://nuricut.video/pdf/watermark.html" />
     <meta property="og:image" content="https://nuricut.video/og/og-pdf-en.png" />
     <meta property="og:image:width" content="1200" />
@@ -48,10 +48,10 @@
     </header>
 
     <main class="wrap">
-      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>undefined</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>undefined</a><a href="/pdf/watermark.html" class="active" aria-current="page"><span class="ico" data-icon="watermark"></span>undefined</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>undefined</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>undefined</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>undefined</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>undefined</a></nav>
+      <nav class="pdf-tabs" aria-label="PDF tools"><a href="/pdf/merge.html"><span class="ico" data-icon="merge"></span>Merge</a><a href="/pdf/split.html"><span class="ico" data-icon="split"></span>Split</a><a href="/pdf/organize.html"><span class="ico" data-icon="organize"></span>Organize</a><a href="/pdf/images-to-pdf.html"><span class="ico" data-icon="img2pdf"></span>Images→PDF</a><a href="/pdf/pdf-to-images.html"><span class="ico" data-icon="pdf2img"></span>PDF→Images</a><a href="/pdf/extract-text.html"><span class="ico" data-icon="text"></span>Extract text</a><a href="/pdf/page-numbers.html"><span class="ico" data-icon="number"></span>Page numbers</a><a href="/pdf/watermark.html" class="active" aria-current="page"><span class="ico" data-icon="watermark"></span>Watermark</a><a href="/pdf/sign.html"><span class="ico" data-icon="sign"></span>Sign</a><a href="/pdf/crop.html"><span class="ico" data-icon="crop"></span>Crop</a><a href="/pdf/compress.html"><span class="ico" data-icon="compress"></span>Compress</a><a href="/pdf/remove-metadata.html"><span class="ico" data-icon="clean"></span>Metadata</a></nav>
       <section class="hero">
-        <h1>워터마크</h1>
-        <p class="sub">글자나 로고를 은은하게 넣기</p>
+        <h1>Watermark</h1>
+        <p class="sub">Add text or a logo, subtly</p>
       </section>
 
       <section class="card">
@@ -70,19 +70,19 @@
           </div>
           <div class="options two-col" style="margin-top:0">
             <div class="opt-col">
-              <div class="field"><span class="label">종류</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="kind" value="text" checked /><span>글자<small>대외비·DRAFT 등</small></span></label><label><input type="radio" name="kind" value="image" /><span>이미지<small>로고·도장</small></span></label></div></div>
-              <div id="text-field" class="field"><label class="label" for="wm-text">워터마크 글자</label><input id="wm-text" class="text-input" type="text" value="대외비" maxlength="40" /></div>
-              <div id="img-field" class="field" hidden><label class="label" for="wm-img">이미지 고르기</label><input id="wm-img" class="text-input" type="file" accept="image/*" /></div>
+              <div class="field"><span class="label">Type</span><div class="seg" style="grid-template-columns:repeat(2,1fr)" role="radiogroup"><label><input type="radio" name="kind" value="text" checked /><span>Text<small>CONFIDENTIAL, DRAFT…</small></span></label><label><input type="radio" name="kind" value="image" /><span>Image<small>Logo or stamp</small></span></label></div></div>
+              <div id="text-field" class="field"><label class="label" for="wm-text">Watermark text</label><input id="wm-text" class="text-input" type="text" value="CONFIDENTIAL" maxlength="40" /></div>
+              <div id="img-field" class="field" hidden><label class="label" for="wm-img">Choose an image</label><input id="wm-img" class="text-input" type="file" accept="image/*" /></div>
               <div class="row2">
-                <div id="color-field" class="field"><span class="label">색</span><div class="seg" role="radiogroup"><label><input type="radio" name="color" value="gray" checked /><span>회색</span></label><label><input type="radio" name="color" value="red" /><span>빨강</span></label><label><input type="radio" name="color" value="blue" /><span>파랑</span></label></div></div>
-                <div class="field"><span class="label">진하기</span><div class="seg" role="radiogroup"><label><input type="radio" name="opacity" value="0.12" /><span>연하게</span></label><label><input type="radio" name="opacity" value="0.22" checked /><span>보통</span></label><label><input type="radio" name="opacity" value="0.4" /><span>진하게</span></label></div></div>
+                <div id="color-field" class="field"><span class="label">Color</span><div class="seg" role="radiogroup"><label><input type="radio" name="color" value="gray" checked /><span>Gray</span></label><label><input type="radio" name="color" value="red" /><span>Red</span></label><label><input type="radio" name="color" value="blue" /><span>Blue</span></label></div></div>
+                <div class="field"><span class="label">Strength</span><div class="seg" role="radiogroup"><label><input type="radio" name="opacity" value="0.12" /><span>Light</span></label><label><input type="radio" name="opacity" value="0.22" checked /><span>Medium</span></label><label><input type="radio" name="opacity" value="0.4" /><span>Strong</span></label></div></div>
               </div>
-              <div class="field"><span class="label">배치</span><div class="seg" role="radiogroup"><label><input type="radio" name="layout" value="diag" checked /><span>대각선<small>가운데</small></span></label><label><input type="radio" name="layout" value="horiz" /><span>가로<small>가운데</small></span></label><label><input type="radio" name="layout" value="tile" /><span>바둑판<small>반복</small></span></label></div></div>
-              <div class="field"><span class="label">크기</span><div class="seg" role="radiogroup"><label><input type="radio" name="scale" value="0.35" /><span>작게</span></label><label><input type="radio" name="scale" value="0.55" checked /><span>보통</span></label><label><input type="radio" name="scale" value="0.8" /><span>크게</span></label></div></div>
+              <div class="field"><span class="label">Layout</span><div class="seg" role="radiogroup"><label><input type="radio" name="layout" value="diag" checked /><span>Diagonal<small>Centered</small></span></label><label><input type="radio" name="layout" value="horiz" /><span>Horizontal<small>Centered</small></span></label><label><input type="radio" name="layout" value="tile" /><span>Tiled<small>Repeated</small></span></label></div></div>
+              <div class="field"><span class="label">Size</span><div class="seg" role="radiogroup"><label><input type="radio" name="scale" value="0.35" /><span>Small</span></label><label><input type="radio" name="scale" value="0.55" checked /><span>Medium</span></label><label><input type="radio" name="scale" value="0.8" /><span>Large</span></label></div></div>
             </div>
-            <div class="opt-col"><span class="label">미리보기 (1쪽)</span><div id="preview" class="pv"></div></div>
+            <div class="opt-col"><span class="label">Preview (page 1)</span><div id="preview" class="pv"></div></div>
           </div>
-          <div class="options"><button id="start" class="btn-primary" type="button">워터마크 넣기</button></div>
+          <div class="options"><button id="start" class="btn-primary" type="button">Add watermark</button></div>
         </div>
 
         <div id="progress-box" class="progress-box" hidden>
@@ -133,13 +133,13 @@
           <a href="/pdf/organize.html">Organize pages</a>
           <a href="/pdf/images-to-pdf.html">Images to PDF</a>
           <a href="/pdf/pdf-to-images.html">PDF to images</a>
-          <a href="/pdf/extract-text.html">undefined</a>
-          <a href="/pdf/page-numbers.html">undefined</a>
-          <a href="/pdf/watermark.html">undefined</a>
-          <a href="/pdf/sign.html">undefined</a>
-          <a href="/pdf/crop.html">undefined</a>
-          <a href="/pdf/compress.html">undefined</a>
-          <a href="/pdf/remove-metadata.html">undefined</a>
+          <a href="/pdf/extract-text.html">Extract text</a>
+          <a href="/pdf/page-numbers.html">Page numbers</a>
+          <a href="/pdf/watermark.html">Watermark</a>
+          <a href="/pdf/sign.html">Sign & stamp</a>
+          <a href="/pdf/crop.html">Crop margins</a>
+          <a href="/pdf/compress.html">Compress PDF</a>
+          <a href="/pdf/remove-metadata.html">Remove metadata</a>
           <a href="/pdf/guide.html">How to</a>
           <!-- x-links --><span class="foot-other" aria-label="Other tools"><span class="foot-sep" aria-hidden="true"></span><a class="foot-x video" href="/">Video editing<span class="foot-tip" role="tooltip"><b>Go to the video tools?</b><small>Compress · Shorts · GIF · Thumbnails</small></span></a><a class="foot-x kids" href="/kids/">Kids playground<span class="foot-tip" role="tooltip"><b>Go to the kids playground?</b><small>Stop motion · Pixel art for kids</small></span></a></span><!-- /x-links -->
         </div>
