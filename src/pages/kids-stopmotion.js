@@ -1,6 +1,7 @@
 // 스톱모션: 카메라로 한 장씩 찍기(전 사진 겹쳐 보기) → 재생 → 효과 → GIF·MP4 저장
 // 사진은 이 기기 안에서만 다루고 서버로 보내지 않습니다.
 import { getFFmpeg, run, readOutput } from '../lib/ffmpeg.js';
+import { kidTrack } from '../lib/kids-usage.js';
 
 const $ = (id) => document.getElementById(id);
 const TXT = window.KIDS_TXT || {};
@@ -27,6 +28,7 @@ async function startCam() {
     $('start-box').hidden = true;
     $('cam-switch').hidden = false;
     $('shoot').disabled = false;
+    kidTrack('kids_camera_on');
     updateUI();
   } catch (e) {
     console.warn(e);
@@ -167,6 +169,7 @@ async function exportAs(kind) {
     a.download = `nuricut-stopmotion.${kind}`;
     document.body.append(a); a.click(); a.remove();
     bar.style.width = '100%'; txt.textContent = TXT.saved;
+    kidTrack(kind === 'gif' ? 'kids_stop_gif' : 'kids_stop_mp4', { frames: frames.length, fps, effect: fx });
     toast(TXT.saved);
   } catch (e) {
     console.error(e);

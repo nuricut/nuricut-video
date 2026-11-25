@@ -1,6 +1,7 @@
 // 픽셀아트 공방: 칸 칠하기, 채우기, 좌우 대칭, 여러 칸(프레임) 애니메이션, GIF·PNG 저장
 // 그림은 이 브라우저 안에만 자동 저장됩니다(서버로 보내지 않음).
 import { encodeGif } from '../lib/gif.js';
+import { kidTrack } from '../lib/kids-usage.js';
 
 const $ = (id) => document.getElementById(id);
 const TXT = window.KIDS_TXT || {};
@@ -219,6 +220,7 @@ $('save-gif').addEventListener('click', () => {
     for (let y = 0; y < W; y++) for (let x = 0; x < W; x++) { const c = f[Math.floor(y / s) * N + Math.floor(x / s)]; px[y * W + x] = c ? idx.get(c.toLowerCase()) ?? 0 : 0; }
     return { pixels: px, delay: Math.round(speed / 10) };
   });
+  kidTrack('kids_pixel_gif', { frames: frames.length, size: N });
   download(new Blob([encodeGif({ width: W, height: W, palette: used.map(hex), frames: gifFrames })], { type: 'image/gif' }), 'nuricut-pixel.gif');
 });
 $('save-png').addEventListener('click', () => {
@@ -226,6 +228,7 @@ $('save-png').addEventListener('click', () => {
   const c = document.createElement('canvas'); c.width = c.height = N * s;
   const x = c.getContext('2d');
   frames[cur].forEach((col, i) => { if (col) { x.fillStyle = col; x.fillRect((i % N) * s, Math.floor(i / N) * s, s, s); } });
+  kidTrack('kids_pixel_png', { size: N });
   c.toBlob((b) => download(b, 'nuricut-pixel.png'), 'image/png');
 });
 
