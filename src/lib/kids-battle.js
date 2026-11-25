@@ -1,6 +1,6 @@
 // 키즈 메뉴의 '대전(출시 예정)': 말풍선 열기/닫기 + 두 팀이 칸을 칠하는 짧은 미리보기 애니메이션
 const N = 16, PINK = '#ff6fae', SKY = '#4fb3f6', DUR = 60; // 미리보기는 60초를 빠르게 (약 8초)
-for (const el of document.querySelectorAll('.k-battle')) {
+for (const el of document.querySelectorAll('.k-battle, .k-battle-card')) {
   const cv = el.querySelector('canvas'), x = cv.getContext('2d');
   const teams = JSON.parse(cv.dataset.teams), winTxt = cv.dataset.win;
   const bar = el.querySelectorAll('.kb-bar i');

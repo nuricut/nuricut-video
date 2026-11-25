@@ -119,7 +119,8 @@ const HTML_LANG = { en: 'en', ko: 'ko', zh: 'zh-Hans', ja: 'ja' };
 const LANG_HOME = { en: '/kids/', ko: '/ko/kids/', zh: '/zh/kids/', ja: '/ja/kids/' };
 
 // 대전(출시 예정): 메뉴 옆 표시 + 말풍선(게임 방법 + 움직이는 미리보기)
-const battle = (b) => `<span class="k-battle" tabindex="0" role="button" aria-expanded="false" aria-label="${b.label} (${b.soon})">${b.label}<em>${b.soon}</em><span class="k-btip" role="tooltip"><b>${b.title}</b><span class="kb-demo"><canvas width="160" height="160" data-teams='${JSON.stringify(b.teams)}' data-win="${b.win}"></canvas><span class="kb-bar"><i class="p"></i><i class="s"></i></span><span class="kb-score"><span class="p">${b.teams[0]} <span>0</span></span><span class="kb-time">60</span><span class="s"><span>0</span> ${b.teams[1]}</span></span></span><ol>${b.rules.map((r) => `<li>${r}</li>`).join('')}</ol><small>${b.note}</small></span></span>`;
+const battleTip = (b) => `<span class="k-btip" role="tooltip"><b>${b.title}</b><span class="kb-demo"><canvas width="160" height="160" data-teams='${JSON.stringify(b.teams)}' data-win="${b.win}"></canvas><span class="kb-bar"><i class="p"></i><i class="s"></i></span><span class="kb-score"><span class="p">${b.teams[0]} <span>0</span></span><span class="kb-time">60</span><span class="s"><span>0</span> ${b.teams[1]}</span></span></span><ol>${b.rules.map((r) => `<li>${r}</li>`).join('')}</ol><small>${b.note}</small></span>`;
+const battle = (b) => `<span class="k-battle" tabindex="0" role="button" aria-expanded="false" aria-label="${b.label} (${b.soon})">${b.label}<em>${b.soon}</em>${battleTip(b)}</span>`;
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
@@ -180,8 +181,8 @@ ${body}
         <div class="k-mascot"><img src="/logo.svg" alt="" /><span style="left:16%;top:18%">✨</span><span style="right:14%;top:22%">🎨</span><span style="right:22%;bottom:14%">📸</span></div>
       </section>
       <section id="tools" class="k-tools">
-        ${h.cards.map(([f, emo, name, d, tags, color]) => `<a class="k-card k-tool" href="${f}"><span class="k-art ${color}">${{ '📸': I.artStop, '👾': I.artPixel }[emo] || emo}</span><span><b>${name}</b><span class="k-d">${d}</span><span class="k-tags">${tags.map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm ${color}">${h.go}</span></span></a>`).join('\n        ')}
-        <div class="k-card k-tool soon" aria-disabled="true"><span class="k-art lilac">${I.artBattle}</span><span><b>${h.battleCard[0]} <em class="k-soon">${t.battle.soon}</em></b><span class="k-d">${h.battleCard[1]}</span><span class="k-tags">${h.battleCard[2].map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm soon-btn">🔜 ${t.battle.soon}</span></span></div>
+        ${h.cards.map(([f, emo, name, d, tags, color]) => `<a class="k-card k-tool" href="${f}"><span class="k-art ${color}">${{ '📸': I.artStop, '👾': I.artPixel }[emo] || emo}</span><span class="k-txt"><b>${name}</b><span class="k-d">${d}</span></span><span class="k-tags">${tags.map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm ${color} k-go">${h.go}</span></a>`).join('\n        ')}
+        <div class="k-card k-tool soon k-battle-card" tabindex="0" role="button" aria-expanded="false" aria-label="${h.battleCard[0]} (${t.battle.soon})"><span class="k-art lilac">${I.artBattle}</span><span class="k-txt"><b>${h.battleCard[0]} <em class="k-soon">${t.battle.soon}</em></b><span class="k-d">${h.battleCard[1]}</span></span><span class="k-tags">${h.battleCard[2].map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm soon-btn k-go">🔜 ${t.battle.soon}</span>${battleTip(t.battle)}</div>
       </section>
       <section class="k-how"><h2>${h.how}</h2><ol>${h.steps.map(([n, a, b]) => `<li><span class="ks">${I['s' + n]}</span><b><em>${n}</em>${a}</b><span>${b}</span></li>`).join('')}</ol></section>
       <div class="k-trust">${h.trust.map((x) => `<span>${x}</span>`).join('')}</div>`, 'kids-hub.js');

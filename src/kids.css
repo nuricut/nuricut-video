@@ -312,3 +312,23 @@ html[lang^="zh"] body, html[lang="ja"] body { word-break: normal; line-break: st
 /* 첫 화면 카드 그림(SVG) */
 .k-art svg { width: 64px; height: 64px; display: block; }
 @media (max-width: 760px) { .k-art svg { width: 58px; height: 58px; } }
+
+/* 카드 정렬: 설명 길이가 달라도 태그 줄 높이를 맞추고, 버튼은 카드 아래 가운데 */
+.k-tool { grid-template-columns: 80px minmax(0, 1fr); grid-template-rows: 1fr auto; row-gap: 12px; }
+.k-tool > span:nth-child(2) { display: flex; flex-direction: column; height: 100%; }
+.k-tool .k-d { flex: 1; }
+.k-tool .k-tags { margin-bottom: 0; }
+.k-tool .k-go { grid-column: 1 / -1; justify-self: center; min-width: 140px; }
+/* 대전 카드: 마우스를 올리면 상단 메뉴와 같은 말풍선 */
+.k-battle-card { position: relative; outline: none; cursor: help; }
+.k-battle-card:focus-visible { box-shadow: 0 0 0 3px #d9c9ff, 0 6px 0 #f0e4ee; }
+.k-battle-card .k-btip { top: calc(100% + 8px); right: 8px; }
+.k-battle-card.open .k-btip { opacity: 1; transform: none; pointer-events: auto; }
+/* 세 카드의 [제목·설명] [태그] [버튼] 줄을 서로 맞춤 (설명이 짧거나 태그가 두 줄이어도 같은 높이) */
+.k-tools { grid-auto-rows: auto; row-gap: 16px; }
+.k-tool { grid-row: span 3; grid-template-rows: subgrid; row-gap: 10px; align-items: start; }
+.k-tool .k-art { grid-row: 1 / span 2; }
+.k-tool .k-txt { grid-column: 2; grid-row: 1; display: block; }
+.k-tool .k-tags { grid-column: 2; grid-row: 2; margin: 0; align-self: start; }
+.k-tool .k-go { grid-row: 3; align-self: end; }
+.k-tool > span:nth-child(2) { height: auto; }
