@@ -164,13 +164,15 @@ function build(lang) {
   const header = (activeNav) => `<header class="site-header">
       <div class="wrap">
         ${brandHtml(lang, 'pdf')}
-        <nav class="nav">
-          <a href="${base}"${activeNav === 'hub' ? ' class="active"' : ''}>${t.nav.hub}</a>
-          <a href="${toolUrl('merge')}"${activeNav === 'merge' ? ' class="active"' : ''}>${t.tool.merge[2]}</a>
-          <a href="${toolUrl('split')}"${activeNav === 'split' ? ' class="active"' : ''}>${t.tool.split[2]}</a>
-          <a href="${toolUrl('organize')}"${activeNav === 'organize' ? ' class="active"' : ''}>${t.tool.organize[2]}</a>
+        <nav class="nav pdf-nav">
+          ${['arrange', 'convert', 'edit', 'optimize'].map((g) => {
+            const items = TOOLS.filter((x) => x[4] && x[3] === g);
+            const on = items.some((x) => x[0] === activeNav);
+            return `<details class="nav-group"><summary${on ? ' class="active"' : ''}>${t.groups[g]}<svg class="caret" viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-menu">${items.map(([k, file, ic]) => `<a href="${url(file)}"${k === activeNav ? ' class="active" aria-current="page"' : ''}><span class="ico" data-icon="${ic}"></span><span class="nm-t"><b>${t.tool[k][0]}</b><small>${t.tool[k][1]}</small></span></a>`).join('')}</div></details>`;
+          }).join('')}
           <a href="${url('guide.html')}"${activeNav === 'guide' ? ' class="active"' : ''}>${t.nav.guide}</a>
         </nav>
+        <script type="module" src="/src/lib/nav-menu.js"></script>
         ${langMenu(curFile)}
       </div>
     </header>`;
