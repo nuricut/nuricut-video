@@ -50,17 +50,17 @@ const T = {
     soon: '곧 추가',
     nav: { hub: 'PDF 도구', guide: '사용방법' },
     hub: {
-      title: '무료 PDF 도구 - 합치기·나누기·변환 | nuricut.video',
-      desc: 'PDF 합치기, 나누기, 페이지 정리, 이미지를 PDF로, PDF를 이미지로. 설치·가입 없이 브라우저에서 바로, 파일은 서버로 전송되지 않아 안전합니다.',
+      title: '무료 PDF 도구 - 합치기·나누기·변환 | 누리컷 nuricut.video',
+      desc: '누리컷 무료 PDF 도구: 합치기, 나누기, 페이지 정리, 이미지를 PDF로, PDF를 이미지로. 설치·가입 없이 브라우저에서 바로, 파일은 서버로 전송되지 않아 안전합니다.',
       h1: 'PDF 도구 모음',
       sub: '합치기·나누기·변환까지, 업로드 없이 브라우저에서',
     },
     page: {
-      merge: { title: 'PDF 합치기 - 여러 PDF를 하나로 무료 병합 | nuricut.video', desc: '여러 PDF 파일을 원하는 순서로 하나로 합치세요. 설치·가입 없이 브라우저에서 바로, 파일이 서버로 전송되지 않아 안전합니다.', h1: 'PDF 합치기', sub: '여러 PDF를 원하는 순서대로 하나로' },
-      split: { title: 'PDF 나누기 - 쪽 범위로 분리·추출 | nuricut.video', desc: 'PDF를 쪽 범위로 나누거나 한 쪽씩 분리하고, 원하는 쪽만 뽑아내세요. 업로드 없이 브라우저에서 무료로.', h1: 'PDF 나누기', sub: '쪽 범위로 나누거나 원하는 쪽만 뽑기' },
-      organize: { title: 'PDF 페이지 정리 - 순서 변경·회전·삭제 | nuricut.video', desc: 'PDF 쪽을 미리 보면서 순서를 바꾸고, 회전하고, 삭제하세요. 빈 쪽 넣기도 가능. 업로드 없이 무료.', h1: '페이지 정리', sub: '쪽을 보면서 순서 바꾸기·회전·삭제' },
-      img2pdf: { title: '이미지를 PDF로 변환 - JPG·PNG 여러 장 한 번에 | nuricut.video', desc: 'JPG, PNG 사진 여러 장을 PDF 하나로 만드세요. A4·사진 크기 선택, 여백 조절. 업로드 없이 무료.', h1: '이미지 → PDF', sub: '사진 여러 장을 PDF 하나로' },
-      pdf2img: { title: 'PDF를 이미지로 변환 - JPG·PNG 저장 | nuricut.video', desc: 'PDF 쪽을 고화질 JPG·PNG 이미지로 저장하세요. 여러 쪽은 ZIP으로 한 번에. 업로드 없이 무료.', h1: 'PDF → 이미지', sub: 'PDF 쪽을 JPG·PNG 이미지로 저장' },
+      merge: { title: 'PDF 합치기 - 여러 PDF를 하나로 무료 병합 | 누리컷 nuricut.video', desc: '여러 PDF 파일을 원하는 순서로 하나로 합치세요. 설치·가입 없이 브라우저에서 바로, 파일이 서버로 전송되지 않아 안전합니다.', h1: 'PDF 합치기', sub: '여러 PDF를 원하는 순서대로 하나로' },
+      split: { title: 'PDF 나누기 - 쪽 범위로 분리·추출 | 누리컷 nuricut.video', desc: 'PDF를 쪽 범위로 나누거나 한 쪽씩 분리하고, 원하는 쪽만 뽑아내세요. 업로드 없이 브라우저에서 무료로.', h1: 'PDF 나누기', sub: '쪽 범위로 나누거나 원하는 쪽만 뽑기' },
+      organize: { title: 'PDF 페이지 정리 - 순서 변경·회전·삭제 | 누리컷 nuricut.video', desc: 'PDF 쪽을 미리 보면서 순서를 바꾸고, 회전하고, 삭제하세요. 빈 쪽 넣기도 가능. 업로드 없이 무료.', h1: '페이지 정리', sub: '쪽을 보면서 순서 바꾸기·회전·삭제' },
+      img2pdf: { title: '이미지를 PDF로 변환 - JPG·PNG 여러 장 한 번에 | 누리컷 nuricut.video', desc: 'JPG, PNG 사진 여러 장을 PDF 하나로 만드세요. A4·사진 크기 선택, 여백 조절. 업로드 없이 무료.', h1: '이미지 → PDF', sub: '사진 여러 장을 PDF 하나로' },
+      pdf2img: { title: 'PDF를 이미지로 변환 - JPG·PNG 저장 | 누리컷 nuricut.video', desc: 'PDF 쪽을 고화질 JPG·PNG 이미지로 저장하세요. 여러 쪽은 ZIP으로 한 번에. 업로드 없이 무료.', h1: 'PDF → 이미지', sub: 'PDF 쪽을 JPG·PNG 이미지로 저장' },
     },
     drop: { pdf: '여기에 PDF를 끌어다 놓거나 클릭해서 선택', pdfMany: '여기에 PDF 여러 개를 끌어다 놓거나 클릭해서 선택', img: '여기에 사진을 끌어다 놓거나 클릭해서 선택', hintPdf: '파일은 이 기기 밖으로 나가지 않아요', hintImg: 'JPG · PNG · WebP · GIF 여러 장' },
     common: { add: '＋ 추가', clear: '비우기', change: '다른 파일', download: '다운로드', again: '다시 조정하기', cont: '이 결과로 다른 도구 이어서 쓰기', contDone: '✓ 준비됐어요! 위쪽 탭에서 다음 도구를 고르세요', support: '☕ 도움이 되셨나요? 커피 한 잔 후원하기', handle: '⠿ 손잡이를 끌어서 순서를 바꿀 수 있어요' },
@@ -72,7 +72,7 @@ const T = {
     img2pdf: { size: '용지 크기', a4: ['A4', '문서용'], fit: ['사진 크기', '여백 없이 그대로'], letter: ['레터', '미국 용지'], orient: '방향', auto: '자동', portrait: '세로', landscape: '가로', margin: '여백', m0: '없음', m1: '좁게', m2: '보통', start: 'PDF 만들기' },
     pdf2img: { format: '저장 형식', jpg: ['JPG', '가벼움'], png: ['PNG', '선명함'], quality: '화질', q1: ['가볍게', '96dpi'], q2: ['보통', '150dpi'], q3: ['고화질', '300dpi'], pickHint: '저장할 쪽을 눌러서 고르세요. 아무것도 안 고르면 전체를 저장해요.', start: '이미지로 저장' },
     guide: {
-      title: 'PDF 도구 사용방법 - 합치기·나누기·정리·변환 | nuricut.video',
+      title: 'PDF 도구 사용방법 - 합치기·나누기·정리·변환 | 누리컷 nuricut.video',
       desc: 'nuricut.video PDF 도구로 PDF 합치기, 나누기, 페이지 정리, 이미지를 PDF로, PDF를 이미지로 바꾸는 방법을 단계별로 안내합니다.',
       h1: '{BRAND} 사용방법',
       intro: '모든 PDF 도구는 같은 순서로 사용해요. 위쪽 탭으로 도구를 옮겨 다니며 이어서 작업할 수도 있어요.',
@@ -208,7 +208,7 @@ function build(lang) {
     <meta name="description" content="${esc(desc)}" />
     <link rel="canonical" href="${SITE}${url(file)}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="nuricut.video" />
+    <meta property="og:site_name" content="${lang === 'ko' ? '누리컷 nuricut.video' : 'nuricut.video'}" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(desc)}" />
     <meta property="og:url" content="${SITE}${url(file)}" />
