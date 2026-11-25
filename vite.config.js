@@ -11,7 +11,7 @@ for (const p of pages) {
   input[`ja-${p}`] = resolve(__dirname, `ja/${p}.html`);
 }
 // PDF 도구 (scripts/build-pdf-pages.mjs 로 생성). 번역된 언어만 추가
-const pdfPages = ['index', 'guide', 'merge', 'split', 'organize', 'images-to-pdf', 'pdf-to-images'];
+const pdfPages = ['index', 'guide', 'merge', 'split', 'organize', 'images-to-pdf', 'pdf-to-images', 'extract-text', 'page-numbers', 'watermark', 'sign', 'crop', 'compress', 'remove-metadata'];
 for (const lang of ['en', 'ko', 'zh', 'ja']) {
   for (const p of pdfPages) input[`${lang}-pdf-${p}`] = resolve(__dirname, lang === 'en' ? `pdf/${p}.html` : `${lang}/pdf/${p}.html`);
 }

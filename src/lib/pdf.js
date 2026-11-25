@@ -11,7 +11,7 @@ export { $, show, hide, formatSize, track };
 const COL = { ko: 0, en: 1, zh: 2, ja: 3 }[lang] ?? 1;
 export function m(key, vars = {}) {
   const row = PDF_MSG[key];
-  const s = row ? row[COL] ?? row[1] : key;
+  const s = row ? row[COL] ?? row[0] : key; // 번역 전 문구는 한국어로 표시
   return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? '').toString());
 }
 /** 쪽 수: 영어는 1쪽일 때 단수 */
