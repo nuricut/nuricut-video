@@ -17,7 +17,7 @@ for (const lang of ['en', 'ko', 'zh', 'ja']) {
 }
 
 // nuricut kids (scripts/build-kids-pages.mjs 로 생성)
-for (const p of ['index', 'stopmotion', 'pixel']) input['ko-kids-' + p] = resolve(__dirname, 'ko/kids/' + p + '.html');
+for (const [l, d] of [['en', 'kids'], ['ko', 'ko/kids'], ['zh', 'zh/kids'], ['ja', 'ja/kids']]) for (const p of ['index', 'stopmotion', 'pixel']) input[l + '-kids-' + p] = resolve(__dirname, d + '/' + p + '.html');
 
 export default defineConfig({
   // ffmpeg.wasm은 자체 워커를 쓰므로 Vite 사전 번들링에서 제외해야 정상 동작합니다.

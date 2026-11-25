@@ -1,8 +1,9 @@
 // nuricut kids 페이지 생성기: node scripts/build-kids-pages.mjs
-// 지금은 한국어만 (/ko/kids/). 다른 언어는 T에 추가하면 /kids/, /zh/kids/ ... 로 생성됩니다.
+// 한국어(/ko/kids/)는 아래 T.ko, 영어·중국어·일본어(/kids/, /zh/kids/, /ja/kids/)는 kids-texts-intl.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { KIDS_INTL } from './kids-texts-intl.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://nuricut.video';
@@ -48,7 +49,9 @@ const hd = (icon, text) => `<h3 class="k-h"><span class="kh">${HEAD_ICONS[icon]}
 
 const T = {
   ko: {
-    home: '/ko/kids/', main: '/ko/', grown: ['어른용 도구', '동영상', 'PDF'],
+    home: '/ko/kids/', main: '/ko/', grown: ['어른용 도구', '동영상 편집', 'PDF 변환'],
+    grownTips: [['동영상 편집으로 넘어갈까요?', '압축 · 쇼츠 · GIF · 썸네일'], ['PDF 변환으로 넘어갈까요?', '합치기 · 나누기 · 변환']],
+    legal: ['개인정보처리방침', '이용약관'],
     nav: ['홈', '스톱모션', '픽셀아트'],
     safe: '🔒 사진·그림은 내 기기에만',
     footer: '🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.',
@@ -71,7 +74,8 @@ const T = {
       title: '픽셀아트 공방 - 움직이는 도트 그림 만들기 | nuricut kids',
       desc: '네모 칸을 칠해서 픽셀아트 캐릭터를 그리고, 여러 장을 이어 움직이는 GIF로 저장해요. 무료, 가입 없음.',
       h1: '👾 픽셀아트 공방', sub: '네모 칸을 칠해서 나만의 캐릭터를 그리고 움직여 보세요',
-      colors: '색 고르기', myColor: '원하는 색 만들기', rainbow: '무지개 붓 (칠할 때마다 색이 바뀌어요)', pngBg: ['투명 배경', '흰 배경'],
+      colors: '색 고르기', myColor: '원하는 색 만들기', rainbow: '무지개 붓 (칠할 때마다 색이 바뀌어요)', rainbowShort: '무지개 (칠할 때마다 바뀌어요)',
+      colorNames: ['분홍', '연분홍', '살구', '노랑', '연노랑', '민트', '초록', '하늘', '파랑', '연보라', '보라', '갈색', '베이지', '하양', '연회색', '회색', '진회색', '검정'], pngBg: ['투명 배경', '흰 배경'],
       tools: '도구',
       pencil: ['연필', '한 칸씩 칠해요'], eraser: ['지우개', '칸을 지워요'], fill: ['채우기', '같은 색 칸을 한 번에'],
       mirror: ['좌우 대칭', '반만 그려도 양쪽에'], undo: ['되돌리기', ''], redo: ['다시하기', ''], clear: ['모두 지우기', ''],
@@ -104,6 +108,10 @@ const T = {
   },
 };
 
+Object.assign(T, KIDS_INTL);
+const HTML_LANG = { en: 'en', ko: 'ko', zh: 'zh-Hans', ja: 'ja' };
+const LANG_HOME = { en: '/kids/', ko: '/ko/kids/', zh: '/zh/kids/', ja: '/ja/kids/' };
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 function build(lang) {
@@ -118,10 +126,10 @@ function build(lang) {
         <span class="k-safe">${t.safe}</span>
       </div>
     </header>`;
-  const footer = `<footer class="k-foot"><div class="k-wrap"><p>${t.footer}</p><p class="k-grown">${t.grown[0]}: <a href="${t.main}">${t.grown[1]}</a> · <a href="${t.main}pdf/">${t.grown[2]}</a></p><p><a href="${t.main}privacy.html">개인정보처리방침</a> · <a href="${t.main}terms.html">이용약관</a></p></div></footer>`;
+  const footer = `<footer class="k-foot"><div class="k-wrap"><p>${t.footer}</p><p class="k-grown">${t.grown[0]}: ${[[t.main, t.grown[1], t.grownTips[0]], [t.main + 'pdf/', t.grown[2], t.grownTips[1]]].map(([u, l, [a, b]]) => `<a class="k-x" href="${u}">${l}<span class="k-xtip" role="tooltip"><b>${a}</b><small>${b}</small></span></a>`).join(' · ')}</p><p><a href="${t.main}privacy.html">${t.legal[0]}</a> · <a href="${t.main}terms.html">${t.legal[1]}</a></p></div></footer>`;
   const page = (file, active, { title, desc }, body, script) => {
     fs.writeFileSync(path.join(outDir, file), `<!doctype html>
-<html lang="${lang}">
+<html lang="${HTML_LANG[lang]}">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -133,6 +141,8 @@ function build(lang) {
     <title>${esc(title)}</title>
     <meta name="description" content="${esc(desc)}" />
     <link rel="canonical" href="${SITE}${t.home}${file === 'index.html' ? '' : file}" />
+${Object.keys(T).map((l) => `    <link rel="alternate" hreflang="${HTML_LANG[l]}" href="${SITE}${LANG_HOME[l]}${file === 'index.html' ? '' : file}" />`).join('\n')}
+    <link rel="alternate" hreflang="x-default" href="${SITE}/kids/${file === 'index.html' ? '' : file}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(desc)}" />
@@ -170,6 +180,7 @@ ${body}
   const p = t.pixel;
   const tool = (id, icon, [a, b], extra = '') => `<button id="${id}" class="k-tool-btn" type="button"${extra}>${I[icon]}<span class="kt-l"><b>${a}</b>${b ? `<small>${b}</small>` : ''}</span></button>`;
   page('pixel.html', 2, p, `      <section class="k-title"><h1>${p.h1}</h1><p>${p.sub}</p></section>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="kid-rb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4f8b"/><stop offset=".25" stop-color="#ffb02e"/><stop offset=".45" stop-color="#ffe14d"/><stop offset=".65" stop-color="#3fc794"/><stop offset=".82" stop-color="#4fb3f6"/><stop offset="1" stop-color="#7d4fd6"/></linearGradient></defs></svg>
       <section class="px-app">
         <div class="k-card px-left">
           ${hd('palette', p.colors)}
@@ -199,7 +210,7 @@ ${body}
           <div class="k-card">${hd('bunny', p.starters)}<div class="k-seg" id="starters">${p.starterNames.map((n, i) => `<button type="button" data-starter="${i}">${n}</button>`).join('')}</div></div>
         </div>
       </section>
-      <script>window.KIDS_TXT = ${JSON.stringify({ confirmClear: p.confirmClear, saved: p.saved, rainbow: p.rainbow, undone: p.undone, redone: p.redone, cleared: p.cleared, nothing: p.nothing })};</script>`, 'kids-pixel.js');
+      <script>window.KIDS_TXT = ${JSON.stringify({ confirmClear: p.confirmClear, saved: p.saved, rainbow: p.rainbow, rainbowShort: p.rainbowShort, colorNames: p.colorNames, undone: p.undone, redone: p.redone, cleared: p.cleared, nothing: p.nothing })};</script>`, 'kids-pixel.js');
 
   /* ----- 스톱모션 ----- */
   const s = t.stop;

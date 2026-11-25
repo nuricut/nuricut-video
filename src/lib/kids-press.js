@@ -14,3 +14,19 @@ const up = () => {
 };
 addEventListener('pointerup', up);
 addEventListener('pointercancel', up);
+
+// 체크 상자를 끌 때 '팡!' 하고 터지는 효과
+const PANG = ['#ff6fae', '#ffb02e', '#ffe14d', '#3fc794', '#4fb3f6', '#7d4fd6'];
+addEventListener('change', (e) => {
+  const box = e.target;
+  if (!box.matches?.('.k-check input[type="checkbox"]') || box.checked) return;
+  box.classList.remove('k-pang'); void box.offsetWidth; box.classList.add('k-pang');
+  const label = box.closest('.k-check');
+  const burst = document.createElement('span');
+  burst.className = 'k-pang-burst';
+  burst.style.left = box.offsetLeft + box.offsetWidth / 2 + 'px';
+  burst.style.top = box.offsetTop + box.offsetHeight / 2 + 'px';
+  burst.innerHTML = Array.from({ length: 10 }, (_, i) => `<i style="--a:${i * 36}deg;--bc:${PANG[i % PANG.length]}"></i>`).join('');
+  label.append(burst);
+  setTimeout(() => burst.remove(), 600);
+});

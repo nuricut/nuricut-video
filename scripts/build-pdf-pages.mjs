@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { brandHtml, brandText, kidsFooterLink } from './site-parts.mjs';
+import { brandHtml, brandText, footerXLinks } from './site-parts.mjs';
 import { INTL } from './pdf-texts-intl.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -177,7 +177,7 @@ function build(lang) {
     .replace(/<div class="footer-links">[\s\S]*?<\/div>/, `<div class="footer-links">
           ${TOOLS.filter((x) => x[4]).map(([k, f], i) => `<a href="${url(f)}">${t.footerPdf[i]}</a>`).join('\n          ')}
           <a href="${url('guide.html')}">${t.nav.guide}</a>
-          <a href="${lang === 'en' ? '/' : `/${lang}/`}">${t.videoTools}</a>${kidsFooterLink(lang)}
+          ${footerXLinks(lang, 'pdf')}
         </div>`)
     .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote.replace('{BRAND}', brandText('pdf'))}</p>`);
 

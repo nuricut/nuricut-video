@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fff8f3" />
+    <link rel="stylesheet" href="/src/kids.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Art Studio - make moving pixel drawings | nuricut kids</title>
+    <meta name="description" content="Color in squares to draw pixel art characters, then join several drawings into a moving GIF. Free, no sign-up." />
+    <link rel="canonical" href="https://nuricut.video/kids/pixel.html" />
+    <link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/kids/pixel.html" />
+    <link rel="alternate" hreflang="en" href="https://nuricut.video/kids/pixel.html" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/kids/pixel.html" />
+    <link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/kids/pixel.html" />
+    <link rel="alternate" hreflang="x-default" href="https://nuricut.video/kids/pixel.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pixel Art Studio - make moving pixel drawings | nuricut kids" />
+    <meta property="og:description" content="Color in squares to draw pixel art characters, then join several drawings into a moving GIF. Free, no sign-up." />
+  </head>
+  <body data-kid="pixel">
+    <header class="k-head">
+      <div class="k-wrap k-head-in">
+        <a class="k-logo" href="/kids/"><img src="/logo.svg" alt="" width="34" height="34" /><span class="k-word">nuricut<span class="k-dot">.</span><span class="k-kids">kids</span></span></a>
+        <nav class="k-nav"><a href="/kids/">Home</a><a href="/kids/stopmotion.html">Stop motion</a><a href="/kids/pixel.html" class="on" aria-current="page">Pixel art</a></nav>
+        <span class="k-safe">🔒 Photos & drawings stay on your device</span>
+      </div>
+    </header>
+    <main class="k-wrap">
+      <section class="k-title"><h1>👾 Pixel Art Studio</h1><p>Color in squares to draw your own character and make it move</p></section>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="kid-rb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4f8b"/><stop offset=".25" stop-color="#ffb02e"/><stop offset=".45" stop-color="#ffe14d"/><stop offset=".65" stop-color="#3fc794"/><stop offset=".82" stop-color="#4fb3f6"/><stop offset="1" stop-color="#7d4fd6"/></linearGradient></defs></svg>
+      <section class="px-app">
+        <div class="k-card px-left">
+          <h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M16 4C9 4 4 9 4 15.5 4 22 9 27 14.6 27c1.9 0 2.5-1.3 1.9-2.7-.7-1.6.4-3.1 2.2-3.1h3.2c3.6 0 6.1-2.5 6.1-6C28 8.9 22.6 4 16 4z" fill="#ffe7bf" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="14" r="2.4" fill="#ff6fae"/><circle cx="14.5" cy="9" r="2.4" fill="#ffd23f"/><circle cx="20.5" cy="9.5" r="2.4" fill="#5fd4a8"/><circle cx="24" cy="15" r="2.4" fill="#6cc4ff"/><circle cx="11" cy="20.5" r="2.4" fill="#b99bff"/></svg></span><span>Colors</span></h3>
+          <div id="palette" class="px-pal"></div>
+          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /><span>Pick any color</span></label>
+          <h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M12 10V7.5A1.5 1.5 0 0 1 13.5 6h5A1.5 1.5 0 0 1 20 7.5V10" fill="none" stroke="#24203a" stroke-width="2"/><rect x="4" y="10" width="24" height="16" rx="3.5" fill="#ff8fbf" stroke="#24203a" stroke-width="1.8"/><path d="M4 16h24" stroke="#24203a" stroke-width="1.8"/><rect x="13.5" y="14" width="5" height="4.5" rx="1.2" fill="#ffd27a" stroke="#24203a" stroke-width="1.6"/><circle cx="10" cy="21" r="1.2" fill="#24203a"/><circle cx="22" cy="21" r="1.2" fill="#24203a"/><path d="M14.5 22.3q1.5 1.3 3 0" fill="none" stroke="#24203a" stroke-width="1.4" stroke-linecap="round"/></svg></span><span>Tools</span></h3>
+          <div class="px-tools">
+            <button id="t-pencil" class="k-tool-btn" type="button" data-tool="pencil" aria-pressed="true"><svg viewBox="0 0 48 48" class="ki"><path d="M5 41c4-1 6-6 10-5s3 5 8 3 5-7 9-6" fill="none" stroke="var(--c)" stroke-width="3.2" stroke-linecap="round"/>
+    <g transform="rotate(45 30 18)"><rect x="25" y="2" width="10" height="26" rx="2" fill="#ffd27a" stroke="#24203a" stroke-width="2"/><rect x="25" y="2" width="10" height="6" rx="2" fill="#ff9ed2" stroke="#24203a" stroke-width="2"/>
+    <path d="M25 28l5 9 5-9z" fill="#f6dcc0" stroke="#24203a" stroke-width="2" stroke-linejoin="round"/><path d="M28.4 34.2L30 37l1.6-2.8z" fill="var(--c)"/></g></svg><span class="kt-l"><b>Pencil</b><small>Color one square</small></span></button>
+            <button id="t-fill" class="k-tool-btn" type="button" data-tool="fill"><svg viewBox="0 0 48 48" class="ki"><ellipse cx="30" cy="42" rx="13" ry="3.6" fill="var(--c)"/>
+    <path d="M32.5 22c2 5 3 9 1.6 14.5" fill="none" stroke="var(--c)" stroke-width="4.5" stroke-linecap="round"/>
+    <g transform="rotate(-35 18 18)"><path d="M7 11h22l-3 21H10z" fill="#9ad7ff" stroke="#24203a" stroke-width="2.2" stroke-linejoin="round"/><ellipse cx="18" cy="11" rx="11" ry="3.4" fill="var(--c)" stroke="#24203a" stroke-width="2.2"/>
+    <path d="M8 13c-4-6 0-11 10-11s14 5 10 11" fill="none" stroke="#24203a" stroke-width="2"/></g></svg><span class="kt-l"><b>Fill</b><small>Same-color area at once</small></span></button>
+            <button id="t-eraser" class="k-tool-btn" type="button" data-tool="eraser"><svg viewBox="0 0 48 48" class="ki"><g transform="rotate(-35 24 24)"><rect x="8" y="16" width="32" height="16" rx="4" fill="#ff9ed2" stroke="#24203a" stroke-width="2.2"/><rect x="8" y="16" width="12" height="16" rx="4" fill="#fff" stroke="#24203a" stroke-width="2.2"/></g>
+    <path d="M10 43h28" stroke="#c9c1d6" stroke-width="2.4" stroke-dasharray="3 4" stroke-linecap="round"/></svg><span class="kt-l"><b>Eraser</b><small>Clear squares</small></span></button>
+            <button id="t-mirror" class="k-tool-btn" type="button" aria-pressed="false"><svg viewBox="0 0 48 48" class="ki"><path d="M24 5v38" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 3"/><path d="M20 12a10 12 0 0 0 0 24z" fill="var(--c)" stroke="#24203a" stroke-width="2.2"/><path d="M28 12a10 12 0 0 1 0 24z" fill="#fff" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 2"/></svg><span class="kt-l"><b>Mirror</b><small>Draw half, get both sides</small></span></button>
+          </div>
+          <div class="px-mini-tools"><button id="t-undo" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M18 12L8 21l10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21h18a11 11 0 0 1 0 22h-6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg><span class="kt-l"><b>Undo</b></span></button><button id="t-redo" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M30 12l10 9-10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 21H21a11 11 0 0 0 0 22h6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg><span class="kt-l"><b>Redo</b></span></button><button id="t-clear" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M10 14h28M19 14V9h10v5M13 14l2 27h18l2-27" fill="none" stroke="#24203a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21v13M27 21v13" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round"/></svg><span class="kt-l"><b>Clear all</b></span></button></div>
+        </div>
+        <div class="k-card px-center">
+          <div class="px-top"><label>Grid <select id="grid-size"><option value="16" selected>16 × 16</option><option value="24">24 × 24</option><option value="32">32 × 32</option></select></label>
+            <label class="k-check"><input id="onion" type="checkbox" checked /> See previous drawing</label></div>
+          <div class="px-board"><canvas id="board" width="512" height="512"></canvas></div>
+          <h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><rect x="3" y="7" width="26" height="18" rx="3" fill="#5fd4a8" stroke="#24203a" stroke-width="1.8"/><g fill="#fff"><rect x="4.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="4.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="9.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="9.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="14.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="14.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="19.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="19.5" y="21.6" width="2.5" height="1.8" rx=".6"/><rect x="24.5" y="8.6" width="2.5" height="1.8" rx=".6"/><rect x="24.5" y="21.6" width="2.5" height="1.8" rx=".6"/></g><rect x="6" y="12" width="9" height="8" rx="1.5" fill="#fff" stroke="#24203a" stroke-width="1.4"/><rect x="17" y="12" width="9" height="8" rx="1.5" fill="#fff" stroke="#24203a" stroke-width="1.4"/><circle cx="9.5" cy="16.5" r="2" fill="#ff6fae"/><circle cx="22.5" cy="15" r="2" fill="#ff6fae"/></svg></span><span>Frames <small>join several drawings to make them move</small></span></h3>
+          <div class="px-frames"><div id="frames" class="px-frame-list"></div>
+            <div class="px-frame-btns"><button id="f-add" class="k-btn sm ghost" type="button">＋ New</button><button id="f-dup" class="k-btn sm ghost" type="button">⧉ Copy</button><button id="f-del" class="k-btn sm ghost" type="button">✕ Remove</button></div></div>
+        </div>
+        <div class="px-right">
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M11 4l5 5 5-5" fill="none" stroke="#24203a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="9" width="26" height="18" rx="4" fill="#9ad7ff" stroke="#24203a" stroke-width="1.8"/><rect x="6" y="12" width="20" height="12" rx="2.5" fill="#fff"/><path d="M14 15v6l5-3z" fill="#ff6fae" stroke="#24203a" stroke-width="1.4" stroke-linejoin="round"/></svg></span><span>Moving preview</span></h3><canvas id="preview" class="px-preview" width="256" height="256"></canvas>
+            <div class="k-seg" id="speed"><button type="button" data-ms="320">Slow</button><button type="button" data-ms="160" class="on">Normal</button><button type="button" data-ms="80">Fast</button></div></div>
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M5 15h22v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="#ffd27a" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 15l3-4h16l3 4z" fill="#ffe7bf" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 2.5v10M12 8.5l4 4 4-4" fill="none" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 25s-3.6-2.1-3.6-4.3a1.8 1.8 0 0 1 3.6-.6 1.8 1.8 0 0 1 3.6.6c0 2.2-3.6 4.3-3.6 4.3z" fill="#ff6fae"/></svg></span><span>Save</span></h3><button id="save-gif" class="k-btn mint full" type="button">Moving GIF</button><button id="save-png" class="k-btn ghost full" type="button">This drawing (PNG)</button><div class="k-seg px-save-bg" id="png-bg"><button type="button" data-bg="clear" class="on">See-through</button><button type="button" data-bg="white">White</button></div></div>
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><ellipse cx="11.5" cy="8" rx="3" ry="6.5" fill="#fff" stroke="#24203a" stroke-width="1.7"/><ellipse cx="20.5" cy="8" rx="3" ry="6.5" fill="#fff" stroke="#24203a" stroke-width="1.7"/><ellipse cx="11.5" cy="8.5" rx="1.3" ry="4" fill="#ffb3d1"/><ellipse cx="20.5" cy="8.5" rx="1.3" ry="4" fill="#ffb3d1"/><circle cx="16" cy="20" r="9" fill="#fff" stroke="#24203a" stroke-width="1.7" stroke-dasharray="3 2.2"/><circle cx="12.6" cy="19" r="1.3" fill="#24203a"/><circle cx="19.4" cy="19" r="1.3" fill="#24203a"/><path d="M14.5 22.4q1.5 1.2 3 0" fill="none" stroke="#24203a" stroke-width="1.4" stroke-linecap="round"/><circle cx="10.5" cy="22" r="1.4" fill="#ffb3d1"/><circle cx="21.5" cy="22" r="1.4" fill="#ffb3d1"/></svg></span><span>Trace a picture</span></h3><div class="k-seg" id="starters"><button type="button" data-starter="0">Bunny</button><button type="button" data-starter="1">Heart</button><button type="button" data-starter="2">Star</button></div></div>
+        </div>
+      </section>
+      <script>window.KIDS_TXT = {"confirmClear":"Clear this whole frame?","saved":"Saved!","rainbow":"Rainbow brush (changes color with every square)","rainbowShort":"Rainbow (changes every square)","colorNames":["Pink","Light pink","Peach","Yellow","Light yellow","Mint","Green","Sky blue","Blue","Lilac","Purple","Brown","Beige","White","Light gray","Gray","Dark gray","Black"],"undone":"↩ Undone","redone":"↪ Redone","cleared":"🧽 All cleared","nothing":"Nothing more to undo"};</script>
+    </main>
+    <footer class="k-foot"><div class="k-wrap"><p>🔒 nuricut kids has no sign-up, no ads and no chat, and never sends your photos or drawings to a server.<br />Everything happens right here on the device you are using.</p><p class="k-grown">Grown-up tools: <a class="k-x" href="/">Video editing<span class="k-xtip" role="tooltip"><b>Go to the video tools?</b><small>Compress · Shorts · GIF · Thumbnails</small></span></a> · <a class="k-x" href="/pdf/">PDF tools<span class="k-xtip" role="tooltip"><b>Go to the PDF tools?</b><small>Merge · Split · Convert</small></span></a></p><p><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms</a></p></div></footer>
+    <script type="module" src="/src/pages/kids-pixel.js"></script>
+  </body>
+</html>

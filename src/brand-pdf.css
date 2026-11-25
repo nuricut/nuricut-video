@@ -246,3 +246,22 @@ body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; b
 .kids-promo { margin-top: 10px; }
 .kp-art { flex: none; width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #fff0f7, #eaf6ff); display: flex; align-items: center; justify-content: center; }
 .kp-art img { width: 34px; height: 34px; }
+
+/* 바닥글 '다른 도구': 구분선 + 동영상/PDF 편집(토끼색) + 키즈 놀이터(키즈 무지개) + 말풍선 */
+.foot-other { display: inline-flex; align-items: center; gap: 16px; white-space: nowrap; }
+.foot-sep { width: 1px; height: 14px; background: #3a3a44; flex: none; }
+.footer-links a.foot-x { position: relative; font-weight: 700; color: transparent; background: var(--rainbow); -webkit-background-clip: text; background-clip: text; transition: filter .15s; outline: none; }
+.footer-links a.foot-x.kids { background-image: linear-gradient(90deg, #ff6fae, #ffb38a 35%, #ffd27a 55%, #5fd4a8 75%, #6cc4ff 88%, #b99bff); }
+.footer-links a.foot-x:hover, .footer-links a.foot-x:focus-visible { color: transparent; filter: brightness(1.2); }
+.foot-tip {
+  position: absolute; bottom: calc(100% + 12px); left: 50%; transform: translate(-50%, 4px); z-index: 30;
+  opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s;
+  background: #1f1f27; border: 1px solid #383844; border-radius: 10px; padding: 9px 13px;
+  color: var(--text); -webkit-text-fill-color: var(--text); font-size: .8rem; font-weight: 600; line-height: 1.45;
+  white-space: nowrap; text-align: left; box-shadow: 0 10px 26px rgba(0, 0, 0, .55);
+}
+.foot-tip::after { content: ""; position: absolute; bottom: -6px; left: 50%; width: 10px; height: 10px; background: #1f1f27; border-right: 1px solid #383844; border-bottom: 1px solid #383844; transform: translateX(-50%) rotate(45deg); }
+.foot-tip b { display: block; color: var(--pink); -webkit-text-fill-color: var(--pink); font-weight: 800; }
+.foot-tip small { display: block; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; font-size: .74rem; }
+.foot-x:hover .foot-tip, .foot-x:focus-visible .foot-tip { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: none) { .foot-tip { display: none; } }

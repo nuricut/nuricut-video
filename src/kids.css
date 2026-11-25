@@ -27,7 +27,6 @@ button { font: inherit; color: inherit; }
 
 /* 버튼·카드 */
 .k-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; text-decoration: none; border-radius: 16px; padding: 13px 22px; font-weight: 900; font-size: 1.02rem; color: #fff; background: var(--pink); box-shadow: 0 5px 0 #d94e8f; transition: transform .08s, box-shadow .08s; }
-.k-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #d94e8f; }
 .k-btn.sky { background: var(--sky); box-shadow: 0 5px 0 #2f8fd0; } .k-btn.mint { background: var(--mint); box-shadow: 0 5px 0 #28a072; }
 .k-btn.ghost { background: #fff; color: var(--ink); box-shadow: 0 4px 0 #e2d8e6; border: 2px solid #e2d8e6; }
 .k-btn.sm { padding: 9px 14px; font-size: .9rem; border-radius: 12px; }
@@ -226,3 +225,39 @@ button { font: inherit; color: inherit; }
 
 /* 바닥: 어른용 도구 (작게) */
 .k-grown { font-size: .8rem; }
+
+/* 꺼진 버튼(아직 누를 수 없음)은 눌러도 움직이지 않음 */
+.k-btn:disabled, .k-btn:disabled:active, .k-btn.k-down:disabled { transform: none !important; box-shadow: 0 var(--d) 0 var(--sc) !important; }
+
+/* 색 이름 말풍선 */
+.px-pal button { position: relative; }
+@media (hover: hover) {
+  .px-pal button[data-name]:hover::after { content: attr(data-name); position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff;
+    font-size: .74rem; font-weight: 800; padding: 4px 9px; border-radius: 8px; white-space: nowrap; z-index: 6; pointer-events: none; }
+  .px-pal button[data-name]:hover::before { content: ''; position: absolute; bottom: calc(100% + 4px); left: 50%; margin-left: -5px; border: 5px solid transparent; border-top-color: var(--ink); border-bottom: 0; z-index: 6; }
+}
+
+/* 체크 상자: 끌 때 '팡!' 터지며 사라짐 */
+.k-check { position: relative; }
+.k-check input { appearance: none; -webkit-appearance: none; width: 22px; height: 22px; margin: 0; border-radius: 7px; border: 2.5px solid #e2d8e6; background: #fff no-repeat center / 14px; cursor: pointer; transition: background-color .15s, border-color .15s; flex: none; }
+.k-check input:checked { background-color: var(--pink); border-color: var(--pink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.k-check input.k-pang { animation: k-pang-box .45s ease; }
+@keyframes k-pang-box { 0% { transform: scale(1); } 25% { transform: scale(1.4) rotate(-8deg); } 55% { transform: scale(.82); } 100% { transform: scale(1); } }
+.k-pang-burst { position: absolute; width: 0; height: 0; pointer-events: none; }
+.k-pang-burst::before { content: ''; position: absolute; left: -12px; top: -12px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid var(--pink); animation: k-pang-ring .45s ease-out forwards; }
+.k-pang-burst i { position: absolute; left: -3.5px; top: -3.5px; width: 7px; height: 7px; border-radius: 50%; background: var(--bc); transform: rotate(var(--a)) translateX(6px); animation: k-pang-dot .5s ease-out forwards; }
+@keyframes k-pang-ring { from { transform: scale(.6); opacity: 1; } to { transform: scale(2); opacity: 0; } }
+@keyframes k-pang-dot { to { transform: rotate(var(--a)) translateX(26px) scale(.3); opacity: 0; } }
+
+/* 바닥 '어른용 도구': 동영상·PDF 글자색(토끼색 그라데이션) + 말풍선 */
+.k-x { position: relative; font-weight: 800; text-decoration: none; color: transparent; background: linear-gradient(90deg, #ff6fae, #ffb38a 50%, #c77dff); -webkit-background-clip: text; background-clip: text; }
+.k-foot a.k-x { color: transparent; }
+.k-x:hover { filter: brightness(1.1) saturate(1.2); }
+.k-xtip { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translate(-50%, 4px); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 30;
+  background: var(--ink); border-radius: 10px; padding: 8px 12px; white-space: nowrap; text-align: left; line-height: 1.45; color: #fff; -webkit-text-fill-color: #fff; font-weight: 700; font-size: .8rem; }
+.k-xtip::after { content: ''; position: absolute; bottom: -5px; left: 50%; margin-left: -5px; border: 5px solid transparent; border-top-color: var(--ink); border-bottom: 0; }
+.k-xtip b { display: block; color: #ffb3d6; -webkit-text-fill-color: #ffb3d6; }
+.k-xtip small { display: block; color: #cfcadb; -webkit-text-fill-color: #cfcadb; font-weight: 600; font-size: .72rem; }
+.k-x:hover .k-xtip, .k-x:focus-visible .k-xtip { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: none) { .k-xtip { display: none; } }

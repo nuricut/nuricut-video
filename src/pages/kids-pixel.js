@@ -20,18 +20,18 @@ let speed = 160;
 // 무지개 붓: 칸을 하나 칠할 때마다 다음 무지개 색으로
 const RAINBOW = ['#ff4f8b', '#ffb02e', '#ffe14d', '#3fc794', '#4fb3f6', '#2f6fe0', '#7d4fd6'];
 let rainbow = false, rbIdx = 0;
+let eraseSame = null; // 같은 색 칸을 다시 눌러 시작한 붓질이면 그 색 칸만 지움
 let stroke = null; // 이번 붓질에서 칠한 칸 (무지개 붓이 같은 칸을 계속 바꾸지 않게)
 function paintColor() {
   if (tool === 'eraser') return null;
   if (!rainbow) return color;
-  const c = RAINBOW[rbIdx++ % RAINBOW.length];
-  document.documentElement.style.setProperty('--c', c); // 아이콘 색도 따라 바뀜
-  return c;
+  return RAINBOW[rbIdx++ % RAINBOW.length];
 }
 function paint(x, y) {
   if (x < 0 || y < 0 || x >= N || y >= N) return;
   const k = y * N + x;
   if (stroke) { if (stroke.has(k)) return; stroke.add(k); }
+  if (eraseSame) { if (frames[cur][k] === eraseSame) setCell(x, y, null); return; }
   setCell(x, y, paintColor());
 }
 
@@ -99,6 +99,8 @@ board.addEventListener('pointerdown', (e) => {
   const [x, y] = cellAt(e);
   if (tool === 'fill') { if (x >= 0 && y >= 0 && x < N && y < N) floodFill(x, y, paintColor()); changed(); return; }
   stroke = new Set();
+  const inside = x >= 0 && y >= 0 && x < N && y < N;
+  eraseSame = tool === 'pencil' && !rainbow && inside && frames[cur][y * N + x] === color ? color : null;
   paint(x, y);
   drawing = [x, y];
   changed(false);
@@ -120,7 +122,7 @@ board.addEventListener('pointermove', (e) => {
   drawing = [x1, y1];
   changed(false);
 });
-const stopDraw = () => { if (drawing) { drawing = null; stroke = null; changed(); } };
+const stopDraw = () => { if (drawing) { drawing = null; stroke = null; eraseSame = null; changed(); } };
 board.addEventListener('pointerup', stopDraw);
 board.addEventListener('pointercancel', stopDraw);
 
@@ -135,13 +137,13 @@ function changed(full = true) {
 function setColor(c) {
   rainbow = c === 'rainbow';
   if (!rainbow) color = c;
-  document.documentElement.style.setProperty('--c', rainbow ? RAINBOW[rbIdx % RAINBOW.length] : c); // 연필 자국·물감 색이 같이 바뀜
+  document.documentElement.style.setProperty('--c', rainbow ? 'url(#kid-rb)' : c); // 연필 자국·물감 색이 같이 바뀜
   $('palette').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.c === c));
   if (!rainbow) $('my-color').value = c;
   if (tool === 'eraser') setTool('pencil');
 }
-$('palette').innerHTML = `<button type="button" data-c="rainbow" class="rainbow" title="${TXT.rainbow || ''}" aria-label="${TXT.rainbow || 'rainbow'}"></button>` + COLORS.map((c) => `<button type="button" data-c="${c}" style="background:${c}" aria-label="${c}"></button>`).join('');
-$('palette').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setColor(b.dataset.c); });
+$('palette').innerHTML = `<button type="button" data-c="rainbow" class="rainbow" data-name="${TXT.rainbowShort || ''}" aria-label="${TXT.rainbow || 'rainbow'}"></button>` + COLORS.map((c, i) => { const n = TXT.colorNames?.[i] || c; return `<button type="button" data-c="${c}" data-name="${n}" style="background:${c}" aria-label="${n}"></button>`; }).join('');
+$('palette').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; setColor(b.dataset.c); if (matchMedia('(hover: none)').matches && b.dataset.name) toast(b.dataset.name); }); // 터치 기기는 색 이름을 잠깐 알려줌
 $('my-color').addEventListener('input', (e) => setColor(e.target.value));
 
 /* ---------- 도구 ---------- */

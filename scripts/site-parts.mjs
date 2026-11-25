@@ -39,8 +39,22 @@ export function brandHtml(lang, mode) {
   return `<div class="brand"><a class="brand-home" href="${home}" aria-label="nuricut.video ${t.home}"><img src="/logo.svg" alt="" width="30" height="30" />nuricut.<span class="brand-tip" role="tooltip">${t[mode + 'Home']}</span></a>${seg('video', 'video')}${seg('pdf', 'PDF')}</div>`;
 }
 
-// nuricut kids가 번역된 언어 (아직은 한국어만. 번역되면 여기에 추가 → 사이트 바닥글·안내에 키즈 링크가 생김)
-export const KIDS_READY = ['ko'];
-export const KIDS_LABEL = { en: 'Kids playground', ko: '키즈 놀이터', zh: '儿童乐园', ja: 'キッズ広場' };
-export const kidsHome = (lang) => (lang === 'en' ? '/kids/' : `/${lang}/kids/`);
-export const kidsFooterLink = (lang) => (KIDS_READY.includes(lang) ? `\n          <a href="${kidsHome(lang)}">${KIDS_LABEL[lang]}</a>` : '');
+// nuricut kids (4개 언어 모두 있음)
+export const KIDS_READY = ["en", "ko", "zh", "ja"];
+export const kidsHome = (lang) => (lang === "en" ? "/kids/" : `/${lang}/kids/`);
+
+// 바닥글 "다른 도구" 묶음: 구분선 + 동영상 편집/PDF 편집 + 키즈 놀이터 (각자 고유 그라데이션 + 말풍선)
+const XL = {
+  en: { video: ["Video editing", "Go to the video tools?", "Compress · Shorts · GIF · Thumbnails"], pdf: ["PDF editing", "Go to the PDF tools?", "Merge · Split · Organize · Convert"], kids: ["Kids playground", "Go to the kids playground?", "Stop motion · Pixel art for kids"], label: "Other tools" },
+  ko: { video: ["동영상 편집", "동영상 편집으로 넘어갈까요?", "압축 · 쇼츠 · GIF · 썸네일"], pdf: ["PDF 편집", "PDF 편집으로 넘어갈까요?", "합치기 · 나누기 · 페이지 정리 · 변환"], kids: ["키즈 놀이터", "키즈 놀이터로 넘어갈까요?", "아이들을 위한 스톱모션 · 픽셀아트"], label: "다른 도구" },
+  zh: { video: ["视频编辑", "要前往视频编辑吗？", "压缩 · 竖屏视频 · GIF · 封面"], pdf: ["PDF 编辑", "要前往 PDF 编辑吗？", "合并 · 拆分 · 整理页面 · 转换"], kids: ["儿童乐园", "要前往儿童乐园吗？", "给孩子的定格动画 · 像素画"], label: "其他工具" },
+  ja: { video: ["動画編集", "動画編集に移動しますか？", "圧縮 · ショート · GIF · サムネイル"], pdf: ["PDF編集", "PDF編集に移動しますか？", "結合 · 分割 · ページ整理 · 変換"], kids: ["キッズ広場", "キッズ広場に移動しますか？", "子ども向けコマ撮り · ドット絵"], label: "ほかのツール" },
+};
+/** mode = "video"(동영상 페이지) | "pdf"(PDF 페이지): 지금 보는 쪽을 뺀 나머지 두 곳 */
+export function footerXLinks(lang, mode) {
+  const t = XL[lang];
+  const link = (k, href) => `<a class="foot-x ${k}" href="${href}">${t[k][0]}<span class="foot-tip" role="tooltip"><b>${t[k][1]}</b><small>${t[k][2]}</small></span></a>`;
+  const items = mode === "pdf" ? [link("video", HOME[lang])] : [link("pdf", pdfHome(lang))];
+  items.push(link("kids", kidsHome(lang)));
+  return `<!-- x-links --><span class="foot-other" aria-label="${t.label}"><span class="foot-sep" aria-hidden="true"></span>${items.join("")}</span><!-- /x-links -->`;
+}

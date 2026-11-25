@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fff8f3" />
+    <link rel="stylesheet" href="/src/kids.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>制作定格动画 - 把照片连成视频 | nuricut kids</title>
+    <meta name="description" content="用相机一张一张拍照制作定格动画，并保存为 GIF 或视频。照片不会上传到服务器。免费，无需注册。" />
+    <link rel="canonical" href="https://nuricut.video/zh/kids/stopmotion.html" />
+    <link rel="alternate" hreflang="ko" href="https://nuricut.video/ko/kids/stopmotion.html" />
+    <link rel="alternate" hreflang="en" href="https://nuricut.video/kids/stopmotion.html" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://nuricut.video/zh/kids/stopmotion.html" />
+    <link rel="alternate" hreflang="ja" href="https://nuricut.video/ja/kids/stopmotion.html" />
+    <link rel="alternate" hreflang="x-default" href="https://nuricut.video/kids/stopmotion.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="制作定格动画 - 把照片连成视频 | nuricut kids" />
+    <meta property="og:description" content="用相机一张一张拍照制作定格动画，并保存为 GIF 或视频。照片不会上传到服务器。免费，无需注册。" />
+  </head>
+  <body data-kid="stopmotion">
+    <header class="k-head">
+      <div class="k-wrap k-head-in">
+        <a class="k-logo" href="/zh/kids/"><img src="/logo.svg" alt="" width="34" height="34" /><span class="k-word">nuricut<span class="k-dot">.</span><span class="k-kids">kids</span></span></a>
+        <nav class="k-nav"><a href="/zh/kids/">首页</a><a href="/zh/kids/stopmotion.html" class="on" aria-current="page">定格动画</a><a href="/zh/kids/pixel.html">像素画</a></nav>
+        <span class="k-safe">🔒 照片和画只保存在你的设备上</span>
+      </div>
+    </header>
+    <main class="k-wrap">
+      <section class="k-title"><h1>📸 定格动画</h1><p>把东西一点点移动着拍下来，照片连在一起就变成会动的视频</p></section>
+      <section class="sm-app">
+        <div class="sm-main">
+          <div id="viewport" class="sm-view">
+            <video id="cam" playsinline muted></video>
+            <canvas id="onion-layer" class="sm-onion"></canvas>
+            <canvas id="player" class="sm-player" hidden></canvas>
+            <div id="start-box" class="sm-start">
+              <button id="cam-on" class="k-btn" type="button">📷 打开相机</button>
+              <p>打开相机后，照片也只保存在这台设备上。</p>
+              <p class="sm-or">没有相机？ <label class="k-btn sm ghost">🖼️ 用照片文件制作<input id="photos" type="file" accept="image/*" multiple hidden /></label></p>
+            </div>
+            <span id="count" class="sm-count" hidden></span>
+            <button id="cam-switch" class="sm-switch" type="button" hidden>🔄 切换相机</button>
+            <div id="flash" class="sm-flash"></div>
+          </div>
+          <div class="sm-shoot-row"><button id="shoot" class="sm-shutter" type="button" aria-label="咔嚓！（拍照）" disabled></button><span class="sm-shoot-txt"><b>咔嚓！（拍照）</b><small>按空格键也能拍</small></span>
+            <label class="k-check"><input id="onion" type="checkbox" checked /> 👻 叠加上一张照片</label></div>
+          <div class="k-card sm-strip-box"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><g transform="rotate(-10 12 16)"><rect x="4" y="7" width="15" height="17" rx="2" fill="#fff" stroke="#24203a" stroke-width="1.6"/><rect x="6" y="9" width="11" height="9" fill="#ffd27a"/></g><g transform="rotate(8 20 16)"><rect x="12" y="8" width="16" height="18" rx="2" fill="#fff" stroke="#24203a" stroke-width="1.7"/><rect x="14" y="10" width="12" height="10" fill="#9ad7ff"/><circle cx="21.5" cy="13.5" r="2" fill="#ff6fae"/><path d="M14 20l4-4 3 2.5 5-3.5V20z" fill="#5fd4a8"/></g></svg></span><span>拍好的照片</span></h3><div id="strip" class="sm-strip"></div><button id="del-frame" class="k-btn sm ghost" type="button" disabled>删除选中的照片</button></div>
+        </div>
+        <div class="sm-side">
+          <div class="k-card"><button id="play" class="k-btn full" type="button" disabled>▶ 播放</button><button id="back-cam" class="k-btn ghost full" type="button" hidden>📷 继续拍</button></div>
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M2.5 13h5M1.5 18h6M3.5 23h4" stroke="#b99bff" stroke-width="2" stroke-linecap="round"/><rect x="16" y="2.5" width="6" height="3" rx="1" fill="#24203a"/><circle cx="19" cy="18" r="11" fill="#fff" stroke="#24203a" stroke-width="1.8"/><circle cx="19" cy="18" r="8" fill="#fff7d6"/><path d="M19 18v-6M19 18l4 3" stroke="#ff6fae" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="18" r="1.4" fill="#24203a"/></svg></span><span>速度</span></h3><div class="k-seg" id="speed"><button type="button" data-fps="4">慢</button><button type="button" data-fps="8" class="on">普通</button><button type="button" data-fps="12">快</button></div></div>
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M5 27L18.5 13.5" stroke="#24203a" stroke-width="4.4" stroke-linecap="round"/><path d="M5 27L18.5 13.5" stroke="#b99bff" stroke-width="2.2" stroke-linecap="round"/><path d="M21 3.5l1.6 3.6 3.9.4-2.9 2.6.8 3.9-3.4-2-3.4 2 .8-3.9-2.9-2.6 3.9-.4z" fill="#ffd23f" stroke="#24203a" stroke-width="1.5" stroke-linejoin="round"/><path d="M27 16l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7zM9 6l.6 1.4 1.4.6-1.4.6L9 10l-.6-1.4L7 8l1.4-.6z" fill="#ff6fae"/></svg></span><span>效果</span></h3><div class="k-seg" id="effect"><button type="button" data-fx="none" class="on">无</button><button type="button" data-fx="gray">黑白</button><button type="button" data-fx="old">老电影</button></div></div>
+          <div class="k-card"><h3 class="k-h"><span class="kh"><svg viewBox="0 0 32 32"><path d="M5 15h22v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="#ffd27a" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 15l3-4h16l3 4z" fill="#ffe7bf" stroke="#24203a" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 2.5v10M12 8.5l4 4 4-4" fill="none" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 25s-3.6-2.1-3.6-4.3a1.8 1.8 0 0 1 3.6-.6 1.8 1.8 0 0 1 3.6.6c0 2.2-3.6 4.3-3.6 4.3z" fill="#ff6fae"/></svg></span><span>保存</span></h3><button id="save-gif" class="k-btn mint full" type="button" disabled>保存为 GIF</button><button id="save-mp4" class="k-btn ghost full" type="button" disabled>保存为视频 (MP4)</button>
+            <div id="progress" class="k-progress" hidden><div class="k-bar"><i id="bar"></i></div><span id="progress-txt"></span></div></div>
+        </div>
+      </section>
+      <script>window.KIDS_TXT = {"engine":"第一次需要下载制作程序（约 10MB）…","making":"制作中… {p}%","needFrames":"请至少拍 2 张照片。","camFail":"无法打开相机。请确认是否允许使用相机，或者试试用照片文件制作。","count":"{n} 张照片","saved":"保存好了！","play":"▶ 播放","stop":"■ 停止"};</script>
+    </main>
+    <footer class="k-foot"><div class="k-wrap"><p>🔒 nuricut kids 无需注册、没有广告、没有聊天，也不会把照片和画上传到服务器。<br />所有操作都只在你正在使用的设备上完成。</p><p class="k-grown">大人的工具: <a class="k-x" href="/zh/">视频编辑<span class="k-xtip" role="tooltip"><b>要前往视频工具吗？</b><small>压缩 · 竖屏视频 · GIF · 封面</small></span></a> · <a class="k-x" href="/zh/pdf/">PDF 转换<span class="k-xtip" role="tooltip"><b>要前往 PDF 工具吗？</b><small>合并 · 拆分 · 转换</small></span></a></p><p><a href="/zh/privacy.html">隐私政策</a> · <a href="/zh/terms.html">使用条款</a></p></div></footer>
+    <script type="module" src="/src/pages/kids-stopmotion.js"></script>
+  </body>
+</html>
