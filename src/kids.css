@@ -308,3 +308,7 @@ html[lang^="zh"] body, html[lang="ja"] body { word-break: normal; line-break: st
 .k-btn.soon-btn { background: #ece6f3; color: #8a829c; --sc: #ddd4e8; box-shadow: 0 4px 0 #ddd4e8; cursor: default; }
 .k-btn.soon-btn:active, .k-btn.soon-btn.k-down { transform: none !important; box-shadow: 0 4px 0 #ddd4e8 !important; }
 @media (max-width: 760px) { .k-tools { grid-template-columns: minmax(0, 1fr); } }
+
+/* 첫 화면 카드 그림(SVG) */
+.k-art svg { width: 64px; height: 64px; display: block; }
+@media (max-width: 760px) { .k-art svg { width: 58px; height: 58px; } }
