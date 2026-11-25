@@ -18,7 +18,7 @@
   <body data-kid="pixel">
     <header class="k-head">
       <div class="k-wrap k-head-in">
-        <a class="k-logo" href="/ko/kids/"><img src="/logo.svg" alt="" width="34" height="34" />nuricut <span class="k-kids">kids</span></a>
+        <a class="k-logo" href="/ko/kids/"><img src="/logo.svg" alt="" width="34" height="34" /><span class="k-word">nuricut<span class="k-dot">.</span><span class="k-kids">kids</span></span></a>
         <nav class="k-nav"><a href="/ko/kids/">홈</a><a href="/ko/kids/stopmotion.html">스톱모션</a><a href="/ko/kids/pixel.html" class="on" aria-current="page">픽셀아트</a></nav>
         <span class="k-safe">🔒 사진·그림은 내 기기에만</span>
       </div>
@@ -29,7 +29,7 @@
         <div class="k-card px-left">
           <h3>🎨 색 고르기</h3>
           <div id="palette" class="px-pal"></div>
-          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /> 내 색 만들기</label>
+          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /> 원하는 색 만들기</label>
           <h3>🛠️ 도구</h3>
           <div class="px-tools">
             <button id="t-pencil" class="k-tool-btn" type="button" data-tool="pencil" aria-pressed="true"><svg viewBox="0 0 48 48" class="ki"><path d="M5 41c4-1 6-6 10-5s3 5 8 3 5-7 9-6" fill="none" stroke="var(--c)" stroke-width="3.2" stroke-linecap="round"/>
@@ -56,11 +56,11 @@
         <div class="px-right">
           <div class="k-card"><h3>👀 움직이는 모습</h3><canvas id="preview" class="px-preview" width="256" height="256"></canvas>
             <div class="k-seg" id="speed"><button type="button" data-ms="320">느리게</button><button type="button" data-ms="160" class="on">보통</button><button type="button" data-ms="80">빠르게</button></div></div>
-          <div class="k-card"><h3>💾 저장하기</h3><button id="save-gif" class="k-btn mint full" type="button">움직이는 GIF</button><button id="save-png" class="k-btn ghost full" type="button">지금 그림 (PNG)</button></div>
+          <div class="k-card"><h3>💾 저장하기</h3><button id="save-gif" class="k-btn mint full" type="button">움직이는 GIF</button><button id="save-png" class="k-btn ghost full" type="button">지금 그림 (PNG)</button><div class="k-seg px-save-bg" id="png-bg"><button type="button" data-bg="clear" class="on">투명 배경</button><button type="button" data-bg="white">흰 배경</button></div></div>
           <div class="k-card"><h3>🐰 따라 그리기</h3><div class="k-seg" id="starters"><button type="button" data-starter="0">토끼</button><button type="button" data-starter="1">하트</button><button type="button" data-starter="2">별</button></div></div>
         </div>
       </section>
-      <script>window.KIDS_TXT = {"confirmClear":"지금 그림 칸을 모두 지울까요?","saved":"저장했어요!"};</script>
+      <script>window.KIDS_TXT = {"confirmClear":"지금 그림 칸을 모두 지울까요?","saved":"저장했어요!","rainbow":"무지개 붓 (칠할 때마다 색이 바뀌어요)","undone":"↩ 한 번 되돌렸어요","redone":"↪ 다시 했어요","cleared":"🧽 모두 지웠어요","nothing":"더 되돌릴 게 없어요"};</script>
     </main>
     <footer class="k-foot"><div class="k-wrap"><p>🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.</p><p><a href="/ko/">← nuricut으로</a> · <a href="/ko/privacy.html">개인정보처리방침</a> · <a href="/ko/terms.html">이용약관</a></p></div></footer>
     <script type="module" src="/src/pages/kids-pixel.js"></script>

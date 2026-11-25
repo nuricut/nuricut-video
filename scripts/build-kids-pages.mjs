@@ -21,6 +21,14 @@ export const KID_ICONS = {
   mirror: `<svg viewBox="0 0 48 48" class="ki"><path d="M24 5v38" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 3"/><path d="M20 12a10 12 0 0 0 0 24z" fill="var(--c)" stroke="#24203a" stroke-width="2.2"/><path d="M28 12a10 12 0 0 1 0 24z" fill="#fff" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 2"/></svg>`,
   undo: `<svg viewBox="0 0 48 48" class="ki"><path d="M18 12L8 21l10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21h18a11 11 0 0 1 0 22h-6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg>`,
   redo: `<svg viewBox="0 0 48 48" class="ki"><path d="M30 12l10 9-10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 21H21a11 11 0 0 0 0 22h6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg>`,
+  // 만드는 법 4단계
+  s1: `<svg viewBox="0 0 48 48"><rect x="4" y="14" width="22" height="18" rx="4" fill="#9ad7ff" stroke="#24203a" stroke-width="2"/><circle cx="15" cy="23" r="5" fill="#fff" stroke="#24203a" stroke-width="2"/><rect x="9" y="11" width="7" height="4" rx="1.5" fill="#24203a"/>
+    <g transform="translate(22 18)"><rect width="22" height="22" rx="4" fill="#fff" stroke="#24203a" stroke-width="2"/><rect x="4" y="4" width="5" height="5" fill="#ff6fae"/><rect x="9" y="4" width="5" height="5" fill="#ffd27a"/><rect x="4" y="9" width="5" height="5" fill="#5fd4a8"/><rect x="9" y="9" width="5" height="5" fill="#ff6fae"/><rect x="14" y="9" width="4" height="5" fill="#b99bff"/><rect x="9" y="14" width="5" height="4" fill="#6cc4ff"/></g></svg>`,
+  s2: `<svg viewBox="0 0 48 48"><rect x="5" y="8" width="30" height="34" rx="4" fill="#fff" stroke="#24203a" stroke-width="2"/><path d="M10 32c4-6 7-6 9-1s5 4 8-3" fill="none" stroke="#ff6fae" stroke-width="3" stroke-linecap="round"/><path d="M10 16h16M10 22h10" stroke="#e2d8e6" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="rotate(40 36 22)"><rect x="32" y="6" width="8" height="22" rx="2" fill="#ffd27a" stroke="#24203a" stroke-width="2"/><path d="M32 28l4 7 4-7z" fill="#f6dcc0" stroke="#24203a" stroke-width="2" stroke-linejoin="round"/></g></svg>`,
+  s3: `<svg viewBox="0 0 48 48"><rect x="4" y="9" width="40" height="30" rx="6" fill="#5fd4a8" stroke="#24203a" stroke-width="2"/><g fill="#fff">${[0,1,2,3,4].map(i=>`<rect x="${8+i*7.5}" y="12" width="4" height="3" rx="1"/><rect x="${8+i*7.5}" y="33" width="4" height="3" rx="1"/>`).join("")}</g><path d="M20 18v12l10-6z" fill="#fff" stroke="#24203a" stroke-width="2" stroke-linejoin="round"/></svg>`,
+  s4: `<svg viewBox="0 0 48 48"><path d="M8 30v8a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3v-8" fill="none" stroke="#24203a" stroke-width="2.6" stroke-linecap="round"/><path d="M24 6v22M15 19l9 9 9-9" fill="none" stroke="#ff6fae" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 6l1.4 3 3 1.4-3 1.4L38 15l-1.4-3.2-3-1.4 3-1.4z" fill="#ffd27a" stroke="#24203a" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
   trash: `<svg viewBox="0 0 48 48" class="ki"><path d="M10 14h28M19 14V9h10v5M13 14l2 27h18l2-27" fill="none" stroke="#24203a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21v13M27 21v13" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round"/></svg>`,
 };
 
@@ -35,7 +43,7 @@ const T = {
       desc: '초등·중학생을 위한 무료 만들기 놀이터. 사진을 이어 스톱모션 애니메이션을 만들고, 픽셀아트 캐릭터를 그려 움직이는 GIF로 저장해요. 가입·광고 없음.',
       h1: ['내가 만든 그림이', '움직이기 시작해요!'],
       sub: '찰칵찰칵 사진을 이어 붙이거나, 네모 칸을 칠해서 나만의 움직이는 작품을 만들어 보세요.',
-      start: '🎨 바로 만들기',
+      starts: [['stopmotion.html', '📸 스톱모션 만들기', 'sky'], ['pixel.html', '👾 픽셀아트 그리기', 'mint']],
       cards: [
         ['stopmotion.html', '📸', '스톱모션 애니메이션', '레고·클레이를 조금씩 움직이며 찍으면 영상이 돼요', ['카메라', 'GIF·영상 저장'], 'sky'],
         ['pixel.html', '👾', '픽셀아트 공방', '네모 칸을 칠해서 캐릭터를 그리고 움직여요', ['마우스·손가락', '움직이는 그림 저장'], 'mint'],
@@ -49,7 +57,7 @@ const T = {
       title: '픽셀아트 공방 - 움직이는 도트 그림 만들기 | nuricut kids',
       desc: '네모 칸을 칠해서 픽셀아트 캐릭터를 그리고, 여러 장을 이어 움직이는 GIF로 저장해요. 무료, 가입 없음.',
       h1: '👾 픽셀아트 공방', sub: '네모 칸을 칠해서 나만의 캐릭터를 그리고 움직여 보세요',
-      colors: '🎨 색 고르기', myColor: '내 색 만들기',
+      colors: '🎨 색 고르기', myColor: '원하는 색 만들기', rainbow: '무지개 붓 (칠할 때마다 색이 바뀌어요)', pngBg: ['투명 배경', '흰 배경'],
       tools: '🛠️ 도구',
       pencil: ['연필', '한 칸씩 칠해요'], eraser: ['지우개', '칸을 지워요'], fill: ['채우기', '같은 색 칸을 한 번에'],
       mirror: ['좌우 대칭', '반만 그려도 양쪽에'], undo: ['되돌리기', ''], redo: ['다시하기', ''], clear: ['모두 지우기', ''],
@@ -60,6 +68,7 @@ const T = {
       starters: '🐰 따라 그리기', starterNames: ['토끼', '하트', '별'],
       confirmClear: '지금 그림 칸을 모두 지울까요?',
       saved: '저장했어요!',
+      undone: '↩ 한 번 되돌렸어요', redone: '↪ 다시 했어요', cleared: '🧽 모두 지웠어요', nothing: '더 되돌릴 게 없어요',
     },
     stop: {
       title: '스톱모션 애니메이션 만들기 - 사진을 이어서 영상으로 | nuricut kids',
@@ -90,7 +99,7 @@ function build(lang) {
   const pages = [['index.html', 0], ['stopmotion.html', 1], ['pixel.html', 2]];
   const header = (active) => `<header class="k-head">
       <div class="k-wrap k-head-in">
-        <a class="k-logo" href="${t.home}"><img src="/logo.svg" alt="" width="34" height="34" />nuricut <span class="k-kids">kids</span></a>
+        <a class="k-logo" href="${t.home}"><img src="/logo.svg" alt="" width="34" height="34" /><span class="k-word">nuricut<span class="k-dot">.</span><span class="k-kids">kids</span></span></a>
         <nav class="k-nav">${pages.map(([f, i]) => `<a href="${t.home}${f === 'index.html' ? '' : f}"${i === active ? ' class="on" aria-current="page"' : ''}>${t.nav[i]}</a>`).join('')}</nav>
         <span class="k-safe">${t.safe}</span>
       </div>
@@ -125,22 +134,22 @@ ${body}
 </html>
 `);
   };
-  const I = KID_ICONS;
 
   /* ----- 첫 화면 ----- */
   const h = t.hub;
+  const I = KID_ICONS;
   page('index.html', 0, h, `      <section class="k-hero">
         <div>
           <h1>${h.h1[0]}<br /><span class="k-rainbow">${h.h1[1]}</span></h1>
           <p>${h.sub}</p>
-          <a class="k-btn" href="#tools">${h.start}</a>
+          <div class="k-hero-btns">${h.starts.map(([f, l, c]) => `<a class="k-btn ${c}" href="${f}">${l}</a>`).join('')}</div>
         </div>
         <div class="k-mascot"><img src="/logo.svg" alt="" /><span style="left:16%;top:18%">✨</span><span style="right:14%;top:22%">🎨</span><span style="right:22%;bottom:14%">📸</span></div>
       </section>
       <section id="tools" class="k-tools">
         ${h.cards.map(([f, emo, name, d, tags, color]) => `<a class="k-card k-tool" href="${f}"><span class="k-art ${color}">${emo}</span><span><b>${name}</b><span class="k-d">${d}</span><span class="k-tags">${tags.map((x) => `<i>${x}</i>`).join('')}</span><span class="k-btn sm ${color}">${h.go}</span></span></a>`).join('\n        ')}
       </section>
-      <section class="k-how"><h2>${h.how}</h2><ol>${h.steps.map(([n, a, b]) => `<li><span class="k-num">${n}</span><b>${a}</b><span>${b}</span></li>`).join('')}</ol></section>
+      <section class="k-how"><h2>${h.how}</h2><ol>${h.steps.map(([n, a, b]) => `<li><span class="ks">${I['s' + n]}</span><b><em>${n}</em>${a}</b><span>${b}</span></li>`).join('')}</ol></section>
       <div class="k-trust">${h.trust.map((x) => `<span>${x}</span>`).join('')}</div>`, 'kids-hub.js');
 
   /* ----- 픽셀아트 ----- */
@@ -172,11 +181,11 @@ ${body}
         <div class="px-right">
           <div class="k-card"><h3>${p.preview}</h3><canvas id="preview" class="px-preview" width="256" height="256"></canvas>
             <div class="k-seg" id="speed">${p.speed.map((s, i) => `<button type="button" data-ms="${[320, 160, 80][i]}"${i === 1 ? ' class="on"' : ''}>${s}</button>`).join('')}</div></div>
-          <div class="k-card"><h3>${p.save}</h3><button id="save-gif" class="k-btn mint full" type="button">${p.saveGif}</button><button id="save-png" class="k-btn ghost full" type="button">${p.savePng}</button></div>
+          <div class="k-card"><h3>${p.save}</h3><button id="save-gif" class="k-btn mint full" type="button">${p.saveGif}</button><button id="save-png" class="k-btn ghost full" type="button">${p.savePng}</button><div class="k-seg px-save-bg" id="png-bg"><button type="button" data-bg="clear" class="on">${p.pngBg[0]}</button><button type="button" data-bg="white">${p.pngBg[1]}</button></div></div>
           <div class="k-card"><h3>${p.starters}</h3><div class="k-seg" id="starters">${p.starterNames.map((n, i) => `<button type="button" data-starter="${i}">${n}</button>`).join('')}</div></div>
         </div>
       </section>
-      <script>window.KIDS_TXT = ${JSON.stringify({ confirmClear: p.confirmClear, saved: p.saved })};</script>`, 'kids-pixel.js');
+      <script>window.KIDS_TXT = ${JSON.stringify({ confirmClear: p.confirmClear, saved: p.saved, rainbow: p.rainbow, undone: p.undone, redone: p.redone, cleared: p.cleared, nothing: p.nothing })};</script>`, 'kids-pixel.js');
 
   /* ----- 스톱모션 ----- */
   const s = t.stop;

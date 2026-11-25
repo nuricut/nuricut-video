@@ -16,6 +16,23 @@ let tool = 'pencil';
 let mirror = false;
 let undo = [], redo = [];
 let speed = 160;
+// 무지개 붓: 칸을 하나 칠할 때마다 다음 무지개 색으로
+const RAINBOW = ['#ff4f8b', '#ffb02e', '#ffe14d', '#3fc794', '#4fb3f6', '#2f6fe0', '#7d4fd6'];
+let rainbow = false, rbIdx = 0;
+let stroke = null; // 이번 붓질에서 칠한 칸 (무지개 붓이 같은 칸을 계속 바꾸지 않게)
+function paintColor() {
+  if (tool === 'eraser') return null;
+  if (!rainbow) return color;
+  const c = RAINBOW[rbIdx++ % RAINBOW.length];
+  document.documentElement.style.setProperty('--c', c); // 아이콘 색도 따라 바뀜
+  return c;
+}
+function paint(x, y) {
+  if (x < 0 || y < 0 || x >= N || y >= N) return;
+  const k = y * N + x;
+  if (stroke) { if (stroke.has(k)) return; stroke.add(k); }
+  setCell(x, y, paintColor());
+}
 
 function blank() { return new Array(N * N).fill(null); }
 
@@ -79,8 +96,9 @@ board.addEventListener('pointerdown', (e) => {
   undo.push({ i: cur, d: frames[cur].slice() }); redo = [];
   if (undo.length > 100) undo.shift();
   const [x, y] = cellAt(e);
-  if (tool === 'fill') { if (x >= 0 && y >= 0 && x < N && y < N) floodFill(x, y, color); changed(); return; }
-  setCell(x, y, tool === 'eraser' ? null : color);
+  if (tool === 'fill') { if (x >= 0 && y >= 0 && x < N && y < N) floodFill(x, y, paintColor()); changed(); return; }
+  stroke = new Set();
+  paint(x, y);
   drawing = [x, y];
   changed(false);
 });
@@ -92,7 +110,7 @@ board.addEventListener('pointermove', (e) => {
   const dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0), sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
   let err = dx + dy;
   while (true) {
-    setCell(x0, y0, tool === 'eraser' ? null : color);
+    paint(x0, y0);
     if (x0 === x1 && y0 === y1) break;
     const e2 = 2 * err;
     if (e2 >= dy) { err += dy; x0 += sx; }
@@ -101,25 +119,27 @@ board.addEventListener('pointermove', (e) => {
   drawing = [x1, y1];
   changed(false);
 });
-const stopDraw = () => { if (drawing) { drawing = null; changed(); } };
+const stopDraw = () => { if (drawing) { drawing = null; stroke = null; changed(); } };
 board.addEventListener('pointerup', stopDraw);
 board.addEventListener('pointercancel', stopDraw);
 
 function changed(full = true) {
   render();
+  histUI();
   drawThumb(cur);
   if (full) save();
 }
 
 /* ---------- 색 ---------- */
 function setColor(c) {
-  color = c;
-  document.documentElement.style.setProperty('--c', c); // 연필 자국·물감 색이 같이 바뀜
+  rainbow = c === 'rainbow';
+  if (!rainbow) color = c;
+  document.documentElement.style.setProperty('--c', rainbow ? RAINBOW[rbIdx % RAINBOW.length] : c); // 연필 자국·물감 색이 같이 바뀜
   $('palette').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.c === c));
-  $('my-color').value = c;
+  if (!rainbow) $('my-color').value = c;
   if (tool === 'eraser') setTool('pencil');
 }
-$('palette').innerHTML = COLORS.map((c) => `<button type="button" data-c="${c}" style="background:${c}" aria-label="${c}"></button>`).join('');
+$('palette').innerHTML = `<button type="button" data-c="rainbow" class="rainbow" title="${TXT.rainbow || ''}" aria-label="${TXT.rainbow || 'rainbow'}"></button>` + COLORS.map((c) => `<button type="button" data-c="${c}" style="background:${c}" aria-label="${c}"></button>`).join('');
 $('palette').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setColor(b.dataset.c); });
 $('my-color').addEventListener('input', (e) => setColor(e.target.value));
 
@@ -130,9 +150,11 @@ function setTool(t) {
 }
 document.querySelectorAll('[data-tool]').forEach((b) => b.addEventListener('click', () => setTool(b.dataset.tool)));
 $('t-mirror').addEventListener('click', () => { mirror = !mirror; $('t-mirror').setAttribute('aria-pressed', String(mirror)); render(); });
-$('t-undo').addEventListener('click', () => { const u = undo.pop(); if (!u) return; redo.push({ i: u.i, d: frames[u.i].slice() }); frames[u.i] = u.d; cur = Math.min(u.i, frames.length - 1); refreshAll(); });
-$('t-redo').addEventListener('click', () => { const r = redo.pop(); if (!r) return; undo.push({ i: r.i, d: frames[r.i].slice() }); frames[r.i] = r.d; refreshAll(); });
-$('t-clear').addEventListener('click', () => { if (!confirm(TXT.confirmClear || 'Clear?')) return; undo.push({ i: cur, d: frames[cur].slice() }); frames[cur] = blank(); changed(); });
+function feedback(id, msg) { const b = $(id); b.classList.remove('k-pop'); void b.offsetWidth; b.classList.add('k-pop'); board.classList.remove('board-flash'); void board.offsetWidth; board.classList.add('board-flash'); if (msg) toast(msg); }
+function histUI() { $('t-undo').disabled = !undo.length; $('t-redo').disabled = !redo.length; }
+$('t-undo').addEventListener('click', () => { const u = undo.pop(); if (!u) return toast(TXT.nothing); redo.push({ i: u.i, d: frames[u.i].slice() }); frames[u.i] = u.d; cur = Math.min(u.i, frames.length - 1); refreshAll(); feedback('t-undo', TXT.undone); });
+$('t-redo').addEventListener('click', () => { const r = redo.pop(); if (!r) return; undo.push({ i: r.i, d: frames[r.i].slice() }); frames[r.i] = r.d; refreshAll(); feedback('t-redo', TXT.redone); });
+$('t-clear').addEventListener('click', () => { if (!confirm(TXT.confirmClear || 'Clear?')) return; undo.push({ i: cur, d: frames[cur].slice() }); redo = []; frames[cur] = blank(); changed(); feedback('t-clear', TXT.cleared); });
 $('onion').addEventListener('change', render);
 $('grid-size').addEventListener('change', (e) => {
   const n = +e.target.value;
@@ -164,7 +186,7 @@ $('frames').addEventListener('click', (e) => { const b = e.target.closest('butto
 $('f-add').addEventListener('click', () => { frames.splice(cur + 1, 0, blank()); cur++; refreshAll(); });
 $('f-dup').addEventListener('click', () => { frames.splice(cur + 1, 0, frames[cur].slice()); cur++; refreshAll(); });
 $('f-del').addEventListener('click', () => { if (frames.length === 1) { frames[0] = blank(); } else { frames.splice(cur, 1); cur = Math.max(0, cur - 1); } refreshAll(); });
-function refreshAll() { renderFrames(); render(); save(); }
+function refreshAll() { renderFrames(); render(); save(); histUI(); }
 
 /* ---------- 움직이는 모습 미리보기 ---------- */
 const pv = $('preview');
@@ -227,10 +249,13 @@ $('save-png').addEventListener('click', () => {
   const s = Math.max(1, Math.floor(512 / N));
   const c = document.createElement('canvas'); c.width = c.height = N * s;
   const x = c.getContext('2d');
+  if ($('png-bg').querySelector('.on')?.dataset.bg === 'white') { x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); }
   frames[cur].forEach((col, i) => { if (col) { x.fillStyle = col; x.fillRect((i % N) * s, Math.floor(i / N) * s, s, s); } });
   kidTrack('kids_pixel_png', { size: N });
   c.toBlob((b) => download(b, 'nuricut-pixel.png'), 'image/png');
 });
+
+$('png-bg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; $('png-bg').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b)); });
 
 /* ---------- 시작 ---------- */
 load();
