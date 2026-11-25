@@ -265,3 +265,24 @@ body[data-tool="organize"] .change-log { position: sticky; top: 0; z-index: 6; b
 .foot-tip small { display: block; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; font-size: .74rem; }
 .foot-x:hover .foot-tip, .foot-x:focus-visible .foot-tip { opacity: 1; transform: translate(-50%, 0); }
 @media (hover: none) { .foot-tip { display: none; } }
+
+/* 로고 '& kids' (B안: &는 회색, kids는 키즈 무지개) */
+.brand-seg.kids { margin-left: 6px; font-weight: 800; }
+.brand-seg.kids .amp { color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 600; margin-right: 5px; }
+.brand-seg.kids .kg { background: linear-gradient(90deg, #ff6fae, #ffb38a 35%, #ffd27a 55%, #5fd4a8 75%, #6cc4ff 88%, #b99bff); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+a.brand-seg.kids:hover .kg, a.brand-seg.kids:focus-visible .kg { filter: brightness(1.15); }
+/* 로고가 길어진 만큼 메뉴 간격을 살짝 줄여 한 줄에 */
+.site-header .wrap { column-gap: 12px; }
+.nav a { padding: 6px 8px; }
+
+/* 언어 메뉴: 국기만, 마우스를 올리면 언어 이름 말풍선 */
+.lang-menu summary { position: relative; gap: 6px; padding-left: 10px; padding-right: 9px; }
+.lang-menu .lang-current {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translate(-50%, -4px); z-index: 30;
+  opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s;
+  background: #1f1f27; border: 1px solid #383844; border-radius: 9px; padding: 6px 11px;
+  color: var(--text); font-size: .78rem; font-weight: 700; white-space: nowrap; box-shadow: 0 10px 26px rgba(0, 0, 0, .55);
+}
+.lang-menu .lang-current::before { content: ""; position: absolute; top: -6px; left: 50%; width: 10px; height: 10px; background: #1f1f27; border-left: 1px solid #383844; border-top: 1px solid #383844; transform: translateX(-50%) rotate(45deg); }
+.lang-menu:not([open]) summary:hover .lang-current, .lang-menu:not([open]) summary:focus-visible .lang-current { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: none) { .lang-menu .lang-current { display: none; } }

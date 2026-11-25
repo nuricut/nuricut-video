@@ -6,6 +6,7 @@ export const KIDS_INTL = {
     grownTips: [['Go to the video tools?', 'Compress · Shorts · GIF · Thumbnails'], ['Go to the PDF tools?', 'Merge · Split · Convert']],
     legal: ['Privacy Policy', 'Terms'],
     nav: ['Home', 'Stop motion', 'Pixel art'],
+    battle: {"label":"Battle","soon":"Coming soon","title":"⚔️ Pixel Territory Battle","rules":["Two teams color the same board at the same time","Paint over the other team’s squares to take them","When 60 seconds are up, the team with more squares wins!"],"note":"Play only with friends using a room code · no chat","teams":["Pink team","Blue team"],"win":"{t} wins!"},
     safe: '🔒 Photos & drawings stay on your device',
     footer: '🔒 nuricut kids has no sign-up, no ads and no chat, and never sends your photos or drawings to a server.<br />Everything happens right here on the device you are using.',
     hub: {
@@ -66,6 +67,7 @@ export const KIDS_INTL = {
     grownTips: [['要前往视频工具吗？', '压缩 · 竖屏视频 · GIF · 封面'], ['要前往 PDF 工具吗？', '合并 · 拆分 · 转换']],
     legal: ['隐私政策', '使用条款'],
     nav: ['首页', '定格动画', '像素画'],
+    battle: {"label":"对战","soon":"即将推出","title":"⚔️ 像素抢地盘对战","rules":["两队同时在同一块画板上涂色","也可以把对方的方格涂掉抢过来","60 秒结束时，方格多的一队获胜！"],"note":"只和朋友用房间码一起玩 · 没有聊天","teams":["粉队","蓝队"],"win":"{t}获胜！"},
     safe: '🔒 照片和画只保存在你的设备上',
     footer: '🔒 nuricut kids 无需注册、没有广告、没有聊天，也不会把照片和画上传到服务器。<br />所有操作都只在你正在使用的设备上完成。',
     hub: {
@@ -126,6 +128,7 @@ export const KIDS_INTL = {
     grownTips: [['動画ツールに移動しますか？', '圧縮 · ショート · GIF · サムネイル'], ['PDFツールに移動しますか？', '結合 · 分割 · 変換']],
     legal: ['プライバシーポリシー', '利用規約'],
     nav: ['ホーム', 'コマ撮り', 'ドット絵'],
+    battle: {"label":"対戦","soon":"近日公開","title":"⚔️ ドット陣取り対戦","rules":["2チームが同じ絵のボードを同時にぬるよ","相手チームのマスもぬりかえて取れるよ","60秒たったとき、マスが多いチームの勝ち！"],"note":"友だちとルームコードだけで遊ぶよ · チャットなし","teams":["ピンクチーム","みずいろチーム"],"win":"{t}の勝ち！"},
     safe: '🔒 写真と絵はこの端末だけに',
     footer: '🔒 nuricut kids は登録・広告・チャットがなく、写真や絵をサーバーに送りません。<br />すべての作業は、いま使っている端末の中だけで行われます。',
     hub: {

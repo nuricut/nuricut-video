@@ -245,9 +245,7 @@ button { font: inherit; color: inherit; }
 .k-check input.k-pang { animation: k-pang-box .45s ease; }
 @keyframes k-pang-box { 0% { transform: scale(1); } 25% { transform: scale(1.4) rotate(-8deg); } 55% { transform: scale(.82); } 100% { transform: scale(1); } }
 .k-pang-burst { position: absolute; width: 0; height: 0; pointer-events: none; }
-.k-pang-burst::before { content: ''; position: absolute; left: -12px; top: -12px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid var(--pink); animation: k-pang-ring .45s ease-out forwards; }
 .k-pang-burst i { position: absolute; left: -3.5px; top: -3.5px; width: 7px; height: 7px; border-radius: 50%; background: var(--bc); transform: rotate(var(--a)) translateX(6px); animation: k-pang-dot .5s ease-out forwards; }
-@keyframes k-pang-ring { from { transform: scale(.6); opacity: 1; } to { transform: scale(2); opacity: 0; } }
 @keyframes k-pang-dot { to { transform: rotate(var(--a)) translateX(26px) scale(.3); opacity: 0; } }
 
 /* 바닥 '어른용 도구': 동영상·PDF 글자색(토끼색 그라데이션) + 말풍선 */
@@ -261,3 +259,25 @@ button { font: inherit; color: inherit; }
 .k-xtip small { display: block; color: #cfcadb; -webkit-text-fill-color: #cfcadb; font-weight: 600; font-size: .72rem; }
 .k-x:hover .k-xtip, .k-x:focus-visible .k-xtip { opacity: 1; transform: translate(-50%, 0); }
 @media (hover: none) { .k-xtip { display: none; } }
+
+/* 메뉴 '대전 (출시 예정)' + 게임 방법 말풍선 */
+.k-battle { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 99px; font-weight: 800; color: #b3abc0; cursor: help; outline: none; user-select: none; }
+.k-battle em { font-style: normal; font-size: .66rem; font-weight: 900; color: #fff; background: linear-gradient(90deg, #ff6fae, #b99bff); border-radius: 99px; padding: 2px 7px; white-space: nowrap; }
+.k-battle:hover, .k-battle.open, .k-battle:focus-visible { background: #f6f1fb; color: var(--ink); }
+.k-btip { position: absolute; top: calc(100% + 10px); right: 0; width: 270px; max-width: calc(100vw - 24px); z-index: 40; display: grid; gap: 10px;
+  background: #fff; border: 2px solid var(--line); border-radius: 18px; padding: 14px; box-shadow: 0 16px 40px rgba(36, 32, 58, .16); color: var(--ink); text-align: left; cursor: default;
+  opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity .15s, transform .15s; font-weight: 700; }
+.k-battle.open .k-btip { opacity: 1; transform: none; pointer-events: auto; }
+.k-btip > b { font-size: 1rem; }
+.kb-demo { display: grid; gap: 6px; }
+.kb-demo canvas { width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid var(--line); display: block; }
+.kb-bar { display: flex; height: 10px; border-radius: 99px; overflow: hidden; background: #f1ecf4; }
+.kb-bar i { display: block; height: 100%; width: 50%; transition: width .2s; }
+.kb-bar .p { background: #ff6fae; } .kb-bar .s { background: #4fb3f6; }
+.kb-score { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; font-weight: 900; }
+.kb-score .p { color: #d93c84; } .kb-score .s { color: #2f86d0; }
+.kb-time { background: var(--ink); color: #fff; border-radius: 99px; padding: 1px 9px; font-size: .74rem; }
+.kb-time::after { content: 's'; opacity: .7; margin-left: 1px; }
+.k-btip ol { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: .84rem; line-height: 1.45; }
+.k-btip small { color: var(--muted); font-size: .74rem; }
+@media (max-width: 720px) { .k-battle { padding: 7px 8px; font-size: .9rem; } .k-battle em { padding: 2px 5px; font-size: .6rem; } }

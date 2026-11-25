@@ -53,6 +53,7 @@ const T = {
     grownTips: [['동영상 편집으로 넘어갈까요?', '압축 · 쇼츠 · GIF · 썸네일'], ['PDF 변환으로 넘어갈까요?', '합치기 · 나누기 · 변환']],
     legal: ['개인정보처리방침', '이용약관'],
     nav: ['홈', '스톱모션', '픽셀아트'],
+    battle: {"label":"대전","soon":"출시 예정","title":"⚔️ 픽셀 땅따먹기 대전","rules":["두 팀이 같은 그림판을 동시에 칠해요","상대 팀 칸도 덧칠해서 빼앗을 수 있어요","60초가 끝났을 때 칸이 더 많은 팀이 이겨요!"],"note":"친구끼리 방 코드로만 함께해요 · 채팅 없음","teams":["분홍 팀","하늘 팀"],"win":"{t} 승리!"},
     safe: '🔒 사진·그림은 내 기기에만',
     footer: '🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.',
     hub: {
@@ -112,6 +113,9 @@ Object.assign(T, KIDS_INTL);
 const HTML_LANG = { en: 'en', ko: 'ko', zh: 'zh-Hans', ja: 'ja' };
 const LANG_HOME = { en: '/kids/', ko: '/ko/kids/', zh: '/zh/kids/', ja: '/ja/kids/' };
 
+// 대전(출시 예정): 메뉴 옆 표시 + 말풍선(게임 방법 + 움직이는 미리보기)
+const battle = (b) => `<span class="k-battle" tabindex="0" role="button" aria-expanded="false" aria-label="${b.label} (${b.soon})">${b.label}<em>${b.soon}</em><span class="k-btip" role="tooltip"><b>${b.title}</b><span class="kb-demo"><canvas width="160" height="160" data-teams='${JSON.stringify(b.teams)}' data-win="${b.win}"></canvas><span class="kb-bar"><i class="p"></i><i class="s"></i></span><span class="kb-score"><span class="p">${b.teams[0]} <span>0</span></span><span class="kb-time">60</span><span class="s"><span>0</span> ${b.teams[1]}</span></span></span><ol>${b.rules.map((r) => `<li>${r}</li>`).join('')}</ol><small>${b.note}</small></span></span>`;
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 function build(lang) {
@@ -122,7 +126,7 @@ function build(lang) {
   const header = (active) => `<header class="k-head">
       <div class="k-wrap k-head-in">
         <a class="k-logo" href="${t.home}"><img src="/logo.svg" alt="" width="34" height="34" /><span class="k-word">nuricut<span class="k-dot">.</span><span class="k-kids">kids</span></span></a>
-        <nav class="k-nav">${pages.map(([f, i]) => `<a href="${t.home}${f === 'index.html' ? '' : f}"${i === active ? ' class="on" aria-current="page"' : ''}>${t.nav[i]}</a>`).join('')}</nav>
+        <nav class="k-nav">${pages.map(([f, i]) => `<a href="${t.home}${f === 'index.html' ? '' : f}"${i === active ? ' class="on" aria-current="page"' : ''}>${t.nav[i]}</a>`).join('')}${battle(t.battle)}</nav>
         <span class="k-safe">${t.safe}</span>
       </div>
     </header>`;

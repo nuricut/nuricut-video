@@ -179,7 +179,7 @@ function build(lang) {
           <a href="${url('guide.html')}">${t.nav.guide}</a>
           ${footerXLinks(lang, 'pdf')}
         </div>`)
-    .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote.replace('{BRAND}', brandText('pdf'))}</p>`);
+    .replace(/<p class="footer-note">[\s\S]*?<\/p>/, `<p class="footer-note">${t.footerNote.replace('{BRAND}', brandText('pdf', true))}</p>`);
 
   const cardFoot = `<div class="card-foot"><span class="card-safe">${lockSvg}<span><span class="nb">${t.safe[0]}</span> · <span class="nb">${t.safe[1]}</span></span></span><span class="card-free"><span class="nb"><b>${t.free[0]}</b></span> · <span class="nb">${t.free[1]}</span> · <span class="nb">${t.free[2]}</span></span></div>`;
 

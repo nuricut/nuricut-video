@@ -3,6 +3,7 @@
 import { getFFmpeg, run, readOutput } from '../lib/ffmpeg.js';
 import { kidTrack } from '../lib/kids-usage.js';
 import '../lib/kids-press.js';
+import '../lib/kids-battle.js';
 
 const $ = (id) => document.getElementById(id);
 const TXT = window.KIDS_TXT || {};

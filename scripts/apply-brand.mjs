@@ -18,7 +18,7 @@ for (const [lang, d] of Object.entries(dirs)) {
     const s = fs.readFileSync(p, 'utf8');
     let out = s.replace(/<a class="logo"[\s\S]*?<\/span><\/span><\/a>|<div class="brand">[\s\S]*?<\/span><\/a><\/div>|<div class="brand">[\s\S]*?<\/span><\/span><\/div>/, brandHtml(lang, 'video'));
     // 하단 안내 문구
-    out = out.replace(/(<p class="footer-note">🔒 )(?:nuricut\.video|<span class="brand-text">[\s\S]*?<\/span><\/span>)/, `$1${BT}`);
+    out = out.replace(/(<p class="footer-note">🔒 )(?:nuricut\.video|<span class="brand-text">[\s\S]*?<\/span><\/span>)/, `$1${brandText('video', true)}`); // 바닥글: & kids 까지
     out = out.replace(/(<p class="footer-note">[\s\S]*?)<\/p>/, (m) => m.replace(FILES[lang][0], FILES[lang][1]));
     // 사용방법 제목
     if (f === 'guide.html') out = out.replace(/(<h1>[^<]*?)(?:nuricut\.video|<span class="brand-text">[\s\S]*?<\/span><\/span>)/, `$1${BT}`);
