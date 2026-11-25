@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fff8f3" />
+    <link rel="stylesheet" href="/src/kids.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스톱모션 애니메이션 만들기 - 사진을 이어서 영상으로 | nuricut kids</title>
+    <meta name="description" content="카메라로 사진을 한 장씩 찍어 스톱모션 애니메이션을 만들고 GIF·영상으로 저장해요. 사진은 서버로 가지 않아요. 무료, 가입 없음." />
+    <link rel="canonical" href="https://nuricut.video/ko/kids/stopmotion.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="스톱모션 애니메이션 만들기 - 사진을 이어서 영상으로 | nuricut kids" />
+    <meta property="og:description" content="카메라로 사진을 한 장씩 찍어 스톱모션 애니메이션을 만들고 GIF·영상으로 저장해요. 사진은 서버로 가지 않아요. 무료, 가입 없음." />
+  </head>
+  <body data-kid="stopmotion">
+    <header class="k-head">
+      <div class="k-wrap k-head-in">
+        <a class="k-logo" href="/ko/kids/"><img src="/logo.svg" alt="" width="34" height="34" />nuricut <span class="k-kids">kids</span></a>
+        <nav class="k-nav"><a href="/ko/kids/">홈</a><a href="/ko/kids/stopmotion.html" class="on" aria-current="page">스톱모션</a><a href="/ko/kids/pixel.html">픽셀아트</a></nav>
+        <span class="k-safe">🔒 사진·그림은 내 기기에만</span>
+      </div>
+    </header>
+    <main class="k-wrap">
+      <section class="k-title"><h1>📸 스톱모션 애니메이션</h1><p>물건을 조금씩 움직이며 찍으면, 사진들이 이어져 움직이는 영상이 돼요</p></section>
+      <section class="sm-app">
+        <div class="sm-main">
+          <div id="viewport" class="sm-view">
+            <video id="cam" playsinline muted></video>
+            <canvas id="onion-layer" class="sm-onion"></canvas>
+            <canvas id="player" class="sm-player" hidden></canvas>
+            <div id="start-box" class="sm-start">
+              <button id="cam-on" class="k-btn" type="button">📷 카메라 켜기</button>
+              <p>카메라를 켜도 사진은 이 기기에만 저장돼요.</p>
+              <p class="sm-or">카메라가 없나요? <label class="k-btn sm ghost">🖼️ 사진 파일로 만들기<input id="photos" type="file" accept="image/*" multiple hidden /></label></p>
+            </div>
+            <span id="count" class="sm-count" hidden></span>
+            <button id="cam-switch" class="sm-switch" type="button" hidden>🔄 카메라 바꾸기</button>
+            <div id="flash" class="sm-flash"></div>
+          </div>
+          <div class="sm-shoot-row"><button id="shoot" class="sm-shutter" type="button" aria-label="찰칵! (사진 찍기)" disabled></button><span class="sm-shoot-txt"><b>찰칵! (사진 찍기)</b><small>스페이스바를 눌러도 찍혀요</small></span>
+            <label class="k-check"><input id="onion" type="checkbox" checked /> 👻 전 사진 겹쳐 보기</label></div>
+          <div class="k-card sm-strip-box"><h3>🎞️ 찍은 사진</h3><div id="strip" class="sm-strip"></div><button id="del-frame" class="k-btn sm ghost" type="button" disabled>선택한 사진 빼기</button></div>
+        </div>
+        <div class="sm-side">
+          <div class="k-card"><button id="play" class="k-btn full" type="button" disabled>▶ 재생</button><button id="back-cam" class="k-btn ghost full" type="button" hidden>📷 다시 찍기</button></div>
+          <div class="k-card"><h3>🐢 빠르기 🐇</h3><div class="k-seg" id="speed"><button type="button" data-fps="4">느리게</button><button type="button" data-fps="8" class="on">보통</button><button type="button" data-fps="12">빠르게</button></div></div>
+          <div class="k-card"><h3>✨ 효과</h3><div class="k-seg" id="effect"><button type="button" data-fx="none" class="on">없음</button><button type="button" data-fx="gray">흑백</button><button type="button" data-fx="old">옛날 영화</button></div></div>
+          <div class="k-card"><h3>💾 저장하기</h3><button id="save-gif" class="k-btn mint full" type="button" disabled>GIF로 저장</button><button id="save-mp4" class="k-btn ghost full" type="button" disabled>영상(MP4)으로 저장</button>
+            <div id="progress" class="k-progress" hidden><div class="k-bar"><i id="bar"></i></div><span id="progress-txt"></span></div></div>
+        </div>
+      </section>
+      <script>window.KIDS_TXT = {"engine":"처음 한 번은 만드는 프로그램(약 10MB)을 받아요…","making":"만드는 중… {p}%","needFrames":"사진을 2장 이상 찍어 주세요.","camFail":"카메라를 켤 수 없어요. 카메라 사용을 허락했는지 확인하거나, 사진 파일로 만들어 보세요.","count":"사진 {n}장","saved":"저장했어요!","play":"▶ 재생","stop":"■ 멈춤"};</script>
+    </main>
+    <footer class="k-foot"><div class="k-wrap"><p>🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.</p><p><a href="/ko/">← nuricut으로</a> · <a href="/ko/privacy.html">개인정보처리방침</a> · <a href="/ko/terms.html">이용약관</a></p></div></footer>
+    <script type="module" src="/src/pages/kids-stopmotion.js"></script>
+  </body>
+</html>

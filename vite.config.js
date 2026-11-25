@@ -16,6 +16,9 @@ for (const lang of ['en', 'ko', 'zh', 'ja']) {
   for (const p of pdfPages) input[`${lang}-pdf-${p}`] = resolve(__dirname, lang === 'en' ? `pdf/${p}.html` : `${lang}/pdf/${p}.html`);
 }
 
+// nuricut kids (scripts/build-kids-pages.mjs 로 생성)
+for (const p of ['index', 'stopmotion', 'pixel']) input['ko-kids-' + p] = resolve(__dirname, 'ko/kids/' + p + '.html');
+
 export default defineConfig({
   // ffmpeg.wasm은 자체 워커를 쓰므로 Vite 사전 번들링에서 제외해야 정상 동작합니다.
   optimizeDeps: {

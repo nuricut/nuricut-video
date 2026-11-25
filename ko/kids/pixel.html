@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fff8f3" />
+    <link rel="stylesheet" href="/src/kids.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>픽셀아트 공방 - 움직이는 도트 그림 만들기 | nuricut kids</title>
+    <meta name="description" content="네모 칸을 칠해서 픽셀아트 캐릭터를 그리고, 여러 장을 이어 움직이는 GIF로 저장해요. 무료, 가입 없음." />
+    <link rel="canonical" href="https://nuricut.video/ko/kids/pixel.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="픽셀아트 공방 - 움직이는 도트 그림 만들기 | nuricut kids" />
+    <meta property="og:description" content="네모 칸을 칠해서 픽셀아트 캐릭터를 그리고, 여러 장을 이어 움직이는 GIF로 저장해요. 무료, 가입 없음." />
+  </head>
+  <body data-kid="pixel">
+    <header class="k-head">
+      <div class="k-wrap k-head-in">
+        <a class="k-logo" href="/ko/kids/"><img src="/logo.svg" alt="" width="34" height="34" />nuricut <span class="k-kids">kids</span></a>
+        <nav class="k-nav"><a href="/ko/kids/">홈</a><a href="/ko/kids/stopmotion.html">스톱모션</a><a href="/ko/kids/pixel.html" class="on" aria-current="page">픽셀아트</a></nav>
+        <span class="k-safe">🔒 사진·그림은 내 기기에만</span>
+      </div>
+    </header>
+    <main class="k-wrap">
+      <section class="k-title"><h1>👾 픽셀아트 공방</h1><p>네모 칸을 칠해서 나만의 캐릭터를 그리고 움직여 보세요</p></section>
+      <section class="px-app">
+        <div class="k-card px-left">
+          <h3>🎨 색 고르기</h3>
+          <div id="palette" class="px-pal"></div>
+          <label class="px-mycolor"><input id="my-color" type="color" value="#ff6fae" /> 내 색 만들기</label>
+          <h3>🛠️ 도구</h3>
+          <div class="px-tools">
+            <button id="t-pencil" class="k-tool-btn" type="button" data-tool="pencil" aria-pressed="true"><svg viewBox="0 0 48 48" class="ki"><path d="M5 41c4-1 6-6 10-5s3 5 8 3 5-7 9-6" fill="none" stroke="var(--c)" stroke-width="3.2" stroke-linecap="round"/>
+    <g transform="rotate(45 30 18)"><rect x="25" y="2" width="10" height="26" rx="2" fill="#ffd27a" stroke="#24203a" stroke-width="2"/><rect x="25" y="2" width="10" height="6" rx="2" fill="#ff9ed2" stroke="#24203a" stroke-width="2"/>
+    <path d="M25 28l5 9 5-9z" fill="#f6dcc0" stroke="#24203a" stroke-width="2" stroke-linejoin="round"/><path d="M28.4 34.2L30 37l1.6-2.8z" fill="var(--c)"/></g></svg><span class="kt-l"><b>연필</b><small>한 칸씩 칠해요</small></span></button>
+            <button id="t-fill" class="k-tool-btn" type="button" data-tool="fill"><svg viewBox="0 0 48 48" class="ki"><ellipse cx="30" cy="42" rx="13" ry="3.6" fill="var(--c)"/>
+    <path d="M32.5 22c2 5 3 9 1.6 14.5" fill="none" stroke="var(--c)" stroke-width="4.5" stroke-linecap="round"/>
+    <g transform="rotate(-35 18 18)"><path d="M7 11h22l-3 21H10z" fill="#9ad7ff" stroke="#24203a" stroke-width="2.2" stroke-linejoin="round"/><ellipse cx="18" cy="11" rx="11" ry="3.4" fill="var(--c)" stroke="#24203a" stroke-width="2.2"/>
+    <path d="M8 13c-4-6 0-11 10-11s14 5 10 11" fill="none" stroke="#24203a" stroke-width="2"/></g></svg><span class="kt-l"><b>채우기</b><small>같은 색 칸을 한 번에</small></span></button>
+            <button id="t-eraser" class="k-tool-btn" type="button" data-tool="eraser"><svg viewBox="0 0 48 48" class="ki"><g transform="rotate(-35 24 24)"><rect x="8" y="16" width="32" height="16" rx="4" fill="#ff9ed2" stroke="#24203a" stroke-width="2.2"/><rect x="8" y="16" width="12" height="16" rx="4" fill="#fff" stroke="#24203a" stroke-width="2.2"/></g>
+    <path d="M10 43h28" stroke="#c9c1d6" stroke-width="2.4" stroke-dasharray="3 4" stroke-linecap="round"/></svg><span class="kt-l"><b>지우개</b><small>칸을 지워요</small></span></button>
+            <button id="t-mirror" class="k-tool-btn" type="button" aria-pressed="false"><svg viewBox="0 0 48 48" class="ki"><path d="M24 5v38" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 3"/><path d="M20 12a10 12 0 0 0 0 24z" fill="var(--c)" stroke="#24203a" stroke-width="2.2"/><path d="M28 12a10 12 0 0 1 0 24z" fill="#fff" stroke="#24203a" stroke-width="2.2" stroke-dasharray="3 2"/></svg><span class="kt-l"><b>좌우 대칭</b><small>반만 그려도 양쪽에</small></span></button>
+          </div>
+          <div class="px-mini-tools"><button id="t-undo" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M18 12L8 21l10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21h18a11 11 0 0 1 0 22h-6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg><span class="kt-l"><b>되돌리기</b></span></button><button id="t-redo" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M30 12l10 9-10 9" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 21H21a11 11 0 0 0 0 22h6" fill="none" stroke="#24203a" stroke-width="3" stroke-linecap="round"/></svg><span class="kt-l"><b>다시하기</b></span></button><button id="t-clear" class="k-tool-btn" type="button"><svg viewBox="0 0 48 48" class="ki"><path d="M10 14h28M19 14V9h10v5M13 14l2 27h18l2-27" fill="none" stroke="#24203a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21v13M27 21v13" stroke="#ff6fae" stroke-width="2.6" stroke-linecap="round"/></svg><span class="kt-l"><b>모두 지우기</b></span></button></div>
+        </div>
+        <div class="k-card px-center">
+          <div class="px-top"><label>칸 크기 <select id="grid-size"><option value="16" selected>16 × 16</option><option value="24">24 × 24</option><option value="32">32 × 32</option></select></label>
+            <label class="k-check"><input id="onion" type="checkbox" checked /> 앞 그림 비쳐 보기</label></div>
+          <div class="px-board"><canvas id="board" width="512" height="512"></canvas></div>
+          <h3>🎞️ 그림 칸 (여러 장을 이어서 움직여요)</h3>
+          <div class="px-frames"><div id="frames" class="px-frame-list"></div>
+            <div class="px-frame-btns"><button id="f-add" class="k-btn sm ghost" type="button">＋ 새 칸</button><button id="f-dup" class="k-btn sm ghost" type="button">⧉ 복사</button><button id="f-del" class="k-btn sm ghost" type="button">✕ 빼기</button></div></div>
+        </div>
+        <div class="px-right">
+          <div class="k-card"><h3>👀 움직이는 모습</h3><canvas id="preview" class="px-preview" width="256" height="256"></canvas>
+            <div class="k-seg" id="speed"><button type="button" data-ms="320">느리게</button><button type="button" data-ms="160" class="on">보통</button><button type="button" data-ms="80">빠르게</button></div></div>
+          <div class="k-card"><h3>💾 저장하기</h3><button id="save-gif" class="k-btn mint full" type="button">움직이는 GIF</button><button id="save-png" class="k-btn ghost full" type="button">지금 그림 (PNG)</button></div>
+          <div class="k-card"><h3>🐰 따라 그리기</h3><div class="k-seg" id="starters"><button type="button" data-starter="0">토끼</button><button type="button" data-starter="1">하트</button><button type="button" data-starter="2">별</button></div></div>
+        </div>
+      </section>
+      <script>window.KIDS_TXT = {"confirmClear":"지금 그림 칸을 모두 지울까요?","saved":"저장했어요!"};</script>
+    </main>
+    <footer class="k-foot"><div class="k-wrap"><p>🔒 nuricut kids는 가입·광고·채팅이 없고, 사진과 그림을 서버로 보내지 않아요.<br />모든 작업은 지금 쓰는 기기 안에서만 이루어져요.</p><p><a href="/ko/">← nuricut으로</a> · <a href="/ko/privacy.html">개인정보처리방침</a> · <a href="/ko/terms.html">이용약관</a></p></div></footer>
+    <script type="module" src="/src/pages/kids-pixel.js"></script>
+  </body>
+</html>
